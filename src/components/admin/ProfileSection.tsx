@@ -5,17 +5,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { usePortfolio } from "@/context/PortfolioContext";
 
 const ProfileSection = () => {
   const { toast } = useToast();
-  const [formData, setFormData] = useState({
-    name: "Full Stack Developer",
-    bio: "Hi, I'm a passionate student developer. I enjoy building web applications and solving complex problems with code.",
-    profileImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-    githubLink: "https://github.com",
-    linkedinLink: "https://linkedin.com"
-  });
-  
+  const { portfolioData, updateHero } = usePortfolio();
+  const [formData, setFormData] = useState(portfolioData.hero);
   const [isLoading, setIsLoading] = useState(false);
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -36,15 +31,16 @@ const ProfileSection = () => {
     e.preventDefault();
     setIsLoading(true);
     
-    // Simulate API call
+    // Update the hero data using the context
+    updateHero(formData);
+    
     setTimeout(() => {
-      console.log("Profile data updated:", formData);
       toast({
         title: "Success!",
         description: "Profile information has been updated",
       });
       setIsLoading(false);
-    }, 1000);
+    }, 500);
   };
   
   return (

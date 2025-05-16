@@ -1,57 +1,25 @@
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Plus, Trash2, Edit } from "lucide-react";
-
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  technologies: string[];
-  liveLink: string;
-  githubLink: string;
-}
+import { usePortfolio, ProjectData } from "@/context/PortfolioContext";
 
 const ProjectsSection = () => {
   const { toast } = useToast();
-  const [projects, setProjects] = useState<Project[]>([
-    {
-      id: 1,
-      title: "E-commerce Website",
-      description: "A full-stack e-commerce platform with React, Node.js, and MongoDB. Features include user authentication, product filtering, cart functionality, and admin dashboard.",
-      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80",
-      technologies: ["React", "Node.js", "MongoDB", "Express"],
-      liveLink: "https://example.com",
-      githubLink: "https://github.com"
-    },
-    {
-      id: 2,
-      title: "Task Management App",
-      description: "A Kanban-style task management application with drag-and-drop functionality, user authentication, and real-time updates using WebSockets.",
-      image: "https://images.unsplash.com/photo-1555421689-d68471e189f2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-      technologies: ["React", "Firebase", "Tailwind CSS"],
-      liveLink: "https://example.com",
-      githubLink: "https://github.com"
-    },
-    {
-      id: 3,
-      title: "Weather Dashboard",
-      description: "A weather application that provides current weather data and forecasts for any location. Built with React and integrated with the OpenWeatherMap API.",
-      image: "https://images.unsplash.com/photo-1607798748738-b15c40d33d57?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-      technologies: ["React", "RESTful API", "CSS"],
-      liveLink: "https://example.com",
-      githubLink: "https://github.com"
-    }
-  ]);
+  const { portfolioData, updateProject, addProject, deleteProject } = usePortfolio();
+  const [projects, setProjects] = useState<ProjectData[]>(portfolioData.projects);
   
+  // Keep local projects state in sync with context
+  useEffect(() => {
+    setProjects(portfolioData.projects);
+  }, [portfolioData.projects]);
+
   const [isEditing, setIsEditing] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [currentProject, setCurrentProject] = useState<Project>({
+  const [currentProject, setCurrentProject] = useState<ProjectData>({
     id: 0,
     title: "",
     description: "",
@@ -67,7 +35,7 @@ const ProjectsSection = () => {
   };
   
   const handleTechnologiesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const techArray = e.target.value.split(",").map(item => item.trim());
+    const techArray = e.target.value.split(",").map(item => item.trim()).filter(Boolean);
     setCurrentProject(prev => ({ ...prev, technologies: techArray }));
   };
   
@@ -79,14 +47,14 @@ const ProjectsSection = () => {
     }
   };
   
-  const handleEditProject = (project: Project) => {
+  const handleEditProject = (project: ProjectData) => {
     setCurrentProject(project);
     setIsEditing(true);
   };
   
   const handleDeleteProject = (id: number) => {
     if (confirm("Are you sure you want to delete this project?")) {
-      setProjects(prev => prev.filter(project => project.id !== id));
+      deleteProject(id);
       toast({
         title: "Project deleted",
         description: "The project has been removed",
@@ -126,18 +94,15 @@ const ProjectsSection = () => {
     setTimeout(() => {
       if (projects.some(project => project.id === currentProject.id)) {
         // Update existing project
-        setProjects(prev => 
-          prev.map(project => 
-            project.id === currentProject.id ? currentProject : project
-          )
-        );
+        updateProject(currentProject);
         toast({
           title: "Project updated",
           description: "The project has been updated successfully",
         });
       } else {
         // Add new project
-        setProjects(prev => [...prev, currentProject]);
+        const { id, ...projectWithoutId } = currentProject;
+        addProject(projectWithoutId);
         toast({
           title: "Project added",
           description: "The new project has been added successfully",
@@ -146,7 +111,7 @@ const ProjectsSection = () => {
       
       setIsEditing(false);
       setIsLoading(false);
-    }, 1000);
+    }, 500);
   };
   
   return (

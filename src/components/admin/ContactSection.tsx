@@ -1,16 +1,19 @@
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import { usePortfolio } from "@/context/PortfolioContext";
 
 const ContactSection = () => {
   const { toast } = useToast();
-  const [formData, setFormData] = useState({
-    location: "New York, USA",
-    email: "example@example.com"
-  });
+  const { portfolioData, updateContact } = usePortfolio();
+  const [formData, setFormData] = useState(portfolioData.contact);
+  
+  // Keep local form data in sync with context
+  useEffect(() => {
+    setFormData(portfolioData.contact);
+  }, [portfolioData.contact]);
   
   const [isLoading, setIsLoading] = useState(false);
   
@@ -23,7 +26,9 @@ const ContactSection = () => {
     e.preventDefault();
     setIsLoading(true);
     
-    // Simulate API call
+    // Update contact data in context
+    updateContact(formData);
+    
     setTimeout(() => {
       console.log("Contact data updated:", formData);
       toast({
@@ -31,7 +36,7 @@ const ContactSection = () => {
         description: "Contact information has been updated",
       });
       setIsLoading(false);
-    }, 1000);
+    }, 500);
   };
   
   return (

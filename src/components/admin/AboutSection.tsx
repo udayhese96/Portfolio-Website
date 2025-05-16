@@ -5,18 +5,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { usePortfolio } from "@/context/PortfolioContext";
 
 const AboutSection = () => {
   const { toast } = useToast();
-  const [formData, setFormData] = useState({
-    aboutImage: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-    aboutText1: "I'm a Computer Science student passionate about creating robust, user-friendly web applications. With a strong foundation in both frontend and backend technologies, I enjoy the full process of bringing ideas to life through code.",
-    aboutText2: "My journey in programming began during my first year of college, and since then, I've been constantly learning and expanding my skillset. I'm particularly interested in React, Node.js, and exploring the potential of AI integration in web applications.",
-    yearsExperience: "2+",
-    projectsCompleted: "10+",
-    companiesWorked: "3+",
-    resumeLink: "/resume.pdf"
-  });
+  const { portfolioData, updateAbout } = usePortfolio();
+  const [formData, setFormData] = useState(portfolioData.about);
   
   const [isLoading, setIsLoading] = useState(false);
   const [resumeFile, setResumeFile] = useState<File | null>(null);
@@ -47,16 +41,17 @@ const AboutSection = () => {
     e.preventDefault();
     setIsLoading(true);
     
-    // Simulate API call
+    // Update about data using context
+    updateAbout(formData);
+    
     setTimeout(() => {
-      console.log("About data updated:", formData);
       console.log("Resume file:", resumeFile);
       toast({
         title: "Success!",
         description: "About section has been updated",
       });
       setIsLoading(false);
-    }, 1000);
+    }, 500);
   };
   
   return (

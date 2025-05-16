@@ -1,8 +1,8 @@
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { Mail, Trash2 } from "lucide-react";
+import { usePortfolio, Message } from "@/context/PortfolioContext";
 
 interface Message {
   id: number;
@@ -15,37 +15,16 @@ interface Message {
 
 const MessagesSection = () => {
   const { toast } = useToast();
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: 1,
-      name: "John Doe",
-      email: "john@example.com",
-      message: "Hi, I'm interested in hiring you for a freelance project. Can we schedule a call to discuss the details?",
-      date: "2023-10-15",
-      isRead: true
-    },
-    {
-      id: 2,
-      name: "Jane Smith",
-      email: "jane@example.com",
-      message: "Hello, I came across your portfolio and I'm really impressed with your work. I have a small project that I'd like you to work on. Please let me know if you're available.",
-      date: "2023-10-12",
-      isRead: false
-    },
-    {
-      id: 3,
-      name: "Alex Johnson",
-      email: "alex@example.com",
-      message: "I'd like to connect and discuss potential collaboration opportunities. I think your skills would be a great fit for our upcoming project.",
-      date: "2023-10-10",
-      isRead: false
-    }
-  ]);
+  const { portfolioData, markMessageAsRead, deleteMessage } = usePortfolio();
+  const [messages, setMessages] = useState<Message[]>(portfolioData.messages);
+  
+  // Keep local messages state in sync with context
+  useEffect(() => {
+    setMessages(portfolioData.messages);
+  }, [portfolioData.messages]);
   
   const handleMarkAsRead = (id: number) => {
-    setMessages(prev => prev.map(message => 
-      message.id === id ? { ...message, isRead: true } : message
-    ));
+    markMessageAsRead(id);
     
     toast({
       title: "Message marked as read",
@@ -55,7 +34,7 @@ const MessagesSection = () => {
   
   const handleDeleteMessage = (id: number) => {
     if (confirm("Are you sure you want to delete this message?")) {
-      setMessages(prev => prev.filter(message => message.id !== id));
+      deleteMessage(id);
       
       toast({
         title: "Message deleted",
