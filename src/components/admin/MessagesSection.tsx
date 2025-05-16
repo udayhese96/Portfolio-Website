@@ -1,123 +1,170 @@
-import { useState, useEffect } from "react";
+
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { Mail, Trash2 } from "lucide-react";
-import { usePortfolio, Message } from "@/context/PortfolioContext";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { usePortfolio } from "@/context/PortfolioContext";
 
-interface Message {
-  id: number;
-  name: string;
-  email: string;
-  message: string;
-  date: string;
-  isRead: boolean;
-}
+// Use the Message type from PortfolioContext
+interface MessagesSectionProps {}
 
-const MessagesSection = () => {
+const MessagesSection = ({}: MessagesSectionProps) => {
   const { toast } = useToast();
   const { portfolioData, markMessageAsRead, deleteMessage } = usePortfolio();
-  const [messages, setMessages] = useState<Message[]>(portfolioData.messages);
-  
-  // Keep local messages state in sync with context
-  useEffect(() => {
-    setMessages(portfolioData.messages);
-  }, [portfolioData.messages]);
+  const [selectedMessageId, setSelectedMessageId] = useState<number | null>(null);
   
   const handleMarkAsRead = (id: number) => {
     markMessageAsRead(id);
-    
     toast({
       title: "Message marked as read",
       description: "The message has been marked as read",
     });
   };
   
-  const handleDeleteMessage = (id: number) => {
-    if (confirm("Are you sure you want to delete this message?")) {
-      deleteMessage(id);
-      
-      toast({
-        title: "Message deleted",
-        description: "The message has been removed",
-      });
+  const handleDelete = (id: number) => {
+    deleteMessage(id);
+    if (selectedMessageId === id) {
+      setSelectedMessageId(null);
     }
+    toast({
+      title: "Message deleted",
+      description: "The message has been deleted successfully",
+      variant: "destructive",
+    });
   };
   
-  const unreadCount = messages.filter(message => !message.isRead).length;
+  const getInitials = (name: string) => {
+    return name
+      .split(" ")
+      .map(n => n[0])
+      .join("")
+      .toUpperCase()
+      .substring(0, 2);
+  };
+  
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+  };
   
   return (
     <div>
-      <div className="mb-6 flex items-center justify-between">
-        <div>
-          <h2 className="text-2xl font-bold text-portfolio-dark">Messages</h2>
-          <p className="text-sm text-portfolio-gray">
-            {unreadCount} unread {unreadCount === 1 ? "message" : "messages"}
-          </p>
+      <h2 className="mb-6 text-2xl font-bold text-portfolio-dark">Messages</h2>
+      
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="md:col-span-1 border rounded-lg overflow-hidden">
+          <div className="p-4 bg-gray-50 border-b">
+            <h3 className="font-medium text-portfolio-dark">Inbox</h3>
+          </div>
+          
+          <div className="divide-y max-h-[500px] overflow-y-auto">
+            {portfolioData.messages.length > 0 ? (
+              portfolioData.messages.map((message) => (
+                <div 
+                  key={message.id}
+                  className={`p-4 cursor-pointer hover:bg-gray-50 ${!message.isRead ? 'bg-blue-50' : ''} ${selectedMessageId === message.id ? 'bg-gray-100' : ''}`}
+                  onClick={() => setSelectedMessageId(message.id)}
+                >
+                  <div className="flex items-start gap-3">
+                    <Avatar>
+                      <AvatarFallback>{getInitials(message.name)}</AvatarFallback>
+                    </Avatar>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-baseline justify-between gap-2">
+                        <p className={`font-medium truncate ${!message.isRead ? 'text-portfolio-dark' : 'text-portfolio-gray'}`}>
+                          {message.name}
+                        </p>
+                        <p className="text-xs text-portfolio-gray whitespace-nowrap">
+                          {formatDate(message.date)}
+                        </p>
+                      </div>
+                      <p className="text-sm text-portfolio-gray truncate">
+                        {message.email}
+                      </p>
+                      <p className="text-sm truncate mt-1">
+                        {message.message.substring(0, 60)}
+                        {message.message.length > 60 ? '...' : ''}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="p-8 text-center text-portfolio-gray">
+                <p>No messages yet.</p>
+              </div>
+            )}
+          </div>
+        </div>
+        
+        <div className="md:col-span-2 border rounded-lg">
+          {selectedMessageId ? (
+            (() => {
+              const selectedMessage = portfolioData.messages.find(m => m.id === selectedMessageId);
+              
+              if (!selectedMessage) return (
+                <div className="p-8 text-center text-portfolio-gray">
+                  <p>Message not found.</p>
+                </div>
+              );
+              
+              return (
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center gap-3">
+                      <Avatar className="h-12 w-12">
+                        <AvatarFallback className="text-lg">{getInitials(selectedMessage.name)}</AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <h3 className="font-medium text-lg text-portfolio-dark">{selectedMessage.name}</h3>
+                        <p className="text-portfolio-gray">{selectedMessage.email}</p>
+                      </div>
+                    </div>
+                    <div className="text-sm text-portfolio-gray">
+                      {formatDate(selectedMessage.date)}
+                    </div>
+                  </div>
+                  
+                  <div className="bg-gray-50 p-6 rounded-lg mb-6">
+                    <p className="whitespace-pre-wrap">{selectedMessage.message}</p>
+                  </div>
+                  
+                  <div className="flex justify-between">
+                    <div className="space-x-2">
+                      <Button
+                        variant="outline"
+                        onClick={() => window.location.href = `mailto:${selectedMessage.email}`}
+                      >
+                        Reply
+                      </Button>
+                    </div>
+                    <div className="space-x-2">
+                      {!selectedMessage.isRead && (
+                        <Button
+                          variant="outline"
+                          onClick={() => handleMarkAsRead(selectedMessage.id)}
+                        >
+                          Mark as Read
+                        </Button>
+                      )}
+                      <Button
+                        variant="destructive"
+                        onClick={() => handleDelete(selectedMessage.id)}
+                      >
+                        Delete
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              );
+            })()
+          ) : (
+            <div className="p-8 text-center text-portfolio-gray h-full flex items-center justify-center">
+              <p>Select a message to view its content.</p>
+            </div>
+          )}
         </div>
       </div>
-      
-      {messages.length === 0 ? (
-        <div className="rounded-lg border border-gray-200 p-8 text-center">
-          <Mail size={48} className="mx-auto mb-4 text-portfolio-gray opacity-50" />
-          <p className="text-lg text-portfolio-gray">No messages yet</p>
-        </div>
-      ) : (
-        <div className="space-y-4">
-          {messages.map(message => (
-            <div 
-              key={message.id} 
-              className={`rounded-lg border p-4 ${message.isRead ? 'bg-white border-gray-200' : 'bg-blue-50 border-blue-200'}`}
-            >
-              <div className="mb-2 flex items-center justify-between">
-                <div>
-                  <h3 className="text-lg font-semibold text-portfolio-dark">
-                    {message.name}
-                    {!message.isRead && (
-                      <span className="ml-2 inline-block h-2 w-2 rounded-full bg-portfolio-blue"></span>
-                    )}
-                  </h3>
-                  <p className="text-xs text-portfolio-gray">
-                    {message.email} • {message.date}
-                  </p>
-                </div>
-                <div className="flex gap-2">
-                  {!message.isRead && (
-                    <Button 
-                      size="sm" 
-                      variant="outline" 
-                      className="border-blue-200 text-portfolio-blue hover:bg-blue-50"
-                      onClick={() => handleMarkAsRead(message.id)}
-                    >
-                      Mark as Read
-                    </Button>
-                  )}
-                  <Button 
-                    size="sm" 
-                    variant="outline" 
-                    className="border-red-200 text-red-500 hover:bg-red-50"
-                    onClick={() => handleDeleteMessage(message.id)}
-                  >
-                    <Trash2 size={16} />
-                  </Button>
-                </div>
-              </div>
-              
-              <div className="whitespace-pre-wrap rounded-md bg-gray-50 p-3 text-sm text-portfolio-gray">
-                {message.message}
-              </div>
-              
-              <div className="mt-3">
-                <a 
-                  href={`mailto:${message.email}`}
-                  className="text-sm text-portfolio-blue hover:underline"
-                >
-                  Reply via Email
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
     </div>
   );
 };

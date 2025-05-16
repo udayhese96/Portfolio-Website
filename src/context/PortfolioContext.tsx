@@ -56,10 +56,10 @@ export interface PortfolioData {
 const defaultData: PortfolioData = {
   hero: {
     name: "Full Stack Developer",
-    bio: "Hi, I'm a passionate student developer. I enjoy building web applications and solving complex problems with code.",
-    profileImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-    githubLink: "https://github.com",
-    linkedinLink: "https://linkedin.com"
+    bio: "Hi, I'm a passionate developer. I enjoy building web applications and solving complex problems with code.",
+    profileImage: "/lovable-uploads/eec9055f-d395-49b5-97e3-cb051126ec47.png",
+    githubLink: "https://github.com/udayhese96",
+    linkedinLink: "https://www.linkedin.com/in/udayhese/"
   },
   about: {
     aboutImage: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
@@ -78,7 +78,7 @@ const defaultData: PortfolioData = {
       image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80",
       technologies: ["React", "Node.js", "MongoDB", "Express"],
       liveLink: "https://example.com",
-      githubLink: "https://github.com"
+      githubLink: "https://github.com/udayhese96"
     },
     {
       id: 2,
@@ -87,7 +87,7 @@ const defaultData: PortfolioData = {
       image: "https://images.unsplash.com/photo-1555421689-d68471e189f2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
       technologies: ["React", "Firebase", "Tailwind CSS"],
       liveLink: "https://example.com",
-      githubLink: "https://github.com"
+      githubLink: "https://github.com/udayhese96"
     },
     {
       id: 3,
@@ -96,11 +96,11 @@ const defaultData: PortfolioData = {
       image: "https://images.unsplash.com/photo-1607798748738-b15c40d33d57?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
       technologies: ["React", "RESTful API", "CSS"],
       liveLink: "https://example.com",
-      githubLink: "https://github.com"
+      githubLink: "https://github.com/udayhese96"
     }
   ],
   contact: {
-    location: "New York, USA",
+    location: "Pune, India",
     email: "example@example.com"
   },
   messages: [

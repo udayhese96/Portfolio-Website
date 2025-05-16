@@ -43,10 +43,8 @@ const Navbar = () => {
           <a href="#about" className="text-portfolio-dark hover:text-portfolio-blue transition-colors">About</a>
           <a href="#projects" className="text-portfolio-dark hover:text-portfolio-blue transition-colors">Projects</a>
           <a href="#contact" className="text-portfolio-dark hover:text-portfolio-blue transition-colors">Contact</a>
-          {isAdmin ? (
+          {isAdmin && (
             <a href="/admin/dashboard" className="text-portfolio-blue hover:text-portfolio-dark transition-colors">Admin</a>
-          ) : (
-            <a href="/admin" className="text-portfolio-dark hover:text-portfolio-blue transition-colors">Login</a>
           )}
         </div>
         
@@ -72,10 +70,8 @@ const Navbar = () => {
           <a href="#about" className="text-portfolio-dark hover:text-portfolio-blue transition-colors" onClick={() => setIsMobileMenuOpen(false)}>About</a>
           <a href="#projects" className="text-portfolio-dark hover:text-portfolio-blue transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Projects</a>
           <a href="#contact" className="text-portfolio-dark hover:text-portfolio-blue transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Contact</a>
-          {isAdmin ? (
+          {isAdmin && (
             <a href="/admin/dashboard" className="text-portfolio-blue hover:text-portfolio-dark transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Admin</a>
-          ) : (
-            <a href="/admin" className="text-portfolio-dark hover:text-portfolio-blue transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Login</a>
           )}
         </div>
       </div>

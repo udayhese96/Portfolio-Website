@@ -1,16 +1,23 @@
 
-import { useState } from 'react';
-import { Mail, MapPin, Send } from 'lucide-react';
+import { useState } from "react";
+import { MapPin, Mail } from "lucide-react";
+import { usePortfolio } from "@/context/PortfolioContext";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
+  const { toast } = useToast();
+  const { portfolioData, addMessage } = usePortfolio();
+  const { contact } = portfolioData;
   
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: ""
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitSuccess, setSubmitSuccess] = useState(false);
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -19,129 +26,112 @@ const Contact = () => {
   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!formData.name || !formData.email || !formData.message) {
+      toast({
+        title: "Error",
+        description: "Please fill in all fields",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      console.log('Form submitted:', formData);
-      setFormData({ name: '', email: '', message: '' });
-      setIsSubmitting(false);
-      setSubmitSuccess(true);
-      
-      // Reset success message after 3 seconds
-      setTimeout(() => {
-        setSubmitSuccess(false);
-      }, 3000);
-    }, 1000);
+    // Add the message directly to our context
+    addMessage({
+      name: formData.name,
+      email: formData.email,
+      message: formData.message,
+    });
+    
+    // Reset form and show success message
+    setFormData({ name: "", email: "", message: "" });
+    toast({
+      title: "Message sent",
+      description: "Your message has been sent successfully!",
+    });
+    setIsSubmitting(false);
   };
   
   return (
-    <section id="contact" className="py-20 bg-portfolio-light">
+    <section id="contact" className="py-20 bg-white">
       <div className="container mx-auto px-6">
-        <h2 className="section-title">Contact</h2>
+        <h2 className="section-title">Contact Me</h2>
         <p className="section-subtitle">Get in touch</p>
         
-        <div className="flex flex-col md:flex-row gap-10">
-          <div className="md:w-1/3">
-            <h3 className="text-xl font-bold font-poppins text-portfolio-dark mb-6">
-              Let's talk about your project
-            </h3>
-            
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12">
+          <div>
+            <h3 className="text-2xl font-bold text-portfolio-dark mb-6">Get in Touch</h3>
             <p className="text-portfolio-gray mb-8">
-              Feel free to reach out if you're looking for a developer, have a question, or just want to connect.
+              I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.
             </p>
             
-            <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <div className="bg-white p-3 rounded-lg shadow-sm">
-                  <MapPin size={20} className="text-portfolio-blue" />
+            <div className="space-y-4">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-portfolio-light flex items-center justify-center rounded-lg">
+                  <MapPin className="text-portfolio-blue" />
                 </div>
                 <div>
-                  <h4 className="font-medium text-portfolio-dark">Location</h4>
-                  <p className="text-portfolio-gray">New York, USA</p>
+                  <p className="font-medium text-portfolio-dark">Location</p>
+                  <p className="text-portfolio-gray">{contact.location}</p>
                 </div>
               </div>
               
-              <div className="flex items-start gap-4">
-                <div className="bg-white p-3 rounded-lg shadow-sm">
-                  <Mail size={20} className="text-portfolio-blue" />
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-portfolio-light flex items-center justify-center rounded-lg">
+                  <Mail className="text-portfolio-blue" />
                 </div>
                 <div>
-                  <h4 className="font-medium text-portfolio-dark">Email</h4>
-                  <a href="mailto:example@example.com" className="text-portfolio-blue hover:underline">
-                    example@example.com
-                  </a>
+                  <p className="font-medium text-portfolio-dark">Email</p>
+                  <p className="text-portfolio-gray">{contact.email}</p>
                 </div>
               </div>
             </div>
           </div>
           
-          <div className="md:w-2/3">
-            <form onSubmit={handleSubmit} className="bg-white p-8 rounded-xl shadow-sm">
-              {submitSuccess && (
-                <div className="mb-6 p-4 bg-green-50 text-green-700 rounded-lg">
-                  Thank you! Your message has been sent successfully.
-                </div>
-              )}
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-portfolio-dark mb-2">
-                    Your Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-portfolio-blue focus:border-transparent"
-                    placeholder="John Doe"
-                  />
-                </div>
-                
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-portfolio-dark mb-2">
-                    Your Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-portfolio-blue focus:border-transparent"
-                    placeholder="john@example.com"
-                  />
-                </div>
+          <div>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <Input
+                  type="text"
+                  name="name"
+                  placeholder="Your Name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="bg-portfolio-light border-0"
+                />
               </div>
               
-              <div className="mb-6">
-                <label htmlFor="message" className="block text-sm font-medium text-portfolio-dark mb-2">
-                  Your Message
-                </label>
-                <textarea
-                  id="message"
+              <div>
+                <Input
+                  type="email"
+                  name="email"
+                  placeholder="Your Email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="bg-portfolio-light border-0"
+                />
+              </div>
+              
+              <div>
+                <Textarea
                   name="message"
+                  placeholder="Your Message"
+                  rows={5}
                   value={formData.message}
                   onChange={handleChange}
-                  required
-                  rows={5}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-portfolio-blue focus:border-transparent"
-                  placeholder="How can I help you?"
-                ></textarea>
+                  className="bg-portfolio-light border-0 resize-none"
+                />
               </div>
               
-              <button
-                type="submit"
+              <Button 
+                type="submit" 
+                className="btn-primary w-full"
                 disabled={isSubmitting}
-                className="btn-primary flex items-center gap-2 disabled:opacity-70"
               >
-                {isSubmitting ? 'Sending...' : 'Send Message'}
-                <Send size={18} />
-              </button>
+                {isSubmitting ? "Sending..." : "Send Message"}
+              </Button>
             </form>
           </div>
         </div>
