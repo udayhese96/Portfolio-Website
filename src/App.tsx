@@ -20,18 +20,18 @@ const App = () => (
       <Sonner />
       <PortfolioProvider>
         <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/admin/dashboard" element={
-              <AdminRoute>
-                <AdminAuthProvider>
+          <AdminAuthProvider>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/admin/dashboard" element={
+                <AdminRoute>
                   <AdminDashboard />
-                </AdminAuthProvider>
-              </AdminRoute>
-            } />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+                </AdminRoute>
+              } />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </AdminAuthProvider>
         </BrowserRouter>
       </PortfolioProvider>
     </TooltipProvider>

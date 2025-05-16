@@ -44,7 +44,7 @@ const Hero = () => {
             <div className="flex items-center gap-2 text-portfolio-gray">
               <p className="font-medium">Tech Stack</p>
               <span className="h-[2px] w-12 bg-portfolio-gray/20 inline-block"></span>
-              <div className="flex gap-3">
+              <div className="flex flex-wrap gap-3">
                 <img src="https://skillicons.dev/icons?i=html" alt="HTML" className="w-8 h-8" />
                 <img src="https://skillicons.dev/icons?i=css" alt="CSS" className="w-8 h-8" />
                 <img src="https://skillicons.dev/icons?i=js" alt="JavaScript" className="w-8 h-8" />
@@ -52,6 +52,10 @@ const Hero = () => {
                 <img src="https://skillicons.dev/icons?i=nodejs" alt="Node.js" className="w-8 h-8" />
                 <img src="https://skillicons.dev/icons?i=python" alt="Python" className="w-8 h-8" title="AI/ML" />
                 <img src="https://skillicons.dev/icons?i=tensorflow" alt="TensorFlow" className="w-8 h-8" title="Deep Learning" />
+                <img src="https://skillicons.dev/icons?i=java" alt="Java" className="w-8 h-8" />
+                <img src="https://skillicons.dev/icons?i=django" alt="Django" className="w-8 h-8" />
+                <img src="https://skillicons.dev/icons?i=flask" alt="Flask" className="w-8 h-8" />
+                <img src="https://skillicons.dev/icons?i=huggingface" alt="Hugging Face" className="w-8 h-8" />
               </div>
             </div>
           </div>
@@ -60,7 +64,7 @@ const Hero = () => {
             <div className="relative">
               <div className="w-64 h-64 md:w-80 md:h-80 bg-portfolio-light rounded-full overflow-hidden border-8 border-white shadow-xl">
                 <img 
-                  src={hero.profileImage}
+                  src="/lovable-uploads/a7869fd3-1e2d-406d-b4f0-1f3b8ee9d47b.png"
                   alt="Profile"
                   className="w-full h-full object-cover"
                 />

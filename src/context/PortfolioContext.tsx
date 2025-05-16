@@ -1,4 +1,3 @@
-
 import { createContext, useContext, ReactNode, useState, useEffect } from "react";
 
 // Define types for our portfolio data
@@ -57,7 +56,7 @@ const defaultData: PortfolioData = {
   hero: {
     name: "Full Stack Developer",
     bio: "Hi, I'm a passionate developer. I enjoy building web applications and solving complex problems with code.",
-    profileImage: "/lovable-uploads/eec9055f-d395-49b5-97e3-cb051126ec47.png",
+    profileImage: "/lovable-uploads/a7869fd3-1e2d-406d-b4f0-1f3b8ee9d47b.png",
     githubLink: "https://github.com/udayhese96",
     linkedinLink: "https://www.linkedin.com/in/udayhese/"
   },

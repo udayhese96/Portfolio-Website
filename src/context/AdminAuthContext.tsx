@@ -1,43 +1,30 @@
 
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
-import { useNavigate } from "react-router-dom";
 
 interface AdminAuthContextType {
   isAuthenticated: boolean;
-  login: (username: string, password: string) => boolean;
   logout: () => void;
 }
 
 const AdminAuthContext = createContext<AdminAuthContextType | undefined>(undefined);
 
 export const AdminAuthProvider = ({ children }: { children: ReactNode }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const navigate = useNavigate();
-
-  // Check if admin is logged in on component mount
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  
+  // Auto-authenticate the admin
   useEffect(() => {
-    const adminAuth = localStorage.getItem("isAdminLoggedIn");
-    setIsAuthenticated(adminAuth === "true");
+    localStorage.setItem("isAdminLoggedIn", "true");
+    setIsAuthenticated(true);
   }, []);
-
-  const login = (username: string, password: string) => {
-    // Simple authentication for demo
-    if (username === "admin" && password === "admin123") {
-      localStorage.setItem("isAdminLoggedIn", "true");
-      setIsAuthenticated(true);
-      return true;
-    }
-    return false;
-  };
 
   const logout = () => {
     localStorage.removeItem("isAdminLoggedIn");
     setIsAuthenticated(false);
-    navigate("/admin");
+    window.location.href = "/";
   };
 
   return (
-    <AdminAuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AdminAuthContext.Provider value={{ isAuthenticated, logout }}>
       {children}
     </AdminAuthContext.Provider>
   );
