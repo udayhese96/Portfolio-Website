@@ -43,12 +43,21 @@ export interface Message {
   isRead: boolean;
 }
 
+export interface BlogPost {
+  id: number;
+  title: string;
+  content: string;
+  date: string;
+  image: string;
+}
+
 export interface PortfolioData {
   hero: HeroData;
   about: AboutData;
   projects: ProjectData[];
   contact: ContactData;
   messages: Message[];
+  blogPosts: BlogPost[];
 }
 
 // Initial default data
@@ -127,6 +136,29 @@ const defaultData: PortfolioData = {
       date: "2023-10-10",
       isRead: false
     }
+  ],
+  blogPosts: [
+    {
+      id: 1,
+      title: "Implemented Machine Learning Model for Image Classification",
+      content: "Recently, I completed a project implementing a CNN-based image classification model that achieved 95% accuracy on the test dataset. The model was built using TensorFlow and deployed as a web service.",
+      date: "2023-11-25",
+      image: "https://images.unsplash.com/photo-1555421689-d68471e189f2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+    },
+    {
+      id: 2,
+      title: "Completed AWS Machine Learning Certification",
+      content: "I'm excited to share that I've earned the AWS Certified Machine Learning Specialty certification. This intensive program covered data engineering, exploratory data analysis, modeling, and ML implementation on AWS.",
+      date: "2023-10-10",
+      image: "https://images.unsplash.com/photo-1568952433726-3896e3881c65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+    },
+    {
+      id: 3,
+      title: "Contributed to Open Source NLP Project",
+      content: "Proud to have contributed to a major open-source NLP library by implementing a new feature for sentiment analysis. My pull request was reviewed and merged, and the feature is now available in the latest release.",
+      date: "2023-09-15",
+      image: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+    }
   ]
 };
 
@@ -142,6 +174,9 @@ interface PortfolioContextType {
   addMessage: (message: Omit<Message, "id" | "date" | "isRead">) => void;
   markMessageAsRead: (id: number) => void;
   deleteMessage: (id: number) => void;
+  addBlogPost: (post: Omit<BlogPost, "id" | "date">) => void;
+  deleteBlogPost: (id: number) => void;
+  updateBlogPost: (post: BlogPost) => void;
 }
 
 const PortfolioContext = createContext<PortfolioContextType | undefined>(undefined);
@@ -247,6 +282,35 @@ export const PortfolioProvider = ({ children }: { children: ReactNode }) => {
     }));
   };
 
+  const addBlogPost = (postData: Omit<BlogPost, "id" | "date">) => {
+    const newBlogPost = {
+      ...postData,
+      id: Date.now(),
+      date: new Date().toISOString().split('T')[0]
+    };
+    
+    setPortfolioData(prev => ({
+      ...prev,
+      blogPosts: [newBlogPost, ...prev.blogPosts]
+    }));
+  };
+
+  const deleteBlogPost = (id: number) => {
+    setPortfolioData(prev => ({
+      ...prev,
+      blogPosts: prev.blogPosts.filter(post => post.id !== id)
+    }));
+  };
+
+  const updateBlogPost = (post: BlogPost) => {
+    setPortfolioData(prev => ({
+      ...prev,
+      blogPosts: prev.blogPosts.map(blogPost => 
+        blogPost.id === post.id ? post : blogPost
+      )
+    }));
+  };
+
   return (
     <PortfolioContext.Provider
       value={{
@@ -259,7 +323,10 @@ export const PortfolioProvider = ({ children }: { children: ReactNode }) => {
         updateContact,
         addMessage,
         markMessageAsRead,
-        deleteMessage
+        deleteMessage,
+        addBlogPost,
+        deleteBlogPost,
+        updateBlogPost
       }}
     >
       {children}

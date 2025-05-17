@@ -38,7 +38,7 @@ const Contact = () => {
     
     setIsSubmitting(true);
     
-    // Add the message directly to our context
+    // Add the message to our context/localStorage
     addMessage({
       name: formData.name,
       email: formData.email,
@@ -49,7 +49,7 @@ const Contact = () => {
     setFormData({ name: "", email: "", message: "" });
     toast({
       title: "Message sent",
-      description: "Your message has been sent successfully!",
+      description: "Your message has been received! I'll get back to you soon.",
     });
     setIsSubmitting(false);
   };
@@ -65,6 +65,7 @@ const Contact = () => {
             <h3 className="text-2xl font-bold text-portfolio-dark mb-6">Get in Touch</h3>
             <p className="text-portfolio-gray mb-8">
               I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.
+              Your messages will be securely stored and I'll respond as soon as possible.
             </p>
             
             <div className="space-y-4">

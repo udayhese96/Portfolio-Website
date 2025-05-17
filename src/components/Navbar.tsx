@@ -1,15 +1,11 @@
 
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
-  const isAdminPage = location.pathname.includes('/admin');
-
-  // Skip rendering Navbar on admin pages
-  if (isAdminPage) return null;
 
   const handleScroll = () => {
     if (window.scrollY > 50) {
@@ -30,21 +26,29 @@ const Navbar = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const isAdmin = localStorage.getItem("isAdminLoggedIn") === "true";
+  // Check if we're on the home page
+  const isHomePage = location.pathname === '/';
 
   return (
     <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md py-4' : 'bg-transparent py-6'}`}>
       <div className="container mx-auto px-6 flex items-center justify-between">
-        <a href="/" className="text-portfolio-dark text-2xl font-bold font-poppins">Portfolio.</a>
+        <Link to="/" className="text-portfolio-dark text-2xl font-bold font-poppins">Portfolio.</Link>
         
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-10">
-          <a href="#home" className="text-portfolio-dark hover:text-portfolio-blue transition-colors">Home</a>
-          <a href="#about" className="text-portfolio-dark hover:text-portfolio-blue transition-colors">About</a>
-          <a href="#projects" className="text-portfolio-dark hover:text-portfolio-blue transition-colors">Projects</a>
-          <a href="#contact" className="text-portfolio-dark hover:text-portfolio-blue transition-colors">Contact</a>
-          {isAdmin && (
-            <a href="/admin/dashboard" className="text-portfolio-blue hover:text-portfolio-dark transition-colors">Admin</a>
+          {isHomePage ? (
+            <>
+              <a href="#home" className="text-portfolio-dark hover:text-portfolio-blue transition-colors">Home</a>
+              <a href="#about" className="text-portfolio-dark hover:text-portfolio-blue transition-colors">About</a>
+              <a href="#projects" className="text-portfolio-dark hover:text-portfolio-blue transition-colors">Projects</a>
+              <a href="#blog" className="text-portfolio-dark hover:text-portfolio-blue transition-colors">Blog</a>
+              <a href="#contact" className="text-portfolio-dark hover:text-portfolio-blue transition-colors">Contact</a>
+            </>
+          ) : (
+            <>
+              <Link to="/" className="text-portfolio-dark hover:text-portfolio-blue transition-colors">Home</Link>
+              <Link to="/blog" className="text-portfolio-dark hover:text-portfolio-blue transition-colors">Blog</Link>
+            </>
           )}
         </div>
         
@@ -66,12 +70,19 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <div className={`md:hidden bg-white shadow-lg transition-all duration-300 overflow-hidden ${isMobileMenuOpen ? 'max-h-60' : 'max-h-0'}`}>
         <div className="container mx-auto px-6 py-4 flex flex-col space-y-4">
-          <a href="#home" className="text-portfolio-dark hover:text-portfolio-blue transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Home</a>
-          <a href="#about" className="text-portfolio-dark hover:text-portfolio-blue transition-colors" onClick={() => setIsMobileMenuOpen(false)}>About</a>
-          <a href="#projects" className="text-portfolio-dark hover:text-portfolio-blue transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Projects</a>
-          <a href="#contact" className="text-portfolio-dark hover:text-portfolio-blue transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Contact</a>
-          {isAdmin && (
-            <a href="/admin/dashboard" className="text-portfolio-blue hover:text-portfolio-dark transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Admin</a>
+          {isHomePage ? (
+            <>
+              <a href="#home" className="text-portfolio-dark hover:text-portfolio-blue transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Home</a>
+              <a href="#about" className="text-portfolio-dark hover:text-portfolio-blue transition-colors" onClick={() => setIsMobileMenuOpen(false)}>About</a>
+              <a href="#projects" className="text-portfolio-dark hover:text-portfolio-blue transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Projects</a>
+              <a href="#blog" className="text-portfolio-dark hover:text-portfolio-blue transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Blog</a>
+              <a href="#contact" className="text-portfolio-dark hover:text-portfolio-blue transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Contact</a>
+            </>
+          ) : (
+            <>
+              <Link to="/" className="text-portfolio-dark hover:text-portfolio-blue transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
+              <Link to="/blog" className="text-portfolio-dark hover:text-portfolio-blue transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Blog</Link>
+            </>
           )}
         </div>
       </div>
