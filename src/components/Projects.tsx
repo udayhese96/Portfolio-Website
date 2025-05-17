@@ -1,5 +1,4 @@
-
-import { ArrowRight, Github, ExternalLink, Database, Sql, MongoDb, Java, Code, FlaskConical, HuggingFace, Django } from "lucide-react";
+import { ArrowRight, Github, ExternalLink, Database, Code, Flask, FileCode } from "lucide-react";
 
 const projectsData = [
   {
