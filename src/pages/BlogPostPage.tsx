@@ -11,6 +11,11 @@ const BlogPostPage = () => {
   const { id } = useParams<{ id: string }>();
   const { portfolioData } = usePortfolio();
   
+  // Add null check for portfolioData and blogPosts
+  if (!portfolioData || !portfolioData.blogPosts) {
+    return <NotFound />;
+  }
+  
   const post = portfolioData.blogPosts.find(post => post.id === Number(id));
   
   if (!post) {

@@ -8,7 +8,7 @@ import Footer from "../components/Footer";
 
 const BlogPage = () => {
   const { portfolioData } = usePortfolio();
-  const { blogPosts } = portfolioData;
+  const blogPosts = portfolioData?.blogPosts || [];
 
   return (
     <>
