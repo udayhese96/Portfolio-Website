@@ -1,33 +1,51 @@
 
-import { ArrowRight, Github, ExternalLink } from "lucide-react";
+import { ArrowRight, Github, ExternalLink, Database, Sql, MongoDb, Java, Code, FlaskConical, HuggingFace, Django } from "lucide-react";
 
 const projectsData = [
   {
     id: 1,
-    title: "E-commerce Website",
-    description: "A full-stack e-commerce platform with React, Node.js, and MongoDB. Features include user authentication, product filtering, cart functionality, and admin dashboard.",
-    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80",
-    technologies: ["React", "Node.js", "MongoDB", "Express"],
+    title: "FairShare: Split Wise Clone",
+    description: "Built a fully client-side app for group expense tracking, settlements, and balances. Used React Query for real-time UI sync and responsive state updates. Designed modular components for group creation, expenses, and settlements.",
+    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80",
+    technologies: ["React", "React Query", "localStorage", "CSS/SCSS", "Chart.js"],
     liveLink: "https://example.com",
-    githubLink: "https://github.com"
+    githubLink: "https://github.com/udayhese96"
   },
   {
     id: 2,
-    title: "Task Management App",
-    description: "A Kanban-style task management application with drag-and-drop functionality, user authentication, and real-time updates using WebSockets.",
-    image: "https://images.unsplash.com/photo-1555421689-d68471e189f2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-    technologies: ["React", "Firebase", "Tailwind CSS"],
+    title: "Mental Health Chatbot",
+    description: "Created a mental health chatbot using Groq API for empathetic AI support. Processed PDFs using PyMuPDF + HuggingFace for offline knowledge. Used Langchain for memory, prompts, and flow control.",
+    image: "https://images.unsplash.com/photo-1561736778-92e52a7769ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+    technologies: ["Groq LLMs", "Langchain", "HuggingFace", "Flask", "PyMuPDF"],
     liveLink: "https://example.com",
-    githubLink: "https://github.com"
+    githubLink: "https://github.com/udayhese96"
   },
   {
     id: 3,
-    title: "Weather Dashboard",
-    description: "A weather application that provides current weather data and forecasts for any location. Built with React and integrated with the OpenWeatherMap API.",
-    image: "https://images.unsplash.com/photo-1607798748738-b15c40d33d57?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-    technologies: ["React", "RESTful API", "CSS"],
+    title: "Virtual Traffic Police",
+    description: "Developed a real-time traffic system using YOLOv10 and OpenCV for vehicle detection. Used FFmpeg and Scikit-Video for live video stream analysis. Enabled model adaptability with PyTorch/TensorFlow for pattern-based control.",
+    image: "https://images.unsplash.com/photo-1565609697598-079c0ba30313?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+    technologies: ["YOLOv10", "OpenCV", "FFmpeg", "PyTorch", "TensorFlow"],
     liveLink: "https://example.com",
-    githubLink: "https://github.com"
+    githubLink: "https://github.com/udayhese96"
+  },
+  {
+    id: 4,
+    title: "Heart Disease Prediction System",
+    description: "Designed and implemented a machine learning-based heart disease prediction system using KNN, SVM, Neural Networks, and Ensemble Learning techniques. Achieved enhanced predictive performance by integrating multiple algorithms.",
+    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+    technologies: ["Machine Learning", "KNN", "SVM", "Neural Networks", "Python"],
+    liveLink: "https://example.com",
+    githubLink: "https://github.com/udayhese96"
+  },
+  {
+    id: 5,
+    title: "Online Laptop Borrowal System",
+    description: "Developed a dynamic and responsive web application using HTML, CSS, PHP, MySQL, and Bootstrap for managing laptop borrowals in a lab setting. Designed user-friendly interfaces and implemented secure login and data validation mechanisms.",
+    image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1474&q=80",
+    technologies: ["HTML", "CSS", "PHP", "MySQL", "Bootstrap"],
+    liveLink: "https://example.com",
+    githubLink: "https://github.com/udayhese96"
   }
 ];
 

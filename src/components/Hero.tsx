@@ -50,6 +50,8 @@ const Hero = () => {
                 <img src="https://skillicons.dev/icons?i=js" alt="JavaScript" className="w-8 h-8" />
                 <img src="https://skillicons.dev/icons?i=react" alt="React" className="w-8 h-8" />
                 <img src="https://skillicons.dev/icons?i=nodejs" alt="Node.js" className="w-8 h-8" />
+                <img src="https://skillicons.dev/icons?i=mongodb" alt="MongoDB" className="w-8 h-8" title="MongoDB" />
+                <img src="https://skillicons.dev/icons?i=mysql" alt="SQL" className="w-8 h-8" title="SQL" />
                 <img src="https://skillicons.dev/icons?i=python" alt="Python" className="w-8 h-8" title="AI/ML" />
                 <img src="https://skillicons.dev/icons?i=tensorflow" alt="TensorFlow" className="w-8 h-8" title="Deep Learning" />
                 <img src="https://skillicons.dev/icons?i=java" alt="Java" className="w-8 h-8" />
