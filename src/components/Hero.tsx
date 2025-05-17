@@ -16,8 +16,8 @@ const Hero = () => {
             </h1>
             
             <p className="text-lg text-portfolio-gray mb-8 max-w-lg">
-              Full Stack Meets Artificial Intelligence<br />
-              Creating intelligent, user-centric apps that scale. Hi, I'm Uday — a final-year CS-AI student passionate about solving real-world problems through full stack development and machine learning.
+              Crafting the Future with Code & AI<br />
+              Hi, I'm Uday — a final-year CS-AI student passionate about solving real-world problems through full stack development and machine learning.
             </p>
             
             <div className="flex items-center space-x-6 mb-8">

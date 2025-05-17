@@ -28,7 +28,7 @@ const Experience = () => {
               
               <ul className="list-disc pl-5 space-y-2 text-portfolio-gray">
                 <li>
-                  Collaborated as a team of 6 to design and develop an integrated system comprising a responsive company website,
+                  Collaborated as a team of 5 to design and develop an integrated system comprising a responsive company website,
                   a staff management web application, and a mobile Android app for directors.
                 </li>
                 <li>
