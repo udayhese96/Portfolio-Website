@@ -1,4 +1,5 @@
-import { ArrowRight, Github, ExternalLink, Database, Code, Flask, FileCode } from "lucide-react";
+
+import { ArrowRight, Github, ExternalLink, Database, Code, FileCode } from "lucide-react";
 
 const projectsData = [
   {
@@ -7,8 +8,8 @@ const projectsData = [
     description: "Built a fully client-side app for group expense tracking, settlements, and balances. Used React Query for real-time UI sync and responsive state updates. Designed modular components for group creation, expenses, and settlements.",
     image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80",
     technologies: ["React", "React Query", "localStorage", "CSS/SCSS", "Chart.js"],
-    liveLink: "https://example.com",
-    githubLink: "https://github.com/udayhese96"
+    liveLink: "",
+    githubLink: "https://github.com/udayhese96/FairShare_Splitwise_Clone"
   },
   {
     id: 2,
@@ -16,8 +17,8 @@ const projectsData = [
     description: "Created a mental health chatbot using Groq API for empathetic AI support. Processed PDFs using PyMuPDF + HuggingFace for offline knowledge. Used Langchain for memory, prompts, and flow control.",
     image: "https://images.unsplash.com/photo-1561736778-92e52a7769ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
     technologies: ["Groq LLMs", "Langchain", "HuggingFace", "Flask", "PyMuPDF"],
-    liveLink: "https://example.com",
-    githubLink: "https://github.com/udayhese96"
+    liveLink: "",
+    githubLink: "https://github.com/udayhese96/Mental-Health-Chatbot"
   },
   {
     id: 3,
@@ -25,8 +26,8 @@ const projectsData = [
     description: "Developed a real-time traffic system using YOLOv10 and OpenCV for vehicle detection. Used FFmpeg and Scikit-Video for live video stream analysis. Enabled model adaptability with PyTorch/TensorFlow for pattern-based control.",
     image: "https://images.unsplash.com/photo-1565609697598-079c0ba30313?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
     technologies: ["YOLOv10", "OpenCV", "FFmpeg", "PyTorch", "TensorFlow"],
-    liveLink: "https://example.com",
-    githubLink: "https://github.com/udayhese96"
+    liveLink: "",
+    githubLink: "https://github.com/udayhese96/AI-Dynamic-Traffic-Light-Optimization-for-Heavy-Routes"
   },
   {
     id: 4,
@@ -34,8 +35,8 @@ const projectsData = [
     description: "Designed and implemented a machine learning-based heart disease prediction system using KNN, SVM, Neural Networks, and Ensemble Learning techniques. Achieved enhanced predictive performance by integrating multiple algorithms.",
     image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
     technologies: ["Machine Learning", "KNN", "SVM", "Neural Networks", "Python"],
-    liveLink: "https://example.com",
-    githubLink: "https://github.com/udayhese96"
+    liveLink: "",
+    githubLink: "https://github.com/udayhese96/Heart-Disease-Prediction"
   },
   {
     id: 5,
@@ -43,8 +44,8 @@ const projectsData = [
     description: "Developed a dynamic and responsive web application using HTML, CSS, PHP, MySQL, and Bootstrap for managing laptop borrowals in a lab setting. Designed user-friendly interfaces and implemented secure login and data validation mechanisms.",
     image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1474&q=80",
     technologies: ["HTML", "CSS", "PHP", "MySQL", "Bootstrap"],
-    liveLink: "https://example.com",
-    githubLink: "https://github.com/udayhese96"
+    liveLink: "",
+    githubLink: "https://github.com/udayhese96/Logbook-Register-for-College-Laptops"
   }
 ];
 
@@ -89,24 +90,7 @@ const ProjectCard = ({ project }: { project: typeof projectsData[0] }) => {
             >
               <Github size={20} />
             </a>
-            <a 
-              href={project.liveLink} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-portfolio-dark hover:text-portfolio-blue transition-colors"
-            >
-              <ExternalLink size={20} />
-            </a>
           </div>
-          
-          <a 
-            href={project.liveLink} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-portfolio-blue font-medium text-sm flex items-center gap-1 hover:gap-2 transition-all"
-          >
-            View Project <ArrowRight size={16} />
-          </a>
         </div>
       </div>
     </div>
