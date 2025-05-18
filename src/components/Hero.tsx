@@ -1,5 +1,5 @@
 
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, AlertTriangle } from "lucide-react";
 import { usePortfolio } from "@/context/PortfolioContext";
 
 const Hero = () => {
@@ -7,7 +7,23 @@ const Hero = () => {
   const { hero } = portfolioData;
 
   return (
-    <section id="home" className="pt-32 pb-20 bg-white">
+    <section id="home" className="pt-32 pb-20 bg-white relative">
+      {/* Traffic signal background animation */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10 pointer-events-none">
+        <div className="absolute top-10 left-10 animate-pulse">
+          <div className="w-8 h-8 rounded-full bg-red-500"></div>
+        </div>
+        <div className="absolute top-10 right-10 animate-pulse" style={{ animationDelay: '1s' }}>
+          <div className="w-8 h-8 rounded-full bg-yellow-500"></div>
+        </div>
+        <div className="absolute bottom-10 left-10 animate-pulse" style={{ animationDelay: '1.5s' }}>
+          <div className="w-8 h-8 rounded-full bg-green-500"></div>
+        </div>
+        <div className="absolute bottom-10 right-10 animate-pulse" style={{ animationDelay: '0.5s' }}>
+          <div className="w-8 h-8 rounded-full bg-red-500"></div>
+        </div>
+      </div>
+      
       <div className="container mx-auto px-6">
         <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-10">
           <div className="md:w-1/2 animate-fade-in">
@@ -74,7 +90,13 @@ const Hero = () => {
                 />
               </div>
               <div className="absolute -bottom-4 -right-4 bg-white p-4 rounded-full shadow-lg">
-                <span className="text-3xl">👨‍💻</span>
+                <div className="relative w-12 h-12">
+                  <div className="absolute inset-0 flex flex-col justify-between items-center bg-gray-800 rounded-md p-1">
+                    <div className="w-4 h-4 rounded-full bg-red-500"></div>
+                    <div className="w-4 h-4 rounded-full bg-yellow-500"></div>
+                    <div className="w-4 h-4 rounded-full bg-green-500"></div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
