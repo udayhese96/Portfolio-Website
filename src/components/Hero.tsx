@@ -55,6 +55,7 @@ const Hero = () => {
                 <img src="https://skillicons.dev/icons?i=mysql" alt="SQL" className="w-8 h-8" title="SQL" />
                 <img src="https://skillicons.dev/icons?i=python" alt="Python" className="w-8 h-8" title="AI/ML" />
                 <img src="https://skillicons.dev/icons?i=tensorflow" alt="TensorFlow" className="w-8 h-8" title="Deep Learning" />
+                <img src="https://skillicons.dev/icons?i=bootstrap" alt="Bootstrap" className="w-8 h-8" title="Bootstrap" />
                 <img src="https://skillicons.dev/icons?i=java" alt="Java" className="w-8 h-8" />
                 <img src="https://skillicons.dev/icons?i=django" alt="Django" className="w-8 h-8" />
                 <img src="https://skillicons.dev/icons?i=flask" alt="Flask" className="w-8 h-8" />
