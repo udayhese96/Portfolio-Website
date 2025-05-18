@@ -12,7 +12,7 @@ const Hero = () => {
         <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-10">
           <div className="md:w-1/2 animate-fade-in">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-portfolio-dark leading-tight mb-4">
-              {hero.name} <span className="inline-block">👋</span>
+              Uday Hese <span className="inline-block">👋</span>
             </h1>
             
             <p className="text-lg text-portfolio-gray mb-8 max-w-lg">
