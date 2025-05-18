@@ -20,7 +20,7 @@ const experienceData = [
       "https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1474&q=80",
       "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
     ],
-    technologies: ["Flask", "React.js", "Google Cloud", "Android", "WhatsApp API", "Python", "JavaScript", "SQL"]
+    technologies: ["Flask", "React.js", "Google Cloud", "Android", "WhatsApp API", "Python", "JavaScript", "SQL", "XML", "Bootstrap"]
   }
 ];
 
@@ -61,7 +61,7 @@ const Experience = () => {
                     to={`/experience/${experience.id}`}
                     className="inline-flex items-center gap-1 text-portfolio-blue hover:text-blue-700 transition-colors font-medium"
                   >
-                    Know More <ArrowRight size={16} />
+                    View Project Details <ArrowRight size={16} />
                   </Link>
                 </div>
               </div>
