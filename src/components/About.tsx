@@ -53,7 +53,7 @@ const About = () => {
             </div>
             
             <a 
-              href={about.resumeLink} 
+              href="https://drive.google.com/file/d/1nOrnExq0qCblzTHSLPNbWnF1kKaig0FC/view?usp=sharing" 
               className="btn-primary inline-block"
               target="_blank"
               rel="noopener noreferrer"
