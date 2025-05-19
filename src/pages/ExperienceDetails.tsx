@@ -1,6 +1,6 @@
 
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, Home, Mail, LogOut } from "lucide-react";
+import { ArrowLeft, Home, Mail, LogOut, X } from "lucide-react";
 import { experienceData } from "../components/Experience";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
