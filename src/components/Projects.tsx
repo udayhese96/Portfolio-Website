@@ -1,6 +1,5 @@
 
-import { ArrowRight, Github, ExternalLink } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Github, ExternalLink } from "lucide-react";
 
 const projectsData = [
   {
@@ -106,7 +105,7 @@ const ProjectCard = ({ project }: { project: typeof projectsData[0] }) => {
           ))}
         </div>
         
-        <div className="flex justify-between items-center">
+        <div className="flex justify-end items-center">
           <div className="flex gap-3">
             <a 
               href={project.githubLink} 
@@ -116,13 +115,17 @@ const ProjectCard = ({ project }: { project: typeof projectsData[0] }) => {
             >
               <Github size={20} />
             </a>
+            {project.liveLink && (
+              <a 
+                href={project.liveLink} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-portfolio-dark hover:text-portfolio-blue transition-colors"
+              >
+                <ExternalLink size={20} />
+              </a>
+            )}
           </div>
-          <Link 
-            to={`/project/${project.id}`} 
-            className="flex items-center gap-1 text-portfolio-blue hover:text-blue-700 transition-colors text-sm font-medium"
-          >
-            Read More <ArrowRight size={16} />
-          </Link>
         </div>
       </div>
     </div>

@@ -11,18 +11,8 @@ const About = () => {
         <h2 className="section-title">About Me</h2>
         <p className="section-subtitle">My introduction</p>
         
-        <div className="flex flex-col md:flex-row gap-12 items-center">
-          <div className="md:w-1/2">
-            <div className="relative w-full max-w-md mx-auto aspect-square rounded-2xl overflow-hidden">
-              <img 
-                src={about.aboutImage} 
-                alt="About me" 
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
-          
-          <div className="md:w-1/2">
+        <div className="max-w-3xl mx-auto">          
+          <div>
             <p className="text-portfolio-gray mb-4">
               Hey, I'm Uday! A final-year Computer Science and Artificial Intelligence undergraduate at Vishwakarma Institute of Information Technology, Pune, driven by a passion for building intelligent, scalable, and real-world tech solutions.
             </p>
