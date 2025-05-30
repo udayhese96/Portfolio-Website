@@ -74,7 +74,52 @@ const projectsData = [
       "/lovable-uploads/36ebd4ee-4ae7-47bb-a908-71887784211d.png",
       "/lovable-uploads/62eef464-a6a5-4ba3-bd4e-a435013a4642.png"
     ],
-    fullDescription: "This comprehensive business intelligence project leverages Microsoft Power BI to analyze RTO (Regional Transport Office) data for Telangana state spanning from 2019 to 2025. The project provides deep insights into vehicle registration patterns, market trends, and strategic planning opportunities for automotive dealerships. The analysis includes multiple interactive dashboards showcasing vehicle registration trends by year, vehicle class distribution, insurance status tracking, and fuel type preferences. Key features include detailed breakdowns of vehicle counts by manufacturer, geographic distribution across different RTO offices, and temporal analysis showing seasonal patterns and growth trends. The project incorporates advanced data visualization techniques to present complex datasets in an intuitive format, enabling stakeholders to make data-driven decisions for dealership expansion, inventory planning, and market positioning strategies. The dashboards feature drill-down capabilities, allowing users to explore data at granular levels and identify emerging opportunities in the automotive market."
+    fullDescription: `**Objective:** Provide insights from Telangana's vehicle registration data (Jan 2019–Mar 2025) to guide dealership expansion, sales, and service decisions.
+
+**Approach & Methodology:**
+• **Data Cleaning:** Removed invalid fuel entries (-1/null), standardized dates, cleaned region names. Created DAX fields: MonthYear, IsElectric, VehicleAge, InsuranceExpired.
+• **Segmentation:** By Fuel Type, Vehicle Class, Maker & Model, and Region (from OfficeCd).
+• **Tools Used:** Power BI Desktop (visuals), Power Query & DAX (data shaping).
+
+**Executive Summary:** This report leverages vehicle registration data from various RTOs in Telangana to inform dealership strategy decisions. It presents insights into fuel type trends, vehicle class distributions, insurance status, vehicle brand share, and electric vehicle adoption. These insights guide dealership placement, inventory optimization, and strategic partnerships.
+
+**Detailed KPIs for Strategic Planning:**
+
+**1. Total Vehicle Registrations by Year and Fuel Type**
+• **Definition:** Measures the number of vehicles registered annually, segmented by fuel type.
+• **Insight:** A noticeable increase in battery and electric vehicles in recent years. Traditional fuels like petrol and diesel still dominate but show signs of tapering growth.
+• **Application:** Helps forecast demand for EV-compatible infrastructure and identify regions for electric vehicle (EV) focused showrooms or services.
+
+**2. Manufacturer Market Share**
+• **Definition:** Share of vehicle registrations attributed to each vehicle manufacturer.
+• **Insight:** Hero MotoCorp, Honda, and Bajaj Auto lead in registration volumes, indicating strong brand presence. Tata Motors and Maruti Suzuki are also significant players.
+• **Application:** Identify which OEM partnerships will be most beneficial for dealership profitability and align with local market preferences.
+
+**3. Vehicle Class Distribution**
+• **Definition:** Share of vehicle types (e.g., Motorcycles, Goods Carriers, Tractors, Autos).
+• **Insight:** Over 70% of registrations are motorcycles and scooters, indicating a 2-wheeler dominated market. Notable representation of goods and passenger vehicles, useful for commercial dealerships.
+• **Application:** Optimize showroom inventory—prioritize two-wheelers and light commercial vehicles in key markets.
+
+**4. Insurance Expiry Status**
+• **Definition:** Percentage of vehicles with active vs. expired insurance.
+• **Insight:** Nearly 54% of vehicles have expired insurance.
+• **Application:** Opportunity for dealerships to offer value-added services like insurance renewal, servicing plans, and loyalty programs.
+
+**5. Electric Vehicle (EV) Adoption Rate**
+• **Definition:** Count of registered electric vehicles over time.
+• **Insight:** Sharp upward trend in electric vehicle adoption post-2021, especially in urban RTO regions. Correlates with national EV policies and consumer awareness.
+• **Application:** Plan EV-specific dealerships or service centers in high-growth urban zones; invest in EV technician training.
+
+**6. Second Vehicle Ownership Indicator**
+• **Definition:** Count of vehicles owned as a second vehicle (Yes/No).
+• **Insight:** Over 91% are first vehicles, indicating potential for upsell or second vehicle promotions.
+• **Application:** Target first-time buyers with entry-level models; introduce loyalty programs or upgrade incentives for existing customers.
+
+**Strategic Recommendations:**
+1. **Expand Dealerships** in RTA Zones with rising EV and bike registrations—focus on Adilabad, Hanumakonda, and Bhadrachalam.
+2. **Stock Inventory According to Demand**—2-wheelers and small commercial vehicles in rural and semi-urban areas.
+3. **Form EV-Centric Partnerships**—with Tata, Ather, and TVS for electric mobility expansion.
+4. **Integrate Value-Added Services**—insurance, finance, AMC plans to tap into vehicles with expired policies.`
   }
 ];
 
@@ -144,9 +189,7 @@ const ProjectCard = ({ project }: { project: typeof projectsData[0] }) => {
                   className="text-portfolio-dark hover:text-portfolio-blue transition-colors flex items-center"
                   title="View on Google Drive"
                 >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M7.71 3.5L1.15 15L4.58 21L11.13 9.5H7.71M8.84 3.5L15.4 15L12 21L5.43 9.5H8.84M16.28 3.5L22.85 15L19.42 21L12.87 9.5H16.28Z"/>
-                  </svg>
+                  <img src="/lovable-uploads/c60e6416-8a97-499c-ba49-d5fb5679ad39.png" alt="Google Drive" className="w-5 h-5" />
                 </a>
               )}
             </div>
@@ -168,7 +211,7 @@ const ProjectCard = ({ project }: { project: typeof projectsData[0] }) => {
       {/* Know More Modal - Only for Dealership project */}
       {showKnowMore && project.id === 6 && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl max-w-4xl max-h-[90vh] overflow-auto">
+          <div className="bg-white rounded-xl max-w-6xl max-h-[90vh] overflow-auto">
             <div className="p-6">
               <div className="flex justify-between items-center mb-4">
                 <h3 className="text-2xl font-bold text-portfolio-dark">{project.title}</h3>
@@ -180,9 +223,45 @@ const ProjectCard = ({ project }: { project: typeof projectsData[0] }) => {
                 </button>
               </div>
               
-              <p className="text-portfolio-gray mb-6">{project.fullDescription}</p>
+              <div className="prose max-w-none mb-6 text-portfolio-gray">
+                {project.fullDescription.split('\n\n').map((paragraph, index) => {
+                  if (paragraph.startsWith('**') && paragraph.endsWith('**')) {
+                    return (
+                      <h4 key={index} className="text-lg font-bold text-portfolio-dark mt-4 mb-2">
+                        {paragraph.replace(/\*\*/g, '')}
+                      </h4>
+                    );
+                  } else if (paragraph.startsWith('•')) {
+                    return (
+                      <ul key={index} className="list-disc ml-6 mb-2">
+                        {paragraph.split('\n').map((item, itemIndex) => (
+                          <li key={itemIndex} className="mb-1">
+                            {item.replace('• ', '').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/<strong>(.*?)<\/strong>/g, (match, p1) => p1)}
+                          </li>
+                        ))}
+                      </ul>
+                    );
+                  } else if (paragraph.match(/^\d+\./)) {
+                    return (
+                      <ol key={index} className="list-decimal ml-6 mb-2">
+                        {paragraph.split('\n').map((item, itemIndex) => (
+                          <li key={itemIndex} className="mb-1">
+                            {item.replace(/^\d+\.\s*/, '').replace(/\*\*(.*?)\*\*/g, (match, p1) => p1)}
+                          </li>
+                        ))}
+                      </ol>
+                    );
+                  } else {
+                    return (
+                      <p key={index} className="mb-3">
+                        {paragraph.replace(/\*\*(.*?)\*\*/g, (match, p1) => p1)}
+                      </p>
+                    );
+                  }
+                })}
+              </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                 {project.screenshots.map((screenshot, index) => (
                   <div key={index} className="rounded-lg overflow-hidden shadow-md">
                     <img 
@@ -202,9 +281,7 @@ const ProjectCard = ({ project }: { project: typeof projectsData[0] }) => {
                     rel="noopener noreferrer"
                     className="bg-portfolio-blue text-white px-6 py-3 rounded-lg font-medium transition-all hover:bg-blue-600 flex items-center gap-2"
                   >
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M7.71 3.5L1.15 15L4.58 21L11.13 9.5H7.71M8.84 3.5L15.4 15L12 21L5.43 9.5H8.84M16.28 3.5L22.85 15L19.42 21L12.87 9.5H16.28Z"/>
-                    </svg>
+                    <img src="/lovable-uploads/c60e6416-8a97-499c-ba49-d5fb5679ad39.png" alt="Google Drive" className="w-5 h-5" />
                     View Full Project on Drive
                   </a>
                 </div>
