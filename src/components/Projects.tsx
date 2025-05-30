@@ -1,5 +1,6 @@
 
-import { Github, ExternalLink } from "lucide-react";
+import { Github, ExternalLink, Eye } from "lucide-react";
+import { useState } from "react";
 
 const projectsData = [
   {
@@ -71,64 +72,167 @@ const projectsData = [
       "https://images.unsplash.com/photo-1542744173-05336fcc7ad4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
     ],
     fullDescription: "The Online Laptop Borrowal System is a comprehensive resource management application designed to streamline the process of laptop lending and tracking in educational institutions. Developed using a stack of HTML, CSS, PHP, MySQL, and Bootstrap, this web application offers a complete solution for managing the entire borrowing lifecycle—from inventory management to user requests and returns. The system features role-based access control with separate interfaces for students, faculty, and administrators, each with appropriate permissions and capabilities. For students, the platform provides an intuitive interface to browse available devices, submit borrowing requests, and track return deadlines. Administrators benefit from a robust dashboard that displays real-time inventory status, borrowing analytics, and automated notification systems for overdue returns. The implementation includes comprehensive data validation to prevent input errors, secure authentication protocols to protect sensitive information, and detailed logging for audit purposes. The responsive design ensures the application works seamlessly across desktop and mobile devices, making it accessible to users regardless of their device preference."
+  },
+  {
+    id: 6,
+    title: "Dealership Strategy Planning Using RTO Market Intelligence—Telangana (2019–2025)",
+    description: "Comprehensive data analysis project using Microsoft Power BI to analyze vehicle registration trends, market intelligence, and dealership strategy planning for Telangana state from 2019-2025. Features interactive dashboards with vehicle counts, registration patterns, and market insights.",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+    technologies: ["Microsoft Power BI", "Data Analysis", "Business Intelligence", "Dashboard Design"],
+    liveLink: "",
+    githubLink: "",
+    driveLink: "https://drive.google.com/drive/folders/your-folder-id",
+    screenshots: [
+      "/lovable-uploads/618bf347-e00f-499e-b285-cb3f9de47f74.png",
+      "/lovable-uploads/c02b1cd3-e15f-4d44-9220-973df049b070.png",
+      "/lovable-uploads/fefed84c-e7d6-44de-bcbd-67cf41dd2ad6.png",
+      "/lovable-uploads/be78ac18-90b1-404a-ad08-61d9c2e989f0.png",
+      "/lovable-uploads/216908a1-4a64-42c2-a2e2-14124db16272.png",
+      "/lovable-uploads/f1f7cd34-6fe3-49ac-a4e6-58da312ca76f.png",
+      "/lovable-uploads/8546703c-052a-46e4-9120-0c284d769320.png",
+      "/lovable-uploads/2c075cec-34dd-4472-ae9b-f4589ec58717.png",
+      "/lovable-uploads/36ebd4ee-4ae7-47bb-a908-71887784211d.png",
+      "/lovable-uploads/62eef464-a6a5-4ba3-bd4e-a435013a4642.png"
+    ],
+    fullDescription: "This comprehensive business intelligence project leverages Microsoft Power BI to analyze RTO (Regional Transport Office) data for Telangana state spanning from 2019 to 2025. The project provides deep insights into vehicle registration patterns, market trends, and strategic planning opportunities for automotive dealerships. The analysis includes multiple interactive dashboards showcasing vehicle registration trends by year, vehicle class distribution, insurance status tracking, and fuel type preferences. Key features include detailed breakdowns of vehicle counts by manufacturer, geographic distribution across different RTO offices, and temporal analysis showing seasonal patterns and growth trends. The project incorporates advanced data visualization techniques to present complex datasets in an intuitive format, enabling stakeholders to make data-driven decisions for dealership expansion, inventory planning, and market positioning strategies. The dashboards feature drill-down capabilities, allowing users to explore data at granular levels and identify emerging opportunities in the automotive market."
   }
 ];
 
 const ProjectCard = ({ project }: { project: typeof projectsData[0] }) => {
+  const [showKnowMore, setShowKnowMore] = useState(false);
+
   return (
-    <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
-      <div className="h-48 overflow-hidden">
-        <img 
-          src={project.image} 
-          alt={project.title} 
-          className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-        />
-      </div>
-      
-      <div className="p-6">
-        <h3 className="text-xl font-bold font-poppins text-portfolio-dark mb-2">
-          {project.title}
-        </h3>
-        
-        <p className="text-portfolio-gray mb-4 text-sm line-clamp-3">
-          {project.description}
-        </p>
-        
-        <div className="flex flex-wrap gap-2 mb-6">
-          {project.technologies.map((tech, index) => (
-            <span 
-              key={index} 
-              className="text-xs bg-portfolio-light text-portfolio-dark px-3 py-1 rounded-full"
-            >
-              {tech}
-            </span>
-          ))}
+    <>
+      <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+        <div className="h-48 overflow-hidden">
+          <img 
+            src={project.image} 
+            alt={project.title} 
+            className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+          />
         </div>
         
-        <div className="flex justify-end items-center">
-          <div className="flex gap-3">
-            <a 
-              href={project.githubLink} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-portfolio-dark hover:text-portfolio-blue transition-colors"
-            >
-              <Github size={20} />
-            </a>
-            {project.liveLink && (
-              <a 
-                href={project.liveLink} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-portfolio-dark hover:text-portfolio-blue transition-colors"
+        <div className="p-6">
+          <h3 className="text-xl font-bold font-poppins text-portfolio-dark mb-2">
+            {project.title}
+          </h3>
+          
+          <p className="text-portfolio-gray mb-4 text-sm line-clamp-3">
+            {project.description}
+          </p>
+          
+          <div className="flex flex-wrap gap-2 mb-6">
+            {project.technologies.map((tech, index) => (
+              <span 
+                key={index} 
+                className="text-xs bg-portfolio-light text-portfolio-dark px-3 py-1 rounded-full"
               >
-                <ExternalLink size={20} />
-              </a>
+                {tech}
+              </span>
+            ))}
+          </div>
+          
+          <div className="flex justify-between items-center">
+            <div className="flex gap-3">
+              {project.githubLink && (
+                <a 
+                  href={project.githubLink} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-portfolio-dark hover:text-portfolio-blue transition-colors"
+                  title="View GitHub Repository"
+                >
+                  <Github size={20} />
+                </a>
+              )}
+              {project.liveLink && (
+                <a 
+                  href={project.liveLink} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-portfolio-dark hover:text-portfolio-blue transition-colors"
+                  title="View Live Demo"
+                >
+                  <ExternalLink size={20} />
+                </a>
+              )}
+              {project.driveLink && (
+                <a 
+                  href={project.driveLink} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-portfolio-dark hover:text-portfolio-blue transition-colors flex items-center"
+                  title="View on Google Drive"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12.01 2C6.5 2 2.01 6.49 2.01 12s4.49 10 9.99 10c5.51 0 10-4.49 10-10S17.52 2 12.01 2zM7.37 7.5L12 12.87L16.63 7.5c.39-.39 1.02-.39 1.41 0s.39 1.02 0 1.41L12.71 14.2c-.39.39-1.02.39-1.41 0L5.97 8.91c-.39-.39-.39-1.02 0-1.41s1.02-.39 1.4 0z"/>
+                  </svg>
+                </a>
+              )}
+            </div>
+            
+            {project.screenshots && project.screenshots.length > 0 && (
+              <button
+                onClick={() => setShowKnowMore(true)}
+                className="text-portfolio-blue hover:text-blue-600 transition-colors flex items-center gap-1 text-sm font-medium"
+              >
+                <Eye size={16} />
+                Know More
+              </button>
             )}
           </div>
         </div>
       </div>
-    </div>
+
+      {/* Know More Modal */}
+      {showKnowMore && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl max-w-4xl max-h-[90vh] overflow-auto">
+            <div className="p-6">
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="text-2xl font-bold text-portfolio-dark">{project.title}</h3>
+                <button
+                  onClick={() => setShowKnowMore(false)}
+                  className="text-gray-500 hover:text-gray-700 text-2xl"
+                >
+                  ×
+                </button>
+              </div>
+              
+              <p className="text-portfolio-gray mb-6">{project.fullDescription}</p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {project.screenshots.map((screenshot, index) => (
+                  <div key={index} className="rounded-lg overflow-hidden shadow-md">
+                    <img 
+                      src={screenshot} 
+                      alt={`${project.title} screenshot ${index + 1}`} 
+                      className="w-full h-64 object-cover"
+                    />
+                  </div>
+                ))}
+              </div>
+
+              {project.driveLink && (
+                <div className="mt-6 flex justify-center">
+                  <a 
+                    href={project.driveLink} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="bg-portfolio-blue text-white px-6 py-3 rounded-lg font-medium transition-all hover:bg-blue-600 flex items-center gap-2"
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M7.71 3.5L1.15 15L4.58 21L11.13 9.5H7.71M8.84 3.5L15.4 15L12 21L5.43 9.5H8.84M16.28 3.5L22.85 15L19.42 21L12.87 9.5H16.28Z"/>
+                    </svg>
+                    View Full Project on Drive
+                  </a>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

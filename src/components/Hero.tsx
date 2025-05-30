@@ -45,7 +45,7 @@ const Hero = () => {
             <div className="flex items-center gap-2 text-portfolio-gray">
               <p className="font-medium">Tech Stack</p>
               <span className="h-[2px] w-12 bg-portfolio-gray/20 inline-block"></span>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-2">
                 <img src="https://skillicons.dev/icons?i=html" alt="HTML" className="w-8 h-8" />
                 <img src="https://skillicons.dev/icons?i=css" alt="CSS" className="w-8 h-8" />
                 <img src="https://skillicons.dev/icons?i=js" alt="JavaScript" className="w-8 h-8" />
@@ -60,7 +60,7 @@ const Hero = () => {
                 <img src="https://skillicons.dev/icons?i=django" alt="Django" className="w-8 h-8" />
                 <img src="https://skillicons.dev/icons?i=flask" alt="Flask" className="w-8 h-8" />
                 <img src="https://skillicons.dev/icons?i=huggingface" alt="Hugging Face" className="w-8 h-8" />
-                <img src="https://cdn.worldvectorlogo.com/logos/power-bi.svg" alt="Power BI" className="w-8 h-8" title="Power BI" />
+                <img src="https://logos-world.net/wp-content/uploads/2022/02/Microsoft-Power-BI-Symbol.png" alt="Power BI" className="w-8 h-8 bg-white rounded p-1" title="Power BI" />
                 <img src="https://cdn.worldvectorlogo.com/logos/tableau-software.svg" alt="Tableau" className="w-8 h-8" title="Tableau" />
               </div>
             </div>
