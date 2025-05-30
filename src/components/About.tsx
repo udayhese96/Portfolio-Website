@@ -53,7 +53,7 @@ const About = () => {
             </div>
             
             <a 
-              href="https://drive.google.com/file/d/1nOrnExq0qCblzTHSLPNbWnF1kKaig0FC/view?usp=sharing" 
+              href="https://drive.google.com/file/d/1F78Mm3hfcVNxLZF8PLc661tYO8zagOQ1/view?usp=sharing" 
               className="btn-primary inline-block"
               target="_blank"
               rel="noopener noreferrer"

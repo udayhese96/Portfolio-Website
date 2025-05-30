@@ -60,6 +60,8 @@ const Hero = () => {
                 <img src="https://skillicons.dev/icons?i=django" alt="Django" className="w-8 h-8" />
                 <img src="https://skillicons.dev/icons?i=flask" alt="Flask" className="w-8 h-8" />
                 <img src="https://skillicons.dev/icons?i=huggingface" alt="Hugging Face" className="w-8 h-8" />
+                <img src="https://cdn.worldvectorlogo.com/logos/power-bi.svg" alt="Power BI" className="w-8 h-8" title="Power BI" />
+                <img src="https://cdn.worldvectorlogo.com/logos/tableau-software.svg" alt="Tableau" className="w-8 h-8" title="Tableau" />
               </div>
             </div>
           </div>
