@@ -11,10 +11,6 @@ const projectsData = [
     technologies: ["React", "React Query", "localStorage", "CSS/SCSS", "Chart.js"],
     liveLink: "",
     githubLink: "https://github.com/udayhese96/FairShare_Splitwise_Clone",
-    screenshots: [
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-      "https://images.unsplash.com/photo-1579621970588-a35d0e7ab9b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-    ],
     fullDescription: "FairShare is a comprehensive expense-sharing application designed to simplify financial management among friends, roommates, and groups. Built with React and utilizing React Query for state management, the app offers a seamless way to track shared expenses, calculate settlements, and maintain transparent financial records within groups. Users can create multiple groups, add expenses with detailed categorization, and see real-time updates of who owes what to whom. The application features an intuitive dashboard displaying balances, recent activities, and settlement suggestions. All data is stored locally using the browser's localStorage API, ensuring privacy while eliminating the need for server dependencies. The responsive design adapts seamlessly to both desktop and mobile devices, making it accessible anytime, anywhere."
   },
   {
@@ -25,24 +21,16 @@ const projectsData = [
     technologies: ["Groq LLMs", "Langchain", "HuggingFace", "Flask", "PyMuPDF"],
     liveLink: "",
     githubLink: "https://github.com/udayhese96/Mental-Health-Chatbot",
-    screenshots: [
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-    ],
     fullDescription: "The Mental Health Chatbot is an innovative AI-powered solution designed to provide accessible mental health support. Leveraging the advanced capabilities of the Groq API for natural language understanding, the chatbot delivers empathetic and contextually relevant responses to users seeking emotional support or mental health information. A key feature of this project is its ability to operate with offline knowledge by processing specialized mental health literature and resources. Using PyMuPDF for document parsing and HuggingFace transformers for text processing, the chatbot maintains a comprehensive knowledge base on mental health topics without requiring constant internet connectivity. The implementation utilizes Langchain for sophisticated conversation management, including memory retention across chat sessions, carefully crafted prompts to ensure supportive responses, and logical flow control to guide helpful interactions. The Flask-based backend ensures the system is lightweight and deployable in various environments, making mental health support more accessible to users regardless of location."
   },
   {
     id: 3,
     title: "Virtual Traffic Police",
     description: "Developed a real-time traffic system using YOLOv10 and OpenCV for vehicle detection. Used FFmpeg and Scikit-Video for live video stream analysis. Enabled model adaptability with PyTorch/TensorFlow for pattern-based control.",
-    image: "https://images.unsplash.com/photo-1565609697598-079c0ba30313?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+    image: "/lovable-uploads/0ea351c1-0550-4c0c-abd6-5c6d4e6baa2f.png",
     technologies: ["YOLOv10", "OpenCV", "FFmpeg", "PyTorch", "TensorFlow"],
     liveLink: "",
     githubLink: "https://github.com/udayhese96/AI-Dynamic-Traffic-Light-Optimization-for-Heavy-Routes",
-    screenshots: [
-      "https://images.unsplash.com/photo-1494783367193-149034c05e8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-      "https://images.unsplash.com/photo-1606768666853-403c90a981ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-    ],
     fullDescription: "The Virtual Traffic Police system is an innovative computer vision application designed to optimize traffic flow through real-time monitoring and intelligent signal control. Leveraging YOLOv10's state-of-the-art object detection capabilities combined with OpenCV's image processing toolkit, the system accurately identifies and tracks vehicles across multiple lanes and intersections. The implementation utilizes FFmpeg and Scikit-Video for efficient handling of live video streams from multiple traffic cameras, enabling simultaneous analysis of traffic conditions across an entire network. What sets this system apart is its adaptability through machine learning — PyTorch and TensorFlow frameworks power the traffic pattern recognition models that learn from historical data and adjust signal timing accordingly. The system can identify traffic congestion patterns, predict potential bottlenecks, and dynamically adjust traffic light cycles to optimize vehicle flow. This smart infrastructure solution not only reduces wait times and fuel consumption but also minimizes the environmental impact of idle vehicles while improving overall transportation efficiency."
   },
   {
@@ -53,10 +41,6 @@ const projectsData = [
     technologies: ["Machine Learning", "KNN", "SVM", "Neural Networks", "Python"],
     liveLink: "",
     githubLink: "https://github.com/udayhese96/Heart-Disease-Prediction",
-    screenshots: [
-      "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-      "https://images.unsplash.com/photo-1511174511562-5f7f18b874f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-    ],
     fullDescription: "The Heart Disease Prediction System is a sophisticated medical diagnostic tool that leverages machine learning to assess cardiovascular disease risk with high accuracy. This comprehensive system implements and compares multiple classification algorithms including K-Nearest Neighbors (KNN), Support Vector Machines (SVM), Neural Networks, and Ensemble Learning techniques to achieve reliable predictions based on patient data. The system processes various health parameters such as age, sex, cholesterol levels, blood pressure, and other clinical measurements to generate risk assessments. What distinguishes this project is its ensemble approach—rather than relying on a single algorithm, it strategically combines the strengths of multiple models to enhance predictive accuracy and reduce false negatives, which are particularly critical in medical diagnostics. The implementation includes a user-friendly interface for healthcare professionals to input patient data and receive clear, interpretable results. Extensive validation using established medical datasets ensures the system's reliability, making it a valuable tool for early detection and preventive healthcare strategies."
   },
   {
@@ -67,10 +51,6 @@ const projectsData = [
     technologies: ["HTML", "CSS", "PHP", "MySQL", "Bootstrap"],
     liveLink: "",
     githubLink: "https://github.com/udayhese96/Logbook-Register-for-College-Laptops",
-    screenshots: [
-      "https://images.unsplash.com/photo-1423666639041-f56000c27a9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1474&q=80",
-      "https://images.unsplash.com/photo-1542744173-05336fcc7ad4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-    ],
     fullDescription: "The Online Laptop Borrowal System is a comprehensive resource management application designed to streamline the process of laptop lending and tracking in educational institutions. Developed using a stack of HTML, CSS, PHP, MySQL, and Bootstrap, this web application offers a complete solution for managing the entire borrowing lifecycle—from inventory management to user requests and returns. The system features role-based access control with separate interfaces for students, faculty, and administrators, each with appropriate permissions and capabilities. For students, the platform provides an intuitive interface to browse available devices, submit borrowing requests, and track return deadlines. Administrators benefit from a robust dashboard that displays real-time inventory status, borrowing analytics, and automated notification systems for overdue returns. The implementation includes comprehensive data validation to prevent input errors, secure authentication protocols to protect sensitive information, and detailed logging for audit purposes. The responsive design ensures the application works seamlessly across desktop and mobile devices, making it accessible to users regardless of their device preference."
   },
   {
@@ -81,7 +61,7 @@ const projectsData = [
     technologies: ["Microsoft Power BI", "Data Analysis", "Business Intelligence", "Dashboard Design"],
     liveLink: "",
     githubLink: "",
-    driveLink: "https://drive.google.com/drive/folders/your-folder-id",
+    driveLink: "https://drive.google.com/drive/folders/1U48onoLupYVA8Y1Qks5Nc4WbHImZWDkB?usp=sharing",
     screenshots: [
       "/lovable-uploads/618bf347-e00f-499e-b285-cb3f9de47f74.png",
       "/lovable-uploads/c02b1cd3-e15f-4d44-9220-973df049b070.png",
@@ -165,13 +145,14 @@ const ProjectCard = ({ project }: { project: typeof projectsData[0] }) => {
                   title="View on Google Drive"
                 >
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12.01 2C6.5 2 2.01 6.49 2.01 12s4.49 10 9.99 10c5.51 0 10-4.49 10-10S17.52 2 12.01 2zM7.37 7.5L12 12.87L16.63 7.5c.39-.39 1.02-.39 1.41 0s.39 1.02 0 1.41L12.71 14.2c-.39.39-1.02.39-1.41 0L5.97 8.91c-.39-.39-.39-1.02 0-1.41s1.02-.39 1.4 0z"/>
+                    <path d="M7.71 3.5L1.15 15L4.58 21L11.13 9.5H7.71M8.84 3.5L15.4 15L12 21L5.43 9.5H8.84M16.28 3.5L22.85 15L19.42 21L12.87 9.5H16.28Z"/>
                   </svg>
                 </a>
               )}
             </div>
             
-            {project.screenshots && project.screenshots.length > 0 && (
+            {/* Only show Know More for the Dealership project */}
+            {project.id === 6 && project.screenshots && project.screenshots.length > 0 && (
               <button
                 onClick={() => setShowKnowMore(true)}
                 className="text-portfolio-blue hover:text-blue-600 transition-colors flex items-center gap-1 text-sm font-medium"
@@ -184,8 +165,8 @@ const ProjectCard = ({ project }: { project: typeof projectsData[0] }) => {
         </div>
       </div>
 
-      {/* Know More Modal */}
-      {showKnowMore && (
+      {/* Know More Modal - Only for Dealership project */}
+      {showKnowMore && project.id === 6 && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-xl max-w-4xl max-h-[90vh] overflow-auto">
             <div className="p-6">
