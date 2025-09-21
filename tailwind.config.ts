@@ -63,12 +63,32 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
+				// Cyberpunk color palette
+				neon: {
+					cyan: 'hsl(var(--neon-cyan))',
+					blue: 'hsl(var(--neon-blue))',
+					electric: 'hsl(var(--neon-electric))',
+					purple: 'hsl(var(--neon-purple))',
+					pink: 'hsl(var(--neon-pink))'
+				},
+				cyber: {
+					black: 'hsl(var(--cyber-black))',
+					dark: 'hsl(var(--cyber-dark))',
+					'dark-blue': 'hsl(var(--cyber-dark-blue))',
+					gray: 'hsl(var(--cyber-gray))',
+					'light-gray': 'hsl(var(--cyber-light-gray))'
+				},
 				portfolio: {
 					dark: '#2D2E32',
 					blue: '#147EFB',
 					gray: '#767676',
 					light: '#F9F9F9'
 				}
+			},
+			screens: {
+				'xs': '480px',
+				'galaxy-s8': '360px',
+				'iphone-14-pro-max': '430px',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -96,7 +116,13 @@ export default {
 			},
 			fontFamily: {
 				poppins: ['Poppins', 'sans-serif'],
-				mulish: ['Mulish', 'sans-serif']
+				mulish: ['Mulish', 'sans-serif'],
+				orbitron: ['Orbitron', 'monospace'],
+				exo: ['Exo 2', 'sans-serif'],
+				'space-mono': ['Space Mono', 'monospace']
+			},
+			gridTemplateColumns: {
+				'16': 'repeat(16, minmax(0, 1fr))',
 			}
 		}
 	},

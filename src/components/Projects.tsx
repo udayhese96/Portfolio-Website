@@ -127,80 +127,81 @@ const ProjectCard = ({ project }: { project: typeof projectsData[0] }) => {
 
   return (
     <>
-      <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
-        <div className="h-48 overflow-hidden">
-          <img 
-            src={project.image} 
-            alt={project.title} 
-            className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+      <div className="cyber-card overflow-hidden hover:scale-105 transition-all duration-300 group">
+        <div className="h-48 overflow-hidden relative">
+          <img
+            src={project.image}
+            alt={project.title}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
         </div>
-        
+
         <div className="p-6">
-          <h3 className="text-xl font-bold font-poppins text-portfolio-dark mb-2">
+          <h3 className="text-xl font-bold neon-blue-text mb-2" style={{fontFamily: 'Orbitron, monospace'}}>
             {project.title}
           </h3>
-          
-          <p className="text-portfolio-gray mb-4 text-sm line-clamp-3">
+
+          <p className="text-cyan-200/80 mb-4 text-sm line-clamp-3">
             {project.description}
           </p>
-          
+
           <div className="flex flex-wrap gap-2 mb-6">
             {project.technologies.map((tech, index) => (
-              <span 
-                key={index} 
-                className="text-xs bg-portfolio-light text-portfolio-dark px-3 py-1 rounded-full"
+              <span
+                key={index}
+                className="text-xs bg-cyan-400/10 text-cyan-300 px-3 py-1 rounded-full border border-cyan-400/30 mono"
               >
                 {tech}
               </span>
             ))}
           </div>
-          
+
           <div className="flex justify-between items-center">
             <div className="flex gap-3">
               {project.githubLink && (
-                <a 
-                  href={project.githubLink} 
-                  target="_blank" 
+                <a
+                  href={project.githubLink}
+                  target="_blank"
                   rel="noopener noreferrer"
-                  className="text-portfolio-dark hover:text-portfolio-blue transition-colors"
+                  className="text-cyan-400 hover:text-cyan-300 transition-colors p-2 rounded-lg border border-cyan-400/30 hover:bg-cyan-400/10"
                   title="View GitHub Repository"
                 >
-                  <Github size={20} />
+                  <Github size={18} />
                 </a>
               )}
               {project.liveLink && (
-                <a 
-                  href={project.liveLink} 
-                  target="_blank" 
+                <a
+                  href={project.liveLink}
+                  target="_blank"
                   rel="noopener noreferrer"
-                  className="text-portfolio-dark hover:text-portfolio-blue transition-colors"
+                  className="text-cyan-400 hover:text-cyan-300 transition-colors p-2 rounded-lg border border-cyan-400/30 hover:bg-cyan-400/10"
                   title="View Live Demo"
                 >
-                  <ExternalLink size={20} />
+                  <ExternalLink size={18} />
                 </a>
               )}
               {project.driveLink && (
-                <a 
-                  href={project.driveLink} 
-                  target="_blank" 
+                <a
+                  href={project.driveLink}
+                  target="_blank"
                   rel="noopener noreferrer"
-                  className="text-portfolio-dark hover:text-portfolio-blue transition-colors flex items-center"
+                  className="text-cyan-400 hover:text-cyan-300 transition-colors p-2 rounded-lg border border-cyan-400/30 hover:bg-cyan-400/10 flex items-center"
                   title="View on Google Drive"
                 >
-                  <img src="/lovable-uploads/c60e6416-8a97-499c-ba49-d5fb5679ad39.png" alt="Google Drive" className="w-5 h-5" />
+                  <img src="/lovable-uploads/c60e6416-8a97-499c-ba49-d5fb5679ad39.png" alt="Google Drive" className="w-4 h-4" />
                 </a>
               )}
             </div>
-            
+
             {/* Only show Know More for the Dealership project */}
             {project.id === 6 && project.screenshots && project.screenshots.length > 0 && (
               <button
                 onClick={() => setShowKnowMore(true)}
-                className="text-portfolio-blue hover:text-blue-600 transition-colors flex items-center gap-1 text-sm font-medium"
+                className="text-cyan-400 hover:text-cyan-300 transition-colors flex items-center gap-1 text-sm font-medium border border-cyan-400/30 px-3 py-1 rounded-lg hover:bg-cyan-400/10"
               >
-                <Eye size={16} />
-                Know More
+                <Eye size={14} />
+                ANALYZE
               </button>
             )}
           </div>
@@ -209,24 +210,24 @@ const ProjectCard = ({ project }: { project: typeof projectsData[0] }) => {
 
       {/* Know More Modal - Only for Dealership project */}
       {showKnowMore && project.id === 6 && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl max-w-6xl max-h-[90vh] overflow-auto">
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="cyber-card max-w-6xl max-h-[90vh] overflow-auto">
             <div className="p-6">
               <div className="flex justify-between items-center mb-4">
-                <h3 className="text-2xl font-bold text-portfolio-dark">{project.title}</h3>
+                <h3 className="text-2xl font-bold neon-text" style={{fontFamily: 'Orbitron, monospace'}}>{project.title}</h3>
                 <button
                   onClick={() => setShowKnowMore(false)}
-                  className="text-gray-500 hover:text-gray-700 text-2xl"
+                  className="text-cyan-400 hover:text-cyan-300 text-3xl font-bold border border-cyan-400/30 rounded-lg w-10 h-10 flex items-center justify-center hover:bg-cyan-400/10"
                 >
                   ×
                 </button>
               </div>
-              
-              <div className="prose max-w-none mb-6 text-portfolio-gray">
+
+              <div className="prose max-w-none mb-6 text-cyan-200/80">
                 {project.fullDescription.split('\n\n').map((paragraph, index) => {
                   if (paragraph.startsWith('**') && paragraph.endsWith('**')) {
                     return (
-                      <h4 key={index} className="text-lg font-bold text-portfolio-dark mt-4 mb-2">
+                      <h4 key={index} className="text-lg font-bold neon-blue-text mt-4 mb-2" style={{fontFamily: 'Orbitron, monospace'}}>
                         {paragraph.replace(/\*\*/g, '')}
                       </h4>
                     );
@@ -274,14 +275,14 @@ const ProjectCard = ({ project }: { project: typeof projectsData[0] }) => {
 
               {project.driveLink && (
                 <div className="mt-6 flex justify-center">
-                  <a 
-                    href={project.driveLink} 
-                    target="_blank" 
+                  <a
+                    href={project.driveLink}
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-portfolio-blue text-white px-6 py-3 rounded-lg font-medium transition-all hover:bg-blue-600 flex items-center gap-2"
+                    className="cyber-button flex items-center gap-2"
                   >
                     <img src="/lovable-uploads/c60e6416-8a97-499c-ba49-d5fb5679ad39.png" alt="Google Drive" className="w-5 h-5" />
-                    View Full Project on Drive
+                    ACCESS PROJECT FILES
                   </a>
                 </div>
               )}
@@ -295,11 +296,109 @@ const ProjectCard = ({ project }: { project: typeof projectsData[0] }) => {
 
 const Projects = () => {
   return (
-    <section id="projects" className="py-20 bg-white">
-      <div className="container mx-auto px-6">
-        <h2 className="section-title">Projects</h2>
-        <p className="section-subtitle">My recent work</p>
-        
+    <section id="projects" className="relative py-20 lg:py-32 bg-black">
+      {/* Section transition gradient */}
+      <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-black via-black/80 to-transparent z-5"></div>
+      <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-black via-black/80 to-transparent z-5"></div>
+      {/* Enhanced Cyberpunk Grid Background */}
+      <div className="absolute inset-0 opacity-4">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `
+            linear-gradient(rgba(0, 200, 255, 0.3) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(50, 150, 255, 0.2) 1px, transparent 1px),
+            radial-gradient(circle at 80% 20%, rgba(0, 255, 200, 0.03) 0%, transparent 50%)
+          `,
+          backgroundSize: '60px 60px, 60px 60px, 250px 250px',
+          animation: 'cyberpunkGrid 17s ease-in-out infinite',
+          filter: 'drop-shadow(0 0 3px rgba(0, 200, 255, 0.1))'
+        }}></div>
+      </div>
+
+      {/* Enhanced 3D Geometric Shapes */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* DNA Helix */}
+        <div className="absolute top-1/6 left-1/4" style={{animation: 'floatRandomZoom1 16.2s ease-in-out infinite'}}>
+          <svg width="45" height="45" viewBox="0 0 100 100" className="text-cyan-400/30">
+            <path d="M30,20 Q50,40 70,20 M30,40 Q50,60 70,40 M30,60 Q50,80 70,60" fill="none" stroke="currentColor" strokeWidth="2"/>
+            <circle cx="30" cy="20" r="3" fill="currentColor"/>
+            <circle cx="70" cy="40" r="3" fill="currentColor"/>
+            <circle cx="30" cy="60" r="3" fill="currentColor"/>
+          </svg>
+        </div>
+
+        {/* Gear */}
+        <div className="absolute top-2/3 right-1/5" style={{animation: 'floatRandomZoom2 19.7s ease-in-out infinite'}}>
+          <svg width="38" height="38" viewBox="0 0 100 100" className="text-blue-400/25">
+            <circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" strokeWidth="2"/>
+            <rect x="47" y="10" width="6" height="15" fill="currentColor"/>
+            <rect x="47" y="75" width="6" height="15" fill="currentColor"/>
+            <rect x="10" y="47" width="15" height="6" fill="currentColor"/>
+            <rect x="75" y="47" width="15" height="6" fill="currentColor"/>
+          </svg>
+        </div>
+
+        {/* Lightning bolt */}
+        <div className="absolute bottom-1/4 left-1/5" style={{animation: 'floatRandomZoom3 14.5s ease-in-out infinite'}}>
+          <svg width="30" height="30" viewBox="0 0 100 100" className="text-yellow-400/30">
+            <path d="M55,10 L25,45 L40,45 L35,90 L65,55 L50,55 Z" fill="currentColor"/>
+          </svg>
+        </div>
+
+        {/* Infinity symbol */}
+        <div className="absolute top-1/3 right-1/3" style={{animation: 'floatRandomZoom1 18.3s ease-in-out infinite reverse'}}>
+          <svg width="40" height="40" viewBox="0 0 100 100" className="text-purple-400/25">
+            <path d="M25,50 C15,30 35,30 50,50 C65,70 85,70 75,50 C85,30 65,30 50,50 C35,70 15,70 25,50"
+                  fill="none" stroke="currentColor" strokeWidth="3"/>
+          </svg>
+        </div>
+
+        {/* Circuit board pattern */}
+        <div className="absolute top-1/2 left-1/6" style={{animation: 'floatRandomZoom2 15.8s ease-in-out infinite'}}>
+          <svg width="35" height="35" viewBox="0 0 100 100" className="text-cyan-300/20">
+            <path d="M20,20 L80,20 L80,40 L60,40 L60,60 L80,60 L80,80 L20,80 L20,60 L40,60 L40,40 L20,40 Z"
+                  fill="none" stroke="currentColor" strokeWidth="2"/>
+            <circle cx="20" cy="20" r="3" fill="currentColor"/>
+            <circle cx="80" cy="80" r="3" fill="currentColor"/>
+          </svg>
+        </div>
+
+        {/* Atom symbol */}
+        <div className="absolute bottom-1/5 right-1/4" style={{animation: 'floatRandomZoom3 17.1s ease-in-out infinite'}}>
+          <svg width="32" height="32" viewBox="0 0 100 100" className="text-green-400/25">
+            <circle cx="50" cy="50" r="4" fill="currentColor"/>
+            <ellipse cx="50" cy="50" rx="25" ry="10" fill="none" stroke="currentColor" strokeWidth="2" transform="rotate(0 50 50)"/>
+            <ellipse cx="50" cy="50" rx="25" ry="10" fill="none" stroke="currentColor" strokeWidth="2" transform="rotate(60 50 50)"/>
+            <ellipse cx="50" cy="50" rx="25" ry="10" fill="none" stroke="currentColor" strokeWidth="2" transform="rotate(120 50 50)"/>
+          </svg>
+        </div>
+      </div>
+
+      {/* Moving Grid Line */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div
+          className="absolute top-1/3 h-px w-full bg-gradient-to-r from-transparent via-blue-400 to-transparent"
+          style={{
+            animation: 'movingGridLine 10s ease-in-out infinite',
+            animationDelay: '2s',
+            opacity: 0.15
+          }}
+        ></div>
+      </div>
+
+      <div className="container mx-auto px-8 lg:px-12 relative z-10">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-sm bg-cyan-400/10 border border-cyan-400/30 mb-6">
+            <span className="text-cyan-300 text-sm font-medium tracking-wide mono">PROJECTS.EXE</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold neon-text mb-6" style={{fontFamily: 'Orbitron, monospace'}}>
+            DIGITAL ARSENAL
+          </h2>
+          <p className="text-xl text-cyan-200/80 max-w-2xl mx-auto">
+            Innovative solutions crafted with cutting-edge technology
+          </p>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projectsData.map(project => (
             <ProjectCard key={project.id} project={project} />

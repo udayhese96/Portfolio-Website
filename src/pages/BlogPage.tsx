@@ -11,50 +11,62 @@ const BlogPage = () => {
   const blogPosts = portfolioData?.blogPosts || [];
 
   return (
-    <>
-      <Navbar />
-      <section className="pt-32 pb-20 bg-white min-h-screen">
-        <div className="container mx-auto px-6">
-          <h1 className="text-4xl font-bold text-portfolio-dark mb-2">My Blog</h1>
-          <p className="text-portfolio-gray mb-10 max-w-2xl">
-            A collection of my achievements, learnings, and experiences in AI, machine learning, and software development.
-          </p>
+    <div className="relative min-h-screen bg-black">
+      <CyberpunkBackground />
+      <div className="relative z-10 min-h-screen">
+        <Navbar />
+        <section className="pt-32 pb-20 min-h-screen">
+          <div className="container mx-auto px-8 lg:px-12">
+            {/* Section Header */}
+            <div className="text-center mb-16">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-sm bg-cyan-400/10 border border-cyan-400/30 mb-6">
+                <span className="text-cyan-300 text-sm font-medium tracking-wide mono">BLOG.EXE</span>
+              </div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold neon-text mb-6" style={{fontFamily: 'Orbitron, monospace'}}>
+                DIGITAL CHRONICLES
+              </h1>
+              <p className="text-xl text-cyan-200/80 max-w-2xl mx-auto">
+                A collection of my achievements, learnings, and experiences in AI, machine learning, and software development.
+              </p>
+            </div>
 
-          {blogPosts.length === 0 ? (
-            <div className="text-center py-20">
-              <p className="text-lg text-portfolio-gray">No blog posts available yet.</p>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {blogPosts.map((post) => (
-                <Card key={post.id} className="overflow-hidden hover:shadow-lg transition-shadow">
-                  <div className="h-48 overflow-hidden">
-                    <img 
-                      src={post.image} 
-                      alt={post.title} 
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                    />
+            {blogPosts.length === 0 ? (
+              <div className="text-center py-20">
+                <div className="cyber-card p-8 max-w-md mx-auto">
+                  <p className="text-lg text-cyan-200/60 mb-4">No blog posts available yet.</p>
+                  <p className="text-sm text-cyan-300/40">Stay tuned for upcoming content!</p>
+                </div>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {blogPosts.map((post) => (
+                  <div key={post.id} className="cyber-card overflow-hidden hover:scale-105 transition-all duration-300">
+                    <div className="h-48 overflow-hidden">
+                      <img
+                        src={post.image}
+                        alt={post.title}
+                        className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                      />
+                    </div>
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold neon-blue-text mb-2" style={{fontFamily: 'Orbitron, monospace'}}>
+                        {post.title}
+                      </h3>
+                      <p className="text-cyan-400/60 text-sm mb-4 mono">{post.date}</p>
+                      <p className="text-cyan-200/80 line-clamp-3 mb-6">{post.content}</p>
+                      <Link to={`/blog/${post.id}`} className="cyber-button w-full inline-block text-center">
+                        READ MORE
+                      </Link>
+                    </div>
                   </div>
-                  <CardHeader>
-                    <CardTitle className="text-xl font-bold">{post.title}</CardTitle>
-                    <CardDescription>{post.date}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-portfolio-gray line-clamp-3">{post.content}</p>
-                  </CardContent>
-                  <CardFooter>
-                    <Link to={`/blog/${post.id}`} className="w-full">
-                      <Button variant="outline" className="w-full">Read More</Button>
-                    </Link>
-                  </CardFooter>
-                </Card>
-              ))}
-            </div>
-          )}
-        </div>
-      </section>
-      <Footer />
-    </>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+        <Footer />
+      </div>
+    </div>
   );
 };
 

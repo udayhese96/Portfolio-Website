@@ -1,4 +1,4 @@
-
+import CyberpunkBackground from '../components/CyberpunkBackground';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import About from '../components/About';
@@ -9,15 +9,18 @@ import Footer from '../components/Footer';
 
 const Index = () => {
   return (
-    <>
-      <Navbar />
-      <Hero />
-      <About />
-      <Experience />
-      <Projects />
-      <Contact />
-      <Footer />
-    </>
+    <div className="relative min-h-screen bg-black">
+      <CyberpunkBackground />
+      <div className="relative z-10 min-h-screen">
+        <Navbar />
+        <Hero />
+        <About />
+        <Experience />
+        <Projects />
+        <Contact />
+        <Footer />
+      </div>
+    </div>
   );
 };
 
