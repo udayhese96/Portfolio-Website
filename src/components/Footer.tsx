@@ -2,19 +2,6 @@
 const Footer = () => {
   return (
     <footer className="relative py-8 bg-black border-t border-cyan-400/20">
-      {/* Enhanced Cyberpunk Grid Background */}
-      <div className="absolute inset-0 opacity-3">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `
-            linear-gradient(rgba(255, 0, 150, 0.2) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255, 100, 200, 0.15) 1px, transparent 1px),
-            radial-gradient(circle at 50% 50%, rgba(255, 0, 255, 0.02) 0%, transparent 60%)
-          `,
-          backgroundSize: '40px 40px, 40px 40px, 200px 200px',
-          animation: 'cyberpunkGrid 14s ease-in-out infinite reverse',
-          filter: 'drop-shadow(0 0 2px rgba(255, 0, 150, 0.1))'
-        }}></div>
-      </div>
 
       {/* Moving Grid Line */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">

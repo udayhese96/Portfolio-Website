@@ -68,41 +68,6 @@
     position: relative;
   }
 
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background:
-      linear-gradient(0deg, transparent 24%, rgba(0, 255, 255, 0.05) 25%, rgba(0, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 255, 255, 0.05) 75%, rgba(0, 255, 255, 0.05) 76%, transparent 77%, transparent),
-      linear-gradient(90deg, transparent 24%, rgba(0, 255, 255, 0.05) 25%, rgba(0, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 255, 255, 0.05) 75%, rgba(0, 255, 255, 0.05) 76%, transparent 77%, transparent);
-    background-size: 100px 100px;
-    animation: gridMove 10s linear infinite;
-    pointer-events: none;
-    z-index: -2;
-  }
-
-  @keyframes gridMove {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(100px, 100px); }
-  }
-
-  @keyframes cyberpunkGrid {
-    0% {
-      transform: translate(0, 0) scale(1);
-      opacity: 0.8;
-    }
-    50% {
-      transform: translate(50px, 50px) scale(1.1);
-      opacity: 1;
-    }
-    100% {
-      transform: translate(100px, 100px) scale(1);
-      opacity: 0.8;
-    }
-  }
 
   html {
     scroll-behavior: smooth;

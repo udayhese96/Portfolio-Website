@@ -26,13 +26,30 @@ const Navbar = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const isHomePage = location.pathname === '/';
+  const pathname = location.pathname;
+  const getActiveTopRoute = (path: string) => {
+    if (path.startsWith('/blog')) return '/blog';
+    if (path.startsWith('/about')) return '/about';
+    if (path.startsWith('/projects')) return '/projects';
+    if (path.startsWith('/contact')) return '/contact';
+    return '/';
+  };
+
+  const activeRoute = getActiveTopRoute(pathname);
+  const navLinks = [
+    { to: '/', label: 'HOME' },
+    { to: '/about', label: 'ABOUT' },
+    { to: '/projects', label: 'PROJECTS' },
+    { to: '/blog', label: 'BLOG' },
+    { to: '/contact', label: 'CONTACT' },
+  ];
+  const visibleLinks = navLinks.filter(l => l.to !== activeRoute);
 
   return (
     <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
       isScrolled
-        ? 'backdrop-blur-md bg-black/90 border-b border-cyan-400/30 py-3'
-        : 'bg-black/30 backdrop-blur-sm py-6'
+        ? 'bg-black/95 border-b border-cyan-400/30 py-3'
+        : 'bg-black/50 py-6'
     }`}>
       <div className="container mx-auto px-6 flex items-center justify-between">
         {/* Logo with cyberpunk styling */}
@@ -65,41 +82,12 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8">
-          {isHomePage ? (
-            <>
-              <a href="#home" className="nav-link relative text-sm font-medium text-cyan-300 hover:text-cyan-400 transition-all duration-300 tracking-wider uppercase" style={{fontFamily: 'Orbitron, monospace'}}>
-                <span className="relative z-10">HOME</span>
-                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-400 transition-all duration-300 hover:w-full"></div>
-              </a>
-              <a href="#about" className="nav-link relative text-sm font-medium text-cyan-300 hover:text-cyan-400 transition-all duration-300 tracking-wider uppercase" style={{fontFamily: 'Orbitron, monospace'}}>
-                <span className="relative z-10">ABOUT</span>
-                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-400 transition-all duration-300 hover:w-full"></div>
-              </a>
-              <a href="#projects" className="nav-link relative text-sm font-medium text-cyan-300 hover:text-cyan-400 transition-all duration-300 tracking-wider uppercase" style={{fontFamily: 'Orbitron, monospace'}}>
-                <span className="relative z-10">PROJECTS</span>
-                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-400 transition-all duration-300 hover:w-full"></div>
-              </a>
-              <a href="#blog" className="nav-link relative text-sm font-medium text-cyan-300 hover:text-cyan-400 transition-all duration-300 tracking-wider uppercase" style={{fontFamily: 'Orbitron, monospace'}}>
-                <span className="relative z-10">BLOG</span>
-                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-400 transition-all duration-300 hover:w-full"></div>
-              </a>
-              <a href="#contact" className="nav-link relative text-sm font-medium text-cyan-300 hover:text-cyan-400 transition-all duration-300 tracking-wider uppercase" style={{fontFamily: 'Orbitron, monospace'}}>
-                <span className="relative z-10">CONTACT</span>
-                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-400 transition-all duration-300 hover:w-full"></div>
-              </a>
-            </>
-          ) : (
-            <>
-              <Link to="/" className="nav-link relative text-sm font-medium text-cyan-300 hover:text-cyan-400 transition-all duration-300 tracking-wider uppercase" style={{fontFamily: 'Orbitron, monospace'}}>
-                <span className="relative z-10">HOME</span>
-                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-400 transition-all duration-300 hover:w-full"></div>
-              </Link>
-              <Link to="/blog" className="nav-link relative text-sm font-medium text-cyan-300 hover:text-cyan-400 transition-all duration-300 tracking-wider uppercase" style={{fontFamily: 'Orbitron, monospace'}}>
-                <span className="relative z-10">BLOG</span>
-                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-400 transition-all duration-300 hover:w-full"></div>
-              </Link>
-            </>
-          )}
+          {visibleLinks.map(link => (
+            <Link key={link.to} to={link.to} className="nav-link relative text-sm font-medium text-cyan-300 hover:text-cyan-400 transition-all duration-300 tracking-wider uppercase" style={{fontFamily: 'Orbitron, monospace'}}>
+              <span className="relative z-10">{link.label}</span>
+              <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-400 transition-all duration-300 hover:w-full"></div>
+            </Link>
+          ))}
         </div>
 
         {/* Cyberpunk Mobile Menu Button */}
@@ -119,45 +107,16 @@ const Navbar = () => {
       </div>
 
       {/* Cyberpunk Mobile Menu */}
-      <div className={`md:hidden backdrop-blur-md bg-black/95 border-t border-cyan-400/30 transition-all duration-500 overflow-hidden ${
+      <div className={`md:hidden bg-black/95 border-t border-cyan-400/30 transition-all duration-500 overflow-hidden ${
         isMobileMenuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
       }`}>
         <div className="container mx-auto px-6 py-6 flex flex-col space-y-4">
-          {isHomePage ? (
-            <>
-              <a href="#home" className="mobile-nav-link text-cyan-300 hover:text-cyan-400 transition-all duration-300 tracking-wider uppercase border-l-2 border-transparent hover:border-cyan-400 pl-4"
-                 style={{fontFamily: 'Orbitron, monospace'}} onClick={() => setIsMobileMenuOpen(false)}>
-                HOME
-              </a>
-              <a href="#about" className="mobile-nav-link text-cyan-300 hover:text-cyan-400 transition-all duration-300 tracking-wider uppercase border-l-2 border-transparent hover:border-cyan-400 pl-4"
-                 style={{fontFamily: 'Orbitron, monospace'}} onClick={() => setIsMobileMenuOpen(false)}>
-                ABOUT
-              </a>
-              <a href="#projects" className="mobile-nav-link text-cyan-300 hover:text-cyan-400 transition-all duration-300 tracking-wider uppercase border-l-2 border-transparent hover:border-cyan-400 pl-4"
-                 style={{fontFamily: 'Orbitron, monospace'}} onClick={() => setIsMobileMenuOpen(false)}>
-                PROJECTS
-              </a>
-              <a href="#blog" className="mobile-nav-link text-cyan-300 hover:text-cyan-400 transition-all duration-300 tracking-wider uppercase border-l-2 border-transparent hover:border-cyan-400 pl-4"
-                 style={{fontFamily: 'Orbitron, monospace'}} onClick={() => setIsMobileMenuOpen(false)}>
-                BLOG
-              </a>
-              <a href="#contact" className="mobile-nav-link text-cyan-300 hover:text-cyan-400 transition-all duration-300 tracking-wider uppercase border-l-2 border-transparent hover:border-cyan-400 pl-4"
-                 style={{fontFamily: 'Orbitron, monospace'}} onClick={() => setIsMobileMenuOpen(false)}>
-                CONTACT
-              </a>
-            </>
-          ) : (
-            <>
-              <Link to="/" className="mobile-nav-link text-cyan-300 hover:text-cyan-400 transition-all duration-300 tracking-wider uppercase border-l-2 border-transparent hover:border-cyan-400 pl-4"
-                    style={{fontFamily: 'Orbitron, monospace'}} onClick={() => setIsMobileMenuOpen(false)}>
-                HOME
-              </Link>
-              <Link to="/blog" className="mobile-nav-link text-cyan-300 hover:text-cyan-400 transition-all duration-300 tracking-wider uppercase border-l-2 border-transparent hover:border-cyan-400 pl-4"
-                    style={{fontFamily: 'Orbitron, monospace'}} onClick={() => setIsMobileMenuOpen(false)}>
-                BLOG
-              </Link>
-            </>
-          )}
+          {visibleLinks.map(link => (
+            <Link key={link.to} to={link.to} className="mobile-nav-link text-cyan-300 hover:text-cyan-400 transition-all duration-300 tracking-wider uppercase border-l-2 border-transparent hover:border-cyan-400 pl-4"
+                  style={{fontFamily: 'Orbitron, monospace'}} onClick={() => setIsMobileMenuOpen(false)}>
+              {link.label}
+            </Link>
+          ))}
         </div>
       </div>
     </nav>

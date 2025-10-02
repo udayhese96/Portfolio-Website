@@ -29,19 +29,6 @@ const Experience = () => {
       {/* Section transition gradient */}
       <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-black via-black/80 to-transparent z-5"></div>
       <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-black via-black/80 to-transparent z-5"></div>
-      {/* Enhanced Cyberpunk Grid Background */}
-      <div className="absolute inset-0 opacity-6">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `
-            linear-gradient(rgba(0, 100, 255, 0.4) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(100, 200, 255, 0.3) 1px, transparent 1px),
-            radial-gradient(circle at 30% 70%, rgba(150, 200, 255, 0.05) 0%, transparent 60%)
-          `,
-          backgroundSize: '70px 70px, 70px 70px, 300px 300px',
-          animation: 'cyberpunkGrid 18.5s ease-in-out infinite reverse',
-          filter: 'drop-shadow(0 0 4px rgba(100, 200, 255, 0.15))'
-        }}></div>
-      </div>
 
       {/* Enhanced 3D Geometric Shapes */}
       <div className="absolute inset-0 overflow-hidden">

@@ -32,19 +32,6 @@ const About = () => {
       {/* Section transition gradient */}
       <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-black via-black/80 to-transparent z-5"></div>
       <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-black via-black/80 to-transparent z-5"></div>
-      {/* Enhanced Cyberpunk Grid Background */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `
-            linear-gradient(rgba(0, 150, 255, 0.3) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0, 200, 255, 0.2) 1px, transparent 1px),
-            radial-gradient(circle at 50% 50%, rgba(0, 255, 255, 0.04) 0%, transparent 70%)
-          `,
-          backgroundSize: '50px 50px, 50px 50px, 200px 200px',
-          animation: 'cyberpunkGrid 15s ease-in-out infinite',
-          filter: 'drop-shadow(0 0 3px rgba(0, 200, 255, 0.1))'
-        }}></div>
-      </div>
 
       {/* Enhanced 3D Geometric Shapes */}
       <div className="absolute inset-0 overflow-hidden">

@@ -1,0 +1,64 @@
+[
+  {
+    "id": 1,
+    "slug": "digital-arsenal",
+    "title": "Digital Arsenal",
+    "heroImage": "/images/blog/digital-arsenal-hero.jpg",
+    "imageAlt": "Computer monitor with code and UI mockups",
+    "publishedAt": "2025-03-18T10:00:00.000Z",
+    "author": "Uday Hese",
+    "excerpt": "A tour of projects that blend full-stack engineering and machine learning to build modern web experiences.",
+    "content": "<p>This post highlights my key projects, architecture choices, and lessons learned while building full-stack apps and AI tools. I cover design decisions, deployment strategies, and where I plan to take each project next.</p>",
+    "tags": ["full-stack", "ml", "portfolio"]
+  },
+  {
+    "id": 2,
+    "slug": "fairshare-splitwise-clone",
+    "title": "FairShare: Split Wise Clone",
+    "heroImage": "/images/blog/fairshare-hero.jpg",
+    "imageAlt": "Group expense UI shown on a mobile screen",
+    "publishedAt": "2025-02-12T09:00:00.000Z",
+    "author": "Uday Hese",
+    "excerpt": "Built a fully client-side app for group expense tracking using React and localStorage, with realtime UI sync via React Query.",
+    "content": "<p>FairShare demonstrates an offline-first approach, optimistic updates, and simple reconciliation logic for shared expenses.</p>",
+    "tags": ["react", "pwa", "frontend"]
+  },
+  {
+    "id": 3,
+    "slug": "mental-health-chatbot",
+    "title": "Mental Health Chatbot",
+    "heroImage": "/images/blog/chatbot-hero.jpg",
+    "imageAlt": "Chat interface on desktop showing empathetic messages",
+    "publishedAt": "2024-11-05T12:30:00.000Z",
+    "author": "Uday Hese",
+    "excerpt": "An empathetic AI assistant for mental health support using local PDF knowledge, Groq API, and offline LLM fallbacks.",
+    "content": "<p>This project explores safe fallback strategies and how to combine local documents with remote LLMs to create a privacy-first assistant.</p>",
+    "tags": ["ai", "chatbot", "privacy"]
+  },
+  {
+    "id": 4,
+    "slug": "virtual-traffic-police",
+    "title": "Virtual Traffic Police",
+    "heroImage": "/images/blog/traffic-hero.jpg",
+    "imageAlt": "Traffic scene with bounding boxes around vehicles",
+    "publishedAt": "2024-08-20T07:45:00.000Z",
+    "author": "Uday Hese",
+    "excerpt": "Real-time vehicle detection using YOLOv10, OpenCV streaming, and FFmpeg integration for edge deployment.",
+    "content": "<p>This writeup covers model selection, video piping, and performance tradeoffs when deploying detection on resource-constrained hardware.</p>",
+    "tags": ["computer-vision", "opencv", "yolo"]
+  },
+  {
+    "id": 5,
+    "slug": "book-pm-free-wax",
+    "title": "Book PM — Get Free Wax",
+    "heroImage": "/images/blog/pm-wax-hero.jpg",
+    "imageAlt": "Car wax service promotional layout",
+    "publishedAt": "2024-09-12T11:00:00.000Z",
+    "author": "Uday Hese",
+    "excerpt": "Short promotional post about booking periodic maintenance and getting a free wax polish for showroom shine.",
+    "content": "<p>Campaign mechanics, how to claim the offer, and tips for scheduling your vehicle service online.</p>",
+    "tags": ["marketing", "offers"]
+  }
+]
+
+

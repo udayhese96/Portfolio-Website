@@ -13,7 +13,7 @@ const ExperienceDetails = () => {
   
   if (!experience) {
     return (
-      <>
+      <div className="min-h-screen bg-black">
         <Navbar />
         <div className="min-h-[70vh] flex flex-col items-center justify-center">
           <h1 className="text-3xl font-bold text-portfolio-dark mb-4">Experience Not Found</h1>
@@ -23,12 +23,12 @@ const ExperienceDetails = () => {
           </Link>
         </div>
         <Footer />
-      </>
+      </div>
     );
   }
   
   return (
-    <>
+    <div className="min-h-screen bg-black">
       <Navbar />
       <main className="py-20">
         <div className="container mx-auto px-6">
@@ -490,7 +490,7 @@ const ExperienceDetails = () => {
         </div>
       </main>
       <Footer />
-    </>
+    </div>
   );
 };
 

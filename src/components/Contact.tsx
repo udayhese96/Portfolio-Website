@@ -65,19 +65,6 @@ const Contact = () => {
       {/* Section transition gradient */}
       <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-black via-black/80 to-transparent z-5"></div>
       <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-black via-black/80 to-transparent z-5"></div>
-      {/* Enhanced Cyberpunk Grid Background */}
-      <div className="absolute inset-0 opacity-4">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `
-            linear-gradient(rgba(0, 255, 200, 0.3) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(150, 255, 255, 0.2) 1px, transparent 1px),
-            radial-gradient(circle at 70% 30%, rgba(0, 255, 255, 0.04) 0%, transparent 65%)
-          `,
-          backgroundSize: '60px 60px, 60px 60px, 250px 250px',
-          animation: 'cyberpunkGrid 16.5s ease-in-out infinite reverse',
-          filter: 'drop-shadow(0 0 3px rgba(0, 255, 255, 0.1))'
-        }}></div>
-      </div>
 
       {/* Enhanced 3D Geometric Shapes */}
       <div className="absolute inset-0 overflow-hidden">
