@@ -1,13 +1,45 @@
 
+import { useEffect, useState } from "react";
 import { ArrowRight, Zap } from "lucide-react";
 import { usePortfolio } from "@/context/PortfolioContext";
 
 const Hero = () => {
   const { portfolioData } = usePortfolio();
   const { hero } = portfolioData;
+  const [sequenceStarted, setSequenceStarted] = useState(false);
+
+  useEffect(() => {
+    // Check for reduced motion preference
+    const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) {
+      setSequenceStarted(true);
+      return;
+    }
+
+    // Check if this is the first visit
+    const visited = sessionStorage.getItem('siteVisited_v1');
+    if (!visited) {
+      // Show only navbar initially, start sequence after delay
+      setSequenceStarted(false);
+      const timer = setTimeout(() => {
+        document.documentElement.classList.add('sequence-run');
+        setSequenceStarted(true);
+      }, 450);
+      sessionStorage.setItem('siteVisited_v1', '1');
+      return () => clearTimeout(timer);
+    } else {
+      // Already visited, show everything immediately
+      document.documentElement.classList.remove('sequence-run');
+      setSequenceStarted(true);
+    }
+  }, []);
+
+  const delayStyle = (index: number, base = 450) => ({
+    animationDelay: `${base + index * 150}ms`
+  });
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-32 pb-10 bg-black">
+    <section id="home" className="relative min-h-screen flex items-center pt-32 pb-10 bg-shaded">
 
       {/* Enhanced 3D Geometric Shapes */}
       <div className="absolute inset-0 overflow-hidden">
@@ -57,25 +89,29 @@ const Hero = () => {
           {/* Left Content */}
           <div className="lg:w-1/2 space-y-10 lg:order-1 order-2">
             {/* Status Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-sm bg-cyan-400/10 border border-cyan-400/30">
+            <div className="hero-badge badge magnify-on-hover" style={delayStyle(0, 650)}>
               <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
               <span className="text-cyan-300 text-sm font-medium tracking-wide" style={{fontFamily: 'Space Mono, monospace'}}>
                 AVAILABLE FOR HIRE
               </span>
             </div>
 
-            {/* Main Heading */}
-            <div className="space-y-4">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-                <span className="neon-text block" style={{fontFamily: 'Orbitron, monospace'}}>
-                  UDAY HESE
+            {/* Main Heading - Split first and last name */}
+            <div className="space-y-2">
+              <h1 className="space-y-1">
+                <span className="hero-first block" style={{...delayStyle(1, 700), fontFamily: 'Orbitron, monospace'}}>
+                  UDAY
                 </span>
-                <span className="text-2xl md:text-3xl lg:text-4xl text-cyan-300/80 block mt-2" style={{fontFamily: 'Exo 2, sans-serif'}}>
-                  &lt; Developer /&gt;
+                <span className="hero-last block" style={{...delayStyle(2, 850), fontFamily: 'Orbitron, monospace'}}>
+                  HESE
                 </span>
               </h1>
 
-              <div className="flex items-center gap-3">
+              <div className="hero-sub subtitle mt-4" style={{...delayStyle(3, 1000), fontFamily: 'Exo 2, sans-serif'}}>
+                &lt; Developer /&gt;
+              </div>
+
+              <div className="hero-sub flex items-center gap-3 mt-4" style={delayStyle(4, 1150)}>
                 <Zap className="text-yellow-400 w-6 h-6" />
                 <p className="text-xl md:text-2xl neon-blue-text font-semibold">
                   Crafting the Future with Code & AI
@@ -84,7 +120,7 @@ const Hero = () => {
             </div>
 
             {/* Description */}
-            <div className="space-y-4">
+            <div className="hero-bio space-y-4" style={delayStyle(5, 1300)}>
               <p className="text-lg text-cyan-200/80 leading-relaxed max-w-xl">
                 Hi, I'm Uday — a final-year CSE-AI student passionate about
                 <span className="text-cyan-400 font-semibold"> solving real-world problems</span> through
@@ -108,7 +144,7 @@ const Hero = () => {
               </div>
             </div>
 
-            
+
 
             {/* Tech Stack */}
             <div className="space-y-4">
@@ -137,15 +173,15 @@ const Hero = () => {
                   {src: "https://logos-world.net/wp-content/uploads/2022/02/Microsoft-Power-BI-Symbol.png", alt: "Power BI"},
                   {src: "https://cdn.worldvectorlogo.com/logos/tableau-software.svg", alt: "Tableau"}
                 ].map((tech, index) => (
-                  <div key={index} className="group relative">
-                    <div className="w-12 h-12 rounded-lg border border-cyan-400/20 p-2 bg-gray-900/30 hover:border-cyan-400/50 hover:bg-gray-900/50 transition-all duration-300 hover:scale-110">
+                  <div key={index} className="tech group relative magnify-on-hover" style={delayStyle(6 + index, 1500)}>
+                    <div className="w-12 h-12 rounded-lg border border-cyan-400/20 p-2 bg-gray-900/30 hover:border-cyan-400/50 hover:bg-gray-900/50 transition-all duration-300">
                       <img
                         src={tech.src}
                         alt={tech.alt}
                         className="w-full h-full object-contain"
                       />
                     </div>
-                    <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-900 px-2 py-1 rounded text-xs text-cyan-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap border border-cyan-400/30">
+                    <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-900 px-2 py-1 rounded text-xs text-cyan-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap border border-cyan-400/30 z-10">
                       {tech.alt}
                     </div>
                   </div>
@@ -156,9 +192,9 @@ const Hero = () => {
 
           {/* Right Image */}
           <div className="lg:w-2/5 flex lg:justify-start justify-center lg:order-2 order-1">
-            <div className="relative">
+            <div className="hero-avatar relative" style={delayStyle(4, 1100)}>
               {/* Main Image Container */}
-              <div className="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96">
+              <div className="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 magnify-on-hover">
                 {/* Rotating rectangular ovals */}
                 <div className="absolute inset-0 rounded-full">
                   <div className="absolute inset-0 border-2 border-cyan-400/40 rounded-[40%] animate-spin"

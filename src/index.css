@@ -7,6 +7,12 @@
 
 @layer base {
   :root {
+    /* Enhanced Color Palette */
+    --neon: #00f0e6;
+    --nav-accent: #ffd34d;
+    --muted-teal: #66c2d9;
+    --bg-deep: #050506;
+
     /* Cyberpunk Color Palette */
     --neon-cyan: 180 100% 50%;
     --neon-blue: 200 100% 60%;
@@ -464,6 +470,223 @@
   }
 }
 
+/* Background shaded gradient with top-center bright light */
+.bg-shaded {
+  background:
+    radial-gradient(600px 200px at 50% 6%, rgba(120,160,255,0.06), transparent 18%),
+    radial-gradient(900px 500px at 20% 25%, rgba(0,0,0,0.6), transparent 35%),
+    radial-gradient(900px 500px at 80% 25%, rgba(0,0,0,0.5), transparent 35%),
+    linear-gradient(90deg, rgba(2,8,12,1) 0%, rgba(7,16,24,1) 45%, rgba(2,8,12,1) 100%),
+    #050506;
+  min-height: 100vh;
+  color: #dbeff0;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Subtle noise texture overlay */
+.bg-shaded::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800"><filter id="n"><feTurbulence baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" /></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.03" /></svg>');
+  mix-blend-mode: overlay;
+}
+
+/* Enhanced pill navbar style with white shade and apple magnus effect */
+.nav-pill {
+  background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.04) 100%);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 14px 28px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.4),
+    0 2px 8px rgba(255,255,255,0.06),
+    inset 0 1px 1px rgba(255,255,255,0.15),
+    inset 0 -1px 1px rgba(0,0,0,0.1);
+  max-width: 1400px;
+  width: 100%;
+  transition: all 300ms cubic-bezier(.2,.9,.2,1);
+}
+
+.nav-pill:hover {
+  background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.06) 100%);
+  border-color: rgba(255,255,255,0.18);
+  box-shadow:
+    0 12px 40px rgba(0,0,0,0.5),
+    0 4px 12px rgba(255,255,255,0.08),
+    inset 0 1px 1px rgba(255,255,255,0.2),
+    inset 0 -1px 1px rgba(0,0,0,0.1);
+  transform: translateY(-1px);
+}
+
+/* Logo inside pill with enhanced white glass effect */
+.logo-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.05);
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.1);
+  transition: all 250ms cubic-bezier(.2,.9,.2,1);
+}
+
+.logo-pill:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.15);
+}
+
+/* Contact button style - white pill with amber bottom highlight */
+.contact-pill {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  padding: 8px 14px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 0 6px 0 rgba(255, 211, 77, 0.12);
+  color: #001020;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  transition: all 200ms ease;
+}
+
+.contact-pill:hover {
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 8px 0 rgba(255, 211, 77, 0.2);
+  transform: translateY(-1px);
+}
+
+/* Hero name styling - first name */
+.hero-first {
+  font-weight: 900;
+  color: var(--neon);
+  text-shadow: 0 8px 32px rgba(0,240,230,0.18), 0 0 56px rgba(0,240,230,0.12);
+  font-size: clamp(3rem, 9vw, 6rem);
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* Hero name styling - surname */
+.hero-last {
+  font-weight: 800;
+  color: var(--muted-teal);
+  text-shadow: 0 4px 20px rgba(102,194,217,0.08), 0 0 32px rgba(102,194,217,0.06);
+  font-size: clamp(2.2rem, 6.5vw, 4.8rem);
+  line-height: 1;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+/* Developer subtitle */
+.subtitle {
+  color: #bfeef0;
+  font-size: clamp(1rem, 2.5vw, 1.6rem);
+  margin-top: .25rem;
+  letter-spacing: 0.6px;
+}
+
+/* Small badge */
+.badge {
+  display: inline-flex;
+  gap: .75rem;
+  align-items: center;
+  padding: .5rem .85rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0,240,230,0.06);
+  background: rgba(4,6,8,0.45);
+}
+
+/* Tech grid */
+.tech-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  margin-top: 1rem;
+}
+
+.tech {
+  padding: .45rem .6rem;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(0,240,230,0.04);
+  font-size: .85rem;
+}
+
+/* Staged animations */
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-18vw) scale(.98); }
+  to { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: translateY(10px) scale(.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Apply animations when sequence is running */
+.sequence-run .hero-name {
+  animation: slideInLeft 650ms cubic-bezier(.2,.9,.2,1) both;
+  transform-origin: left center;
+}
+
+.sequence-run .hero-sub {
+  animation: popIn 420ms cubic-bezier(.2,.9,.2,1) both;
+}
+
+.sequence-run .hero-bio {
+  animation: popIn 420ms cubic-bezier(.2,.9,.2,1) both;
+}
+
+.sequence-run .hero-badge {
+  animation: popIn 420ms cubic-bezier(.2,.9,.2,1) both;
+}
+
+.sequence-run .tech {
+  animation: popIn 360ms cubic-bezier(.2,.9,.2,1) both;
+}
+
+.sequence-run .hero-avatar {
+  animation: popIn 520ms cubic-bezier(.2,.9,.2,1) both;
+}
+
+/* Disable animations for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .sequence-run .hero-name,
+  .sequence-run .hero-first,
+  .sequence-run .hero-last,
+  .sequence-run .hero-sub,
+  .sequence-run .hero-bio,
+  .sequence-run .hero-badge,
+  .sequence-run .hero-avatar,
+  .sequence-run .tech {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .magnify-on-hover {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/* Disable magnify on mobile for performance */
+@media (max-width: 768px) {
+  .magnify-on-hover:hover,
+  .magnify-on-hover:focus {
+    transform: none !important;
+  }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .cyber-button {
@@ -472,5 +695,39 @@
 
   .cyber-card {
     @apply p-4;
+  }
+
+  /* Adjust navbar for mobile responsiveness */
+  .nav-pill {
+    padding: 12px 18px;
+    gap: 12px;
+  }
+
+  .logo-pill {
+    padding: 6px 10px;
+  }
+
+  /* Reduce navbar hover effect on mobile */
+  .nav-pill:hover {
+    transform: none;
+  }
+
+  /* Adjust navbar text size on mobile */
+  .logo-pill span {
+    font-size: 0.85rem;
+  }
+}
+
+/* Tablet responsiveness */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .nav-pill {
+    padding: 12px 22px;
+  }
+}
+
+/* Large screen optimization */
+@media (min-width: 1400px) {
+  .nav-pill {
+    max-width: 1400px;
   }
 }

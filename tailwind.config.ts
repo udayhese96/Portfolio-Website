@@ -65,6 +65,7 @@ export default {
 				},
 				// Cyberpunk color palette
 				neon: {
+					DEFAULT: '#00f0e6',
 					cyan: 'hsl(var(--neon-cyan))',
 					blue: 'hsl(var(--neon-blue))',
 					electric: 'hsl(var(--neon-electric))',
@@ -78,6 +79,9 @@ export default {
 					gray: 'hsl(var(--cyber-gray))',
 					'light-gray': 'hsl(var(--cyber-light-gray))'
 				},
+				navAccent: '#ffd34d',
+				mutedTeal: '#66c2d9',
+				bgDeep: '#050506',
 				portfolio: {
 					dark: '#2D2E32',
 					blue: '#147EFB',
@@ -126,5 +130,31 @@ export default {
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [
+		require("tailwindcss-animate"),
+		function ({ addUtilities }: any) {
+			addUtilities({
+				'.frost-glass': {
+					'background-color': 'rgba(5,10,12,0.45)',
+					'backdrop-filter': 'blur(8px) saturate(120%)',
+					'-webkit-backdrop-filter': 'blur(8px) saturate(120%)',
+					'border': '1px solid rgba(0,240,230,0.06)'
+				},
+				'.magnify-on-hover': {
+					'transition': 'transform 220ms cubic-bezier(.2,.9,.2,1), filter 220ms',
+					'will-change': 'transform, filter'
+				},
+				'.magnify-on-hover:hover': {
+					'transform': 'translateZ(0) scale(1.08)',
+					'filter': 'brightness(1.06) saturate(1.04)'
+				},
+				'.magnify-on-hover:focus': {
+					'transform': 'translateZ(0) scale(1.08)',
+					'filter': 'brightness(1.06) saturate(1.04)',
+					'outline': '2px solid #00f0e6',
+					'outline-offset': '2px'
+				}
+			});
+		}
+	],
 } satisfies Config;
