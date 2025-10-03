@@ -71,9 +71,28 @@ const Navbar = () => {
             </Link>
           ))}
           {activeRoute !== '/contact' && (
-            <Link to="/contact" className="contact-pill text-sm tracking-wider uppercase" style={{fontFamily: 'Orbitron, monospace'}}>
-              <span>CONTACT</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <Link
+              to="/contact"
+              className={`contact-pill text-sm tracking-wider uppercase ${activeRoute === '/contact' ? 'is-active' : ''}`}
+              style={{fontFamily: 'Orbitron, monospace'}}
+              tabIndex={0}
+              role="button"
+              aria-label="Contact"
+            >
+              {/* Fill layer */}
+              <span className="contact-pill__fill" aria-hidden="true"></span>
+
+              {/* Reflective top edge */}
+              <span className="contact-pill__reflect" aria-hidden="true"></span>
+
+              {/* Layered bands for level effect */}
+              <span className="fill-band band-1" aria-hidden="true"></span>
+              <span className="fill-band band-2" aria-hidden="true"></span>
+              <span className="fill-band band-3" aria-hidden="true"></span>
+
+              {/* Button content */}
+              <span style={{position: 'relative', zIndex: 2}}>CONTACT</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{position: 'relative', zIndex: 2}}>
                 <path d="M7 17L17 7M17 7H7M17 7V17" />
               </svg>
             </Link>
@@ -114,12 +133,27 @@ const Navbar = () => {
             {activeRoute !== '/contact' && (
               <Link
                 to="/contact"
-                className="contact-pill text-sm tracking-wider uppercase justify-center mt-2"
+                className={`contact-pill text-sm tracking-wider uppercase justify-center mt-2 ${activeRoute === '/contact' ? 'is-active' : ''}`}
                 style={{fontFamily: 'Orbitron, monospace'}}
                 onClick={() => setIsMobileMenuOpen(false)}
+                tabIndex={0}
+                role="button"
+                aria-label="Contact"
               >
-                <span>CONTACT</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                {/* Fill layer */}
+                <span className="contact-pill__fill" aria-hidden="true"></span>
+
+                {/* Reflective top edge */}
+                <span className="contact-pill__reflect" aria-hidden="true"></span>
+
+                {/* Layered bands for level effect */}
+                <span className="fill-band band-1" aria-hidden="true"></span>
+                <span className="fill-band band-2" aria-hidden="true"></span>
+                <span className="fill-band band-3" aria-hidden="true"></span>
+
+                {/* Button content */}
+                <span style={{position: 'relative', zIndex: 2}}>CONTACT</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{position: 'relative', zIndex: 2}}>
                   <path d="M7 17L17 7M17 7H7M17 7V17" />
                 </svg>
               </Link>

@@ -9,9 +9,15 @@
   :root {
     /* Enhanced Color Palette */
     --neon: #00f0e6;
-    --nav-accent: #ffd34d;
+    --nav-accent: #ffd34d; /* Amber fill color for nav buttons */
+    --nav-accent-dark: #ffc440; /* Slightly darker amber for gradient */
     --muted-teal: #66c2d9;
     --bg-deep: #050506;
+
+    /* Nav button fill animation */
+    --nav-pill-bg: rgba(10,14,18,0.6);
+    --nav-pill-border: rgba(0,240,230,0.06);
+    --fill-ease: cubic-bezier(.2,.9,.2,1);
 
     /* Cyberpunk Color Palette */
     --neon-cyan: 180 100% 50%;
@@ -91,46 +97,71 @@
 
 /* Cyberpunk UI Components */
 .cyber-button {
-  @apply relative inline-flex items-center px-6 py-3 font-semibold text-cyan-400 border border-cyan-400/50
-         bg-transparent backdrop-blur-sm transition-all duration-300 hover:bg-cyan-400/10
-         hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-400/25;
+  @apply relative inline-flex items-center px-6 py-3 font-semibold text-cyan-400 border-2 border-cyan-400/50
+         bg-transparent backdrop-blur-sm transition-all duration-300;
   font-family: 'Orbitron', monospace;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 100%, 15px 100%);
-}
-
-.cyber-button:hover {
-  text-shadow: 0 0 10px hsl(var(--neon-cyan));
-  box-shadow: 0 0 20px hsl(var(--neon-cyan) / 0.3), inset 0 0 20px hsl(var(--neon-cyan) / 0.1);
+  position: relative;
+  overflow: hidden;
 }
 
 .cyber-button::before {
   content: '';
   position: absolute;
   top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(45deg, transparent, hsl(var(--neon-cyan) / 0.1), transparent);
-  clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 100%, 15px 100%);
-  opacity: 0;
-  transition: opacity 0.3s;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.cyber-button:hover {
+  border-color: rgba(0, 255, 255, 1);
+  background: rgba(0, 255, 255, 0.1);
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.4), inset 0 0 20px rgba(0, 255, 255, 0.1);
+  transform: translateY(-2px);
 }
 
 .cyber-button:hover::before {
-  opacity: 1;
+  left: 100%;
+}
+
+.cyber-button:active {
+  transform: translateY(0px);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
 }
 
 .cyber-card {
   @apply backdrop-blur-md bg-gray-900/30 border border-cyan-400/20 rounded-lg p-6
-         transition-all duration-500 hover:border-cyan-400/50 hover:bg-gray-900/40;
+         transition-all duration-300;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.cyber-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease;
 }
 
 .cyber-card:hover {
-  box-shadow: 0 8px 32px rgba(0, 255, 255, 0.1), 0 0 20px rgba(0, 255, 255, 0.1);
-  transform: translateY(-5px);
+  border-color: rgba(0, 255, 255, 0.5);
+  background: rgba(17, 24, 39, 0.4);
+  box-shadow: 0 12px 40px rgba(0, 255, 255, 0.15), 0 0 25px rgba(0, 255, 255, 0.1);
+}
+
+.cyber-card:hover::before {
+  left: 100%;
 }
 
 .neon-text {
@@ -219,6 +250,36 @@
 @keyframes digitalFlicker {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.7; }
+}
+
+/* Slow pulse animation for top light */
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.6; transform: translate(-50%, 0) scale(1); }
+  50% { opacity: 0.9; transform: translate(-50%, 0) scale(1.05); }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+/* Profile photo floating animation */
+@keyframes profileFloat {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  25% {
+    transform: translateY(-8px) translateX(4px);
+  }
+  50% {
+    transform: translateY(-12px) translateX(-2px);
+  }
+  75% {
+    transform: translateY(-6px) translateX(-4px);
+  }
+}
+
+.profile-float {
+  animation: profileFloat 6s ease-in-out infinite;
 }
 
 @keyframes scanLine {
@@ -470,10 +531,9 @@
   }
 }
 
-/* Background shaded gradient with top-center bright light */
+/* Background shaded gradient */
 .bg-shaded {
   background:
-    radial-gradient(600px 200px at 50% 6%, rgba(120,160,255,0.06), transparent 18%),
     radial-gradient(900px 500px at 20% 25%, rgba(0,0,0,0.6), transparent 35%),
     radial-gradient(900px 500px at 80% 25%, rgba(0,0,0,0.5), transparent 35%),
     linear-gradient(90deg, rgba(2,8,12,1) 0%, rgba(7,16,24,1) 45%, rgba(2,8,12,1) 100%),
@@ -544,25 +604,138 @@
   border-color: rgba(255,255,255,0.15);
 }
 
-/* Contact button style - white pill with amber bottom highlight */
+/* Contact button style - white pill with bottom-to-top fill animation */
 .contact-pill {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 12px;
-  padding: 8px 14px;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  box-shadow: 0 6px 0 rgba(255, 211, 77, 0.12);
-  color: #001020;
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  padding: 8px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 0 6px 0 rgba(255, 211, 77, 0.12);
+  color: #001020;
   font-weight: 600;
-  transition: all 200ms ease;
+  overflow: hidden;
+  z-index: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: box-shadow 200ms ease, transform 200ms ease;
 }
 
 .contact-pill:hover {
-  background: rgba(255, 255, 255, 1);
   box-shadow: 0 8px 0 rgba(255, 211, 77, 0.2);
   transform: translateY(-1px);
+}
+
+/* Main fill layer - bottom-to-top animation */
+.contact-pill__fill {
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  transform-origin: bottom center;
+  transform: scaleY(0);
+  z-index: -1;
+  transition: transform 420ms var(--fill-ease);
+  background: linear-gradient(180deg,
+    rgba(255, 211, 77, 0.95) 0%,
+    var(--nav-accent-dark) 100%
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  will-change: transform;
+}
+
+/* Layered bands for level-by-level effect */
+.fill-band {
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  height: 30%;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  transform-origin: bottom center;
+  transform: translateY(80%) scaleY(0.92);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Position and stagger the three bands */
+.fill-band.band-1 {
+  bottom: 8%;
+  transition: transform 320ms var(--fill-ease) 420ms,
+              opacity 320ms var(--fill-ease) 420ms;
+}
+
+.fill-band.band-2 {
+  bottom: 38%;
+  transition: transform 320ms var(--fill-ease) 460ms,
+              opacity 320ms var(--fill-ease) 460ms;
+}
+
+.fill-band.band-3 {
+  bottom: 68%;
+  transition: transform 320ms var(--fill-ease) 500ms,
+              opacity 320ms var(--fill-ease) 500ms;
+}
+
+/* Trigger fill on hover and focus */
+.contact-pill:hover .contact-pill__fill,
+.contact-pill:focus-within .contact-pill__fill {
+  transform: scaleY(1);
+}
+
+.contact-pill:hover .fill-band,
+.contact-pill:focus-within .fill-band {
+  transform: translateY(0) scaleY(1);
+  opacity: 1;
+}
+
+/* Keep fill active for current route */
+.contact-pill.is-active .contact-pill__fill {
+  transform: scaleY(1);
+}
+
+.contact-pill.is-active .fill-band {
+  transform: translateY(0) scaleY(1);
+  opacity: 1;
+}
+
+/* Subtle reflective top edge */
+.contact-pill__reflect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 18%;
+  background: linear-gradient(180deg,
+    rgba(255, 255, 255, 0.12),
+    rgba(255, 255, 255, 0.02)
+  );
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 240ms var(--fill-ease);
+}
+
+.contact-pill:hover .contact-pill__reflect,
+.contact-pill:focus-within .contact-pill__reflect {
+  opacity: 1;
+}
+
+/* Keyboard focus outline */
+.contact-pill:focus-visible {
+  outline: 3px solid rgba(0, 240, 230, 0.4);
+  outline-offset: 3px;
+}
+
+/* Keep text/icon above fill */
+.contact-pill > span:not(.contact-pill__fill):not(.fill-band):not(.contact-pill__reflect) {
+  position: relative;
+  z-index: 2;
 }
 
 /* Hero name styling - first name */
@@ -622,61 +795,218 @@
   font-size: .85rem;
 }
 
-/* Staged animations */
-@keyframes slideInLeft {
-  from { opacity: 0; transform: translateX(-18vw) scale(.98); }
-  to { opacity: 1; transform: translateX(0) scale(1); }
+/* Staged entrance animations - GPU optimized */
+
+/* Name PUSH effect - slides in from left with cohesive feel */
+@keyframes pushInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20vw);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
+/* Photo and element POP effect - scales up from center */
 @keyframes popIn {
-  from { opacity: 0; transform: translateY(10px) scale(.96); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
-/* Apply animations when sequence is running */
-.sequence-run .hero-name {
-  animation: slideInLeft 650ms cubic-bezier(.2,.9,.2,1) both;
-  transform-origin: left center;
+/* Photo specific POP with scale emphasis */
+@keyframes photoPop {
+  from {
+    opacity: 0;
+    transform: scale(0.88);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Letter collision effect - flies in from left with bounce */
+@keyframes letterCollision {
+  0% {
+    opacity: 0;
+    transform: translateX(-80vw) translateY(20px) rotate(-15deg) scale(0.3);
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(8px) translateY(-4px) rotate(3deg) scale(1.15);
+  }
+  80% {
+    transform: translateX(-4px) translateY(2px) rotate(-2deg) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) translateY(0) rotate(0deg) scale(1);
+  }
+}
+
+/* Before sequence starts, hide ALL hero elements except navbar and background */
+body:not(.sequence-run):not(.sequence-complete) .hero-first,
+body:not(.sequence-run):not(.sequence-complete) .hero-last,
+body:not(.sequence-run):not(.sequence-complete) .hero-sub,
+body:not(.sequence-run):not(.sequence-complete) .hero-bio,
+body:not(.sequence-run):not(.sequence-complete) .hero-badge,
+body:not(.sequence-run):not(.sequence-complete) .hero-avatar,
+body:not(.sequence-run):not(.sequence-complete) .hero-tagline,
+body:not(.sequence-run):not(.sequence-complete) .hero-tech-heading,
+body:not(.sequence-run):not(.sequence-complete) .tech-grid,
+body:not(.sequence-run):not(.sequence-complete) .tech {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}
+
+/* Hide individual letters before animation */
+body:not(.sequence-run):not(.sequence-complete) .hero-letter {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Sequence animations - OPTIMIZED at 0.16x speed (1.6x original speed) */
+
+/* Step A: Letter-by-letter collision animation */
+.sequence-run .hero-letter {
+  animation: letterCollision 450ms cubic-bezier(.34,.46,.45,1) both;
+  will-change: transform, opacity;
+  visibility: visible !important;
+}
+
+/* Make parent containers visible to show letters */
+.sequence-run .hero-first,
+.sequence-run .hero-last {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Step C: Photo POP (starts after all letters finish ~1100ms) */
+.sequence-run .hero-avatar {
+  animation: photoPop 350ms 1100ms cubic-bezier(.2,.9,.2,1) both;
+  transform-origin: center;
+  will-change: transform, opacity;
+  visibility: visible !important;
+}
+
+/* Step D: Sequential POPs - badge, subtitle, tagline, bio, tech heading, tech icons */
+.sequence-run .hero-badge {
+  animation: popIn 280ms 1500ms cubic-bezier(.2,.9,.2,1) both;
+  will-change: transform, opacity;
+  visibility: visible !important;
 }
 
 .sequence-run .hero-sub {
-  animation: popIn 420ms cubic-bezier(.2,.9,.2,1) both;
+  animation: popIn 280ms 1600ms cubic-bezier(.2,.9,.2,1) both;
+  will-change: transform, opacity;
+  visibility: visible !important;
+}
+
+.sequence-run .hero-tagline {
+  animation: popIn 280ms 1720ms cubic-bezier(.2,.9,.2,1) both;
+  will-change: transform, opacity;
+  visibility: visible !important;
 }
 
 .sequence-run .hero-bio {
-  animation: popIn 420ms cubic-bezier(.2,.9,.2,1) both;
+  animation: popIn 300ms 1850ms cubic-bezier(.2,.9,.2,1) both;
+  will-change: transform, opacity;
+  visibility: visible !important;
 }
 
-.sequence-run .hero-badge {
-  animation: popIn 420ms cubic-bezier(.2,.9,.2,1) both;
+/* Tech Arsenal heading - pops in before tech icons */
+.sequence-run .hero-tech-heading {
+  animation: popIn 280ms 2000ms cubic-bezier(.2,.9,.2,1) both;
+  will-change: transform, opacity;
+  visibility: visible !important;
 }
 
+/* Tech icons with staggered delays (set via inline style) */
 .sequence-run .tech {
-  animation: popIn 360ms cubic-bezier(.2,.9,.2,1) both;
+  animation: popIn 205ms cubic-bezier(.2,.9,.2,1) both;
+  will-change: transform, opacity;
+  visibility: visible !important;
 }
 
-.sequence-run .hero-avatar {
-  animation: popIn 520ms cubic-bezier(.2,.9,.2,1) both;
+/* After sequence completes, ensure everything is visible */
+.sequence-complete .hero-first,
+.sequence-complete .hero-last,
+.sequence-complete .hero-sub,
+.sequence-complete .hero-bio,
+.sequence-complete .hero-badge,
+.sequence-complete .hero-avatar,
+.sequence-complete .hero-tagline,
+.sequence-complete .hero-tech-heading,
+.sequence-complete .tech-grid,
+.sequence-complete .tech,
+.sequence-complete .hero-letter {
+  opacity: 1 !important;
+  transform: none !important;
+  pointer-events: auto !important;
+  will-change: auto !important;
+  visibility: visible !important;
 }
 
-/* Disable animations for reduced motion */
+/* Disable animations for reduced motion - accessibility first */
 @media (prefers-reduced-motion: reduce) {
-  .sequence-run .hero-name,
+  /* Skip all entrance animations */
+  body:not(.sequence-complete) .hero-first,
+  body:not(.sequence-complete) .hero-last,
+  body:not(.sequence-complete) .hero-sub,
+  body:not(.sequence-complete) .hero-bio,
+  body:not(.sequence-complete) .hero-badge,
+  body:not(.sequence-complete) .hero-avatar,
+  body:not(.sequence-complete) .hero-tagline,
+  body:not(.sequence-complete) .tech-grid,
+  body:not(.sequence-complete) .hero-letter {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    visibility: visible !important;
+  }
+
   .sequence-run .hero-first,
   .sequence-run .hero-last,
   .sequence-run .hero-sub,
   .sequence-run .hero-bio,
   .sequence-run .hero-badge,
   .sequence-run .hero-avatar,
-  .sequence-run .tech {
+  .sequence-run .hero-tagline,
+  .sequence-run .tech,
+  .sequence-run .hero-letter {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
+    will-change: auto !important;
   }
+
   .magnify-on-hover {
     transition: none !important;
     transform: none !important;
   }
+}
+
+/* Apple Magnus Effect - Smooth scale on hover */
+.magnify-on-hover {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.magnify-on-hover:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 40px rgba(0, 255, 255, 0.15), 0 0 25px rgba(0, 255, 255, 0.1);
+}
+
+.magnify-on-hover:active {
+  transform: scale(0.98);
 }
 
 /* Disable magnify on mobile for performance */
@@ -684,6 +1014,44 @@
   .magnify-on-hover:hover,
   .magnify-on-hover:focus {
     transform: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Mobile: reduce fill animation complexity */
+  .contact-pill__fill {
+    transition: transform 180ms var(--fill-ease);
+  }
+
+  .fill-band {
+    transition: transform 180ms var(--fill-ease) 0ms,
+                opacity 180ms var(--fill-ease) 0ms !important;
+  }
+
+  /* Ensure large enough tap target */
+  .contact-pill {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Accessibility: Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .contact-pill__fill,
+  .fill-band,
+  .contact-pill__reflect {
+    transition: none !important;
+  }
+
+  /* Instant fill on hover/focus for reduced motion */
+  .contact-pill:hover .contact-pill__fill,
+  .contact-pill:focus-within .contact-pill__fill {
+    transform: scaleY(1);
+  }
+
+  .contact-pill:hover .fill-band,
+  .contact-pill:focus-within .fill-band {
+    transform: translateY(0) scaleY(1);
+    opacity: 1;
   }
 }
 

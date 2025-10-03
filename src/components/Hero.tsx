@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { ArrowRight, Zap } from "lucide-react";
 import { usePortfolio } from "@/context/PortfolioContext";
 
@@ -7,36 +7,66 @@ const Hero = () => {
   const { portfolioData } = usePortfolio();
   const { hero } = portfolioData;
   const [sequenceStarted, setSequenceStarted] = useState(false);
+  const cleanupTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    // Check for reduced motion preference
-    const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduced) {
+    // Detect reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Detect low-end device
+    const isLowEndDevice =
+      (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) ||
+      window.innerWidth < 480;
+
+    // If reduced motion, skip animations
+    if (prefersReducedMotion) {
+      document.body.classList.add('sequence-complete');
+      document.body.classList.remove('sequence-run');
       setSequenceStarted(true);
       return;
     }
 
-    // Check if this is the first visit
-    const visited = sessionStorage.getItem('siteVisited_v1');
-    if (!visited) {
-      // Show only navbar initially, start sequence after delay
+    // Check if we're on the home/index page
+    const isHomePage = window.location.pathname === '/' ||
+                       window.location.pathname === '/index' ||
+                       window.location.pathname === '';
+
+    // On home page, ALWAYS run the sequence on every page load/refresh
+    if (isHomePage) {
+      // Reset to initial state: show only navbar + background
+      document.body.classList.remove('sequence-complete');
+      document.body.classList.remove('sequence-run');
       setSequenceStarted(false);
-      const timer = setTimeout(() => {
-        document.documentElement.classList.add('sequence-run');
+
+      // Start sequence after 288ms (0.16x speed: 1800ms × 0.16)
+      const sequenceTimer = setTimeout(() => {
+        document.body.classList.add('sequence-run');
         setSequenceStarted(true);
-      }, 450);
-      sessionStorage.setItem('siteVisited_v1', '1');
-      return () => clearTimeout(timer);
+      }, 288);
+
+      // Cleanup will-change after sequence completes (~3s total with letter collision)
+      cleanupTimerRef.current = setTimeout(() => {
+        document.body.classList.remove('sequence-run');
+        document.body.classList.add('sequence-complete');
+
+        // Remove will-change from all animated elements
+        const animatedElements = document.querySelectorAll('[style*="will-change"]');
+        animatedElements.forEach(el => {
+          (el as HTMLElement).style.willChange = 'auto';
+        });
+      }, 3100);
+
+      return () => {
+        clearTimeout(sequenceTimer);
+        if (cleanupTimerRef.current) clearTimeout(cleanupTimerRef.current);
+      };
     } else {
-      // Already visited, show everything immediately
-      document.documentElement.classList.remove('sequence-run');
+      // Not on home page: show everything immediately
+      document.body.classList.remove('sequence-run');
+      document.body.classList.add('sequence-complete');
       setSequenceStarted(true);
     }
   }, []);
-
-  const delayStyle = (index: number, base = 450) => ({
-    animationDelay: `${base + index * 150}ms`
-  });
 
   return (
     <section id="home" className="relative min-h-screen flex items-center pt-32 pb-10 bg-shaded">
@@ -85,33 +115,55 @@ const Hero = () => {
       </div>
 
       <div className="container mx-auto px-8 lg:px-12 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-16 lg:gap-24">
+        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-16 lg:gap-24">
           {/* Left Content */}
           <div className="lg:w-1/2 space-y-10 lg:order-1 order-2">
             {/* Status Badge */}
-            <div className="hero-badge badge magnify-on-hover" style={delayStyle(0, 650)}>
+            <div className="hero-badge badge magnify-on-hover">
               <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
               <span className="text-cyan-300 text-sm font-medium tracking-wide" style={{fontFamily: 'Space Mono, monospace'}}>
                 AVAILABLE FOR HIRE
               </span>
             </div>
 
-            {/* Main Heading - Split first and last name */}
+            {/* Main Heading - Split first and last name with letter collision */}
             <div className="space-y-2">
               <h1 className="space-y-1">
-                <span className="hero-first block" style={{...delayStyle(1, 700), fontFamily: 'Orbitron, monospace'}}>
-                  UDAY
+                <span className="hero-first block" style={{fontFamily: 'Orbitron, monospace'}}>
+                  {'UDAY'.split('').map((letter, index) => (
+                    <span
+                      key={`first-${index}`}
+                      className="hero-letter"
+                      style={{
+                        animationDelay: `${448 + (index * 50)}ms`,
+                        display: 'inline-block'
+                      }}
+                    >
+                      {letter}
+                    </span>
+                  ))}
                 </span>
-                <span className="hero-last block" style={{...delayStyle(2, 850), fontFamily: 'Orbitron, monospace'}}>
-                  HESE
+                <span className="hero-last block" style={{fontFamily: 'Orbitron, monospace'}}>
+                  {'HESE'.split('').map((letter, index) => (
+                    <span
+                      key={`last-${index}`}
+                      className="hero-letter"
+                      style={{
+                        animationDelay: `${648 + (index * 50)}ms`,
+                        display: 'inline-block'
+                      }}
+                    >
+                      {letter}
+                    </span>
+                  ))}
                 </span>
               </h1>
 
-              <div className="hero-sub subtitle mt-4" style={{...delayStyle(3, 1000), fontFamily: 'Exo 2, sans-serif'}}>
-                &lt; Developer /&gt;
+              <div className="hero-sub subtitle mt-4" style={{fontFamily: 'Exo 2, sans-serif'}}>
+                &lt; /Software Developer &gt;
               </div>
 
-              <div className="hero-sub flex items-center gap-3 mt-4" style={delayStyle(4, 1150)}>
+              <div className="hero-tagline flex items-center gap-3 mt-4">
                 <Zap className="text-yellow-400 w-6 h-6" />
                 <p className="text-xl md:text-2xl neon-blue-text font-semibold">
                   Crafting the Future with Code & AI
@@ -120,7 +172,7 @@ const Hero = () => {
             </div>
 
             {/* Description */}
-            <div className="hero-bio space-y-4" style={delayStyle(5, 1300)}>
+            <div className="hero-bio space-y-4">
               <p className="text-lg text-cyan-200/80 leading-relaxed max-w-xl">
                 Hi, I'm Uday — a final-year CSE-AI student passionate about
                 <span className="text-cyan-400 font-semibold"> solving real-world problems</span> through
@@ -143,58 +195,13 @@ const Hero = () => {
                 </span>
               </div>
             </div>
-
-
-
-            {/* Tech Stack */}
-            <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <p className="font-medium text-cyan-300 tracking-wider uppercase" style={{fontFamily: 'Orbitron, monospace'}}>
-                  Tech Arsenal
-                </p>
-                <div className="h-px flex-1 bg-gradient-to-r from-cyan-400/50 to-transparent"></div>
-              </div>
-              <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-8">
-                {[
-                  {src: "https://skillicons.dev/icons?i=html", alt: "HTML"},
-                  {src: "https://skillicons.dev/icons?i=css", alt: "CSS"},
-                  {src: "https://skillicons.dev/icons?i=js", alt: "JavaScript"},
-                  {src: "https://skillicons.dev/icons?i=react", alt: "React"},
-                  {src: "https://skillicons.dev/icons?i=nodejs", alt: "Node.js"},
-                  {src: "https://skillicons.dev/icons?i=mongodb", alt: "MongoDB"},
-                  {src: "https://skillicons.dev/icons?i=mysql", alt: "SQL"},
-                  {src: "https://skillicons.dev/icons?i=python", alt: "Python"},
-                  {src: "https://skillicons.dev/icons?i=tensorflow", alt: "TensorFlow"},
-                  {src: "https://skillicons.dev/icons?i=bootstrap", alt: "Bootstrap"},
-                  {src: "https://skillicons.dev/icons?i=java", alt: "Java"},
-                  {src: "https://skillicons.dev/icons?i=django", alt: "Django"},
-                  {src: "https://skillicons.dev/icons?i=flask", alt: "Flask"},
-                  {src: "https://huggingface.co/front/assets/huggingface_logo-noborder.svg", alt: "Hugging Face"},
-                  {src: "https://logos-world.net/wp-content/uploads/2022/02/Microsoft-Power-BI-Symbol.png", alt: "Power BI"},
-                  {src: "https://cdn.worldvectorlogo.com/logos/tableau-software.svg", alt: "Tableau"}
-                ].map((tech, index) => (
-                  <div key={index} className="tech group relative magnify-on-hover" style={delayStyle(6 + index, 1500)}>
-                    <div className="w-12 h-12 rounded-lg border border-cyan-400/20 p-2 bg-gray-900/30 hover:border-cyan-400/50 hover:bg-gray-900/50 transition-all duration-300">
-                      <img
-                        src={tech.src}
-                        alt={tech.alt}
-                        className="w-full h-full object-contain"
-                      />
-                    </div>
-                    <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-900 px-2 py-1 rounded text-xs text-cyan-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap border border-cyan-400/30 z-10">
-                      {tech.alt}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
 
           {/* Right Image */}
-          <div className="lg:w-2/5 flex lg:justify-start justify-center lg:order-2 order-1">
-            <div className="hero-avatar relative" style={delayStyle(4, 1100)}>
+          <div className="lg:w-2/5 flex lg:justify-start justify-center lg:order-2 order-1 lg:mt-0 -mt-8">
+            <div className="hero-avatar relative">
               {/* Main Image Container */}
-              <div className="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 magnify-on-hover">
+              <div className="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96">
                 {/* Rotating rectangular ovals */}
                 <div className="absolute inset-0 rounded-full">
                   <div className="absolute inset-0 border-2 border-cyan-400/40 rounded-[40%] animate-spin"
@@ -211,12 +218,13 @@ const Hero = () => {
                   </div>
                 </div>
 
-                {/* Image */}
-                <div className="absolute inset-16 rounded-full overflow-hidden backdrop-blur-sm bg-gray-900/30 border border-cyan-400/30">
+                {/* Image - Adjusted for better centering */}
+                <div className="absolute inset-12 rounded-full overflow-hidden backdrop-blur-sm bg-gray-900/30 border border-cyan-400/30">
                   <img
                     src="/lovable-uploads/a7869fd3-1e2d-406d-b4f0-1f3b8ee9d47b.png"
                     alt="Uday Hese - Cyberpunk Developer"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-center scale-110"
+                    style={{objectPosition: '50% 30%'}}
                   />
                   {/* Overlay gradient */}
                   <div className="absolute inset-0 bg-gradient-to-tr from-cyan-400/20 via-transparent to-blue-400/20"></div>

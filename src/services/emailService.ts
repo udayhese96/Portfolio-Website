@@ -32,9 +32,9 @@ declare global {
 }
 
 class EmailService {
-  private emailjsPublicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'your_public_key_here';
-  private serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_portfolio';
-  private templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_contact';
+  private emailjsPublicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'user_xxxxxxxxxxxxxxxx'; // Replace with your actual EmailJS public key
+  private serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_xxxxxxxxx'; // Replace with your service ID
+  private templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_xxxxxxxxx'; // Replace with your template ID
   private formspreeEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT;
 
   constructor() {
@@ -98,7 +98,7 @@ class EmailService {
           console.warn('Server failed, trying fallback methods:', serverError);
 
           // Fallback to EmailJS if available
-          if (window.emailjs && this.emailjsPublicKey !== 'your_public_key_here') {
+          if (window.emailjs && this.emailjsPublicKey !== 'user_xxxxxxxxxxxxxxxx') {
             try {
               const result = await window.emailjs.send(
                 this.serviceId,

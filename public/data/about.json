@@ -1,0 +1,123 @@
+{
+  "description": [
+    {
+      "id": 1,
+      "text": "Hey, I'm Uday! A final-year Computer Science and Artificial Intelligence undergraduate at Vishwakarma Institute of Information Technology, Pune, driven by a passion for building intelligent, scalable, and real-world tech solutions.",
+      "highlights": [
+        { "text": "Uday", "color": "neon" },
+        { "text": "Vishwakarma Institute of Information Technology", "color": "blue" },
+        { "text": "intelligent, scalable, and real-world tech solutions", "color": "cyan" }
+      ]
+    },
+    {
+      "id": 2,
+      "text": "I thrive at the intersection of software development, machine learning, and cloud-integrated systems, constantly pushing the boundaries of what's possible through technology.",
+      "highlights": [
+        { "text": "software development", "color": "purple" },
+        { "text": "machine learning", "color": "blue" },
+        { "text": "cloud-integrated systems", "color": "cyan" }
+      ]
+    },
+    {
+      "id": 3,
+      "text": "Whether it's deploying real-time computer vision applications, building AI-powered chatbots, or creating seamless web experiences—I'm always excited to solve complex problems with efficient and innovative code.",
+      "highlights": [
+        { "text": "real-time computer vision applications", "color": "green" },
+        { "text": "AI-powered chatbots", "color": "yellow" },
+        { "text": "seamless web experiences", "color": "pink" }
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "icon": "Code",
+      "title": "Full Stack Development",
+      "description": "React, Node.js, Python, Java",
+      "color": "from-cyan-400 to-blue-500"
+    },
+    {
+      "icon": "Brain",
+      "title": "Artificial Intelligence",
+      "description": "TensorFlow, PyTorch, Deep Learning",
+      "color": "from-blue-500 to-purple-500"
+    },
+    {
+      "icon": "BarChart3",
+      "title": "Data Analytics",
+      "description": "Power BI, Tableau, Zoho Analytics",
+      "color": "from-purple-500 to-pink-500"
+    }
+  ],
+  "socialLinks": {
+    "resume": "https://drive.google.com/file/d/1F78Mm3hfcVNxLZF8PLc661tYO8zagOQ1/view?usp=sharing",
+    "github": "https://github.com/udayhese96",
+    "linkedin": "https://www.linkedin.com/in/udayhese/"
+  },
+  "education": [
+    {
+      "id": 1,
+      "institution": "Vishwakarma Institute of Information Technology",
+      "degree": "B.Tech CSE(AI)",
+      "duration": "Nov 2022 - Jun 2026",
+      "score": {
+        "type": "CGPA",
+        "value": "8.27/10.00"
+      },
+      "location": "Pune, India"
+    },
+    {
+      "id": 2,
+      "institution": "Jai Hind Junior College",
+      "degree": "HSC Maharashtra",
+      "duration": "March 2022",
+      "score": {
+        "type": "Percentage",
+        "value": "72.17%"
+      },
+      "location": "Pune, India"
+    },
+    {
+      "id": 3,
+      "institution": "S.S.C.S.R. High School",
+      "degree": "SSC Maharashtra",
+      "duration": "March 2020",
+      "score": {
+        "type": "Percentage",
+        "value": "95.4%"
+      },
+      "location": "Pune, India"
+    }
+  ],
+  "techStack": [
+    { "name": "HTML", "icon": "https://skillicons.dev/icons?i=html" },
+    { "name": "CSS", "icon": "https://skillicons.dev/icons?i=css" },
+    { "name": "JavaScript", "icon": "https://skillicons.dev/icons?i=js" },
+    { "name": "React", "icon": "https://skillicons.dev/icons?i=react" },
+    { "name": "Node.js", "icon": "https://skillicons.dev/icons?i=nodejs" },
+    { "name": "MongoDB", "icon": "https://skillicons.dev/icons?i=mongodb" },
+    { "name": "SQL", "icon": "https://skillicons.dev/icons?i=mysql" },
+    { "name": "Python", "icon": "https://skillicons.dev/icons?i=python" },
+    { "name": "TensorFlow", "icon": "https://skillicons.dev/icons?i=tensorflow" },
+    { "name": "Bootstrap", "icon": "https://skillicons.dev/icons?i=bootstrap" },
+    { "name": "Java", "icon": "https://skillicons.dev/icons?i=java" },
+    { "name": "Django", "icon": "https://skillicons.dev/icons?i=django" },
+    { "name": "Flask", "icon": "https://skillicons.dev/icons?i=flask" },
+    { "name": "Hugging Face", "icon": "https://huggingface.co/front/assets/huggingface_logo-noborder.svg" },
+    { "name": "Power BI", "icon": "https://logos-world.net/wp-content/uploads/2022/02/Microsoft-Power-BI-Symbol.png" },
+    { "name": "Tableau", "icon": "https://cdn.worldvectorlogo.com/logos/tableau-software.svg" }
+  ],
+  "experience": [
+    {
+      "id": 1,
+      "title": "Software Developer Intern",
+      "company": "Company Name",
+      "duration": "June 2024 - Aug 2024",
+      "description": [
+        "Developed and maintained web applications using React and Node.js",
+        "Collaborated with cross-functional teams to deliver high-quality solutions",
+        "Implemented responsive UI components and RESTful APIs"
+      ],
+      "technologies": ["React", "Node.js", "MongoDB"]
+    }
+  ]
+}
