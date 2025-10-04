@@ -78,11 +78,14 @@
     min-height: 100vh;
     overflow-x: hidden;
     position: relative;
+    width: 100%;
   }
 
 
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -541,7 +544,8 @@
   min-height: 100vh;
   color: #dbeff0;
   position: relative;
-  overflow-x: hidden;
+  overflow: hidden;
+  width: 100%;
 }
 
 /* Subtle noise texture overlay */

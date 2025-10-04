@@ -25,7 +25,7 @@ interface EmailData {
 }
 
 class EmailService {
-  private web3formsAccessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+  private web3formsAccessKey = import.meta.env.WEB3FORMS_ACCESS_KEY;
 
   // Email sending using Web3Forms (works on Vercel)
   async sendEmail(contactData: ContactFormData): Promise<EmailResponse>;
