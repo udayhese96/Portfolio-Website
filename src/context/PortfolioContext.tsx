@@ -25,13 +25,17 @@ export interface ProjectData {
   description: string;
   image: string;
   technologies: string[];
-  liveLink: string;
-  githubLink: string;
+  liveLink?: string;
+  githubLink?: string;
+  driveLink?: string;
+  screenshots?: string[];
+  fullDescription?: string;
 }
 
 export interface ContactData {
   location: string;
   email: string;
+  phone?: string;
 }
 
 export interface Message {
@@ -109,7 +113,8 @@ const defaultData: PortfolioData = {
   ],
   contact: {
     location: "Pune, India",
-    email: "example@example.com"
+    email: "udayhese0101@gmail.com",
+    phone: "+91-8624012250"
   },
   messages: [
     {
@@ -184,24 +189,68 @@ const PortfolioContext = createContext<PortfolioContextType | undefined>(undefin
 // Provider component
 export const PortfolioProvider = ({ children }: { children: ReactNode }) => {
   const [portfolioData, setPortfolioData] = useState<PortfolioData>(defaultData);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // Load data from localStorage on initial render
+  // Load data from JSON files and localStorage on initial render
   useEffect(() => {
-    const savedData = localStorage.getItem("portfolioData");
-    if (savedData) {
+    const loadData = async () => {
       try {
-        const parsedData = JSON.parse(savedData);
-        setPortfolioData(parsedData);
+        // Load from JSON files
+        const [contactRes, aboutRes, projectsRes, postsRes] = await Promise.all([
+          fetch('/data/contact.json').catch(() => null),
+          fetch('/data/about.json').catch(() => null),
+          fetch('/data/projects.json').catch(() => null),
+          fetch('/data/posts.json').catch(() => null),
+        ]);
+
+        const contact = contactRes ? await contactRes.json() : defaultData.contact;
+        const about = aboutRes ? await aboutRes.json() : null;
+        const projects = projectsRes ? await projectsRes.json() : defaultData.projects;
+        const posts = postsRes ? await postsRes.json() : defaultData.blogPosts;
+
+        // Check for localStorage data first
+        const savedData = localStorage.getItem("portfolioData");
+        if (savedData) {
+          try {
+            const parsedData = JSON.parse(savedData);
+            setPortfolioData({
+              ...parsedData,
+              contact: contact, // Always use contact.json
+            });
+          } catch (error) {
+            console.error("Error parsing portfolio data from localStorage:", error);
+            setPortfolioData({
+              ...defaultData,
+              contact,
+              projects,
+              blogPosts: posts,
+            });
+          }
+        } else {
+          // Initialize from JSON files
+          setPortfolioData({
+            ...defaultData,
+            contact,
+            projects,
+            blogPosts: posts,
+          });
+        }
       } catch (error) {
-        console.error("Error parsing portfolio data from localStorage:", error);
+        console.error("Error loading data:", error);
+      } finally {
+        setIsLoading(false);
       }
-    }
+    };
+
+    loadData();
   }, []);
 
   // Save data to localStorage whenever it changes
   useEffect(() => {
-    localStorage.setItem("portfolioData", JSON.stringify(portfolioData));
-  }, [portfolioData]);
+    if (!isLoading) {
+      localStorage.setItem("portfolioData", JSON.stringify(portfolioData));
+    }
+  }, [portfolioData, isLoading]);
 
   const updateHero = (data: HeroData) => {
     setPortfolioData(prev => ({

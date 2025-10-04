@@ -70,6 +70,15 @@ const Navbar = () => {
               {link.label}
             </Link>
           ))}
+          <a
+            href="https://drive.google.com/file/d/1F78Mm3hfcVNxLZF8PLc661tYO8zagOQ1/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="magnify-on-hover text-sm text-cyan-300/90 hover:text-cyan-300 transition-all duration-300 tracking-wider uppercase font-medium"
+            style={{fontFamily: 'Orbitron, monospace'}}
+          >
+            RESUME
+          </a>
           {activeRoute !== '/contact' && (
             <Link
               to="/contact"
@@ -130,6 +139,16 @@ const Navbar = () => {
                 {link.label}
               </Link>
             ))}
+            <a
+              href="https://drive.google.com/file/d/1F78Mm3hfcVNxLZF8PLc661tYO8zagOQ1/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-cyan-300 hover:text-cyan-400 transition-all duration-300 tracking-wider uppercase text-sm font-medium py-3 px-4 rounded-md hover:bg-cyan-400/10 text-center"
+              style={{fontFamily: 'Orbitron, monospace'}}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              RESUME
+            </a>
             {activeRoute !== '/contact' && (
               <Link
                 to="/contact"

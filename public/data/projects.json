@@ -1,0 +1,118 @@
+[
+  {
+    "id": 1,
+    "slug": "fairshare-splitwise",
+    "title": "FairShare - Splitwise Clone",
+    "description": "A fully client-side expense tracking app for groups using React and localStorage, with realtime UI sync via React Query.",
+    "image": "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1472&q=80",
+    "technologies": ["React", "localStorage", "React Query", "PWA"],
+    "liveLink": "https://example.com/fairshare",
+    "githubLink": "https://github.com/udayhese96/fairshare",
+    "category": "Frontend",
+    "featured": true,
+    "details": {
+      "overview": "FairShare demonstrates an offline-first approach with optimistic updates and simple reconciliation logic for shared expenses.",
+      "features": [
+        "Client-side expense tracking",
+        "Realtime UI synchronization",
+        "Offline-first architecture",
+        "Group expense management"
+      ],
+      "challenges": "Implementing offline-first architecture with localStorage while maintaining data consistency",
+      "learnings": "Deep understanding of state management and optimistic updates in React applications"
+    }
+  },
+  {
+    "id": 2,
+    "slug": "mental-health-chatbot",
+    "title": "Mental Health Chatbot",
+    "description": "An empathetic AI assistant for mental health support using local PDF knowledge, Groq API, and offline LLM fallbacks.",
+    "image": "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+    "technologies": ["Python", "Groq API", "LLM", "PDF Processing"],
+    "liveLink": "https://example.com/chatbot",
+    "githubLink": "https://github.com/udayhese96/mental-health-chatbot",
+    "category": "AI/ML",
+    "featured": true,
+    "details": {
+      "overview": "This project explores safe fallback strategies and how to combine local documents with remote LLMs to create a privacy-first assistant.",
+      "features": [
+        "Empathetic conversation flow",
+        "Local PDF knowledge base",
+        "Offline LLM fallbacks",
+        "Privacy-first architecture"
+      ],
+      "challenges": "Balancing response quality with privacy concerns and implementing reliable fallback mechanisms",
+      "learnings": "LLM integration patterns and privacy-preserving AI application design"
+    }
+  },
+  {
+    "id": 3,
+    "slug": "virtual-traffic-police",
+    "title": "Virtual Traffic Police",
+    "description": "Real-time vehicle detection using YOLOv10, OpenCV streaming, and FFmpeg integration for edge deployment.",
+    "image": "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+    "technologies": ["YOLOv10", "OpenCV", "FFmpeg", "Python"],
+    "liveLink": "https://example.com/traffic-police",
+    "githubLink": "https://github.com/udayhese96/virtual-traffic-police",
+    "category": "Computer Vision",
+    "featured": true,
+    "details": {
+      "overview": "This project covers model selection, video piping, and performance tradeoffs when deploying detection on resource-constrained hardware.",
+      "features": [
+        "Real-time vehicle detection",
+        "OpenCV video streaming",
+        "Edge deployment optimization",
+        "Performance monitoring"
+      ],
+      "challenges": "Optimizing YOLOv10 for real-time performance on edge devices",
+      "learnings": "Computer vision optimization and edge deployment strategies"
+    }
+  },
+  {
+    "id": 4,
+    "slug": "ecommerce-platform",
+    "title": "E-commerce Platform",
+    "description": "A full-stack e-commerce platform with React, Node.js, and MongoDB. Features include user authentication, product filtering, cart functionality, and admin dashboard.",
+    "image": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1472&q=80",
+    "technologies": ["React", "Node.js", "MongoDB", "Express"],
+    "liveLink": "https://example.com/ecommerce",
+    "githubLink": "https://github.com/udayhese96/ecommerce",
+    "category": "Full Stack",
+    "featured": false,
+    "details": {
+      "overview": "Complete e-commerce solution with modern tech stack and scalable architecture.",
+      "features": [
+        "User authentication & authorization",
+        "Product catalog & filtering",
+        "Shopping cart functionality",
+        "Admin dashboard",
+        "Payment integration"
+      ],
+      "challenges": "Building a scalable architecture that handles concurrent users and transactions",
+      "learnings": "Full-stack development, database design, and payment gateway integration"
+    }
+  },
+  {
+    "id": 5,
+    "slug": "weather-dashboard",
+    "title": "Weather Dashboard",
+    "description": "A weather application that provides current weather data and forecasts for any location. Built with React and integrated with the OpenWeatherMap API.",
+    "image": "https://images.unsplash.com/photo-1607798748738-b15c40d33d57?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+    "technologies": ["React", "RESTful API", "CSS", "OpenWeatherMap"],
+    "liveLink": "https://example.com/weather",
+    "githubLink": "https://github.com/udayhese96/weather-dashboard",
+    "category": "Frontend",
+    "featured": false,
+    "details": {
+      "overview": "Interactive weather dashboard with real-time data and beautiful visualizations.",
+      "features": [
+        "Current weather conditions",
+        "7-day forecast",
+        "Location search",
+        "Weather visualizations"
+      ],
+      "challenges": "Handling API rate limits and caching strategies",
+      "learnings": "API integration and data visualization techniques"
+    }
+  }
+]

@@ -24,6 +24,7 @@ export default defineConfig(({ mode }) => {
     },
     define: {
       'import.meta.env.WEB3FORMS_ACCESS_KEY': JSON.stringify(env.WEB3FORMS_ACCESS_KEY),
+      'import.meta.env.ADMIN_PASSWORD': JSON.stringify(env.ADMIN_PASSWORD),
     },
   };
 });

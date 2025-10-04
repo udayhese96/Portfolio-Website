@@ -165,28 +165,30 @@ const Contact = () => {
                   <div>
                     <p className="font-medium text-cyan-300 mono text-sm">EMAIL</p>
                     <a
-                      href="mailto:udayhese0101@gmail.com"
+                      href={`mailto:${contact.email}`}
                       className="text-cyan-200/80 hover:text-cyan-400 transition-colors"
                     >
-                      udayhese0101@gmail.com
+                      {contact.email}
                     </a>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-cyan-400/10 border border-cyan-400/30 flex items-center justify-center rounded-lg">
-                    <Phone className="text-cyan-400 w-5 h-5" />
+                {contact.phone && (
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-cyan-400/10 border border-cyan-400/30 flex items-center justify-center rounded-lg">
+                      <Phone className="text-cyan-400 w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="font-medium text-cyan-300 mono text-sm">PHONE</p>
+                      <a
+                        href={`tel:${contact.phone.replace(/[^0-9+]/g, '')}`}
+                        className="text-cyan-200/80 hover:text-cyan-400 transition-colors"
+                      >
+                        {contact.phone}
+                      </a>
+                    </div>
                   </div>
-                  <div>
-                    <p className="font-medium text-cyan-300 mono text-sm">PHONE</p>
-                    <a
-                      href="tel:+918624012250"
-                      className="text-cyan-200/80 hover:text-cyan-400 transition-colors"
-                    >
-                      +91-8624012250
-                    </a>
-                  </div>
-                </div>
+                )}
               </div>
             </div>
           </div>
