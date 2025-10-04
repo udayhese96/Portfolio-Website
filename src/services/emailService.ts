@@ -1,4 +1,4 @@
-// Client-side email service using EmailJS
+// Client-side email service using Web3Forms
 interface ContactFormData {
   name: string;
   email: string;
@@ -24,41 +24,10 @@ interface EmailData {
   text: string;
 }
 
-// Extend Window interface for EmailJS
-declare global {
-  interface Window {
-    emailjs: any;
-  }
-}
-
 class EmailService {
-  private emailjsPublicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'user_xxxxxxxxxxxxxxxx'; // Replace with your actual EmailJS public key
-  private serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_xxxxxxxxx'; // Replace with your service ID
-  private templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_xxxxxxxxx'; // Replace with your template ID
-  private formspreeEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT;
+  private web3formsAccessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
 
-  constructor() {
-    // Initialize EmailJS if available
-    if (typeof window !== 'undefined') {
-      this.initEmailJS();
-    }
-  }
-
-  private initEmailJS() {
-    // Load EmailJS script dynamically
-    if (!window.emailjs) {
-      const script = document.createElement('script');
-      script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
-      script.onload = () => {
-        if (window.emailjs) {
-          window.emailjs.init(this.emailjsPublicKey);
-        }
-      };
-      document.head.appendChild(script);
-    }
-  }
-
-  // Email sending using SMTP server
+  // Email sending using Web3Forms (works on Vercel)
   async sendEmail(contactData: ContactFormData): Promise<EmailResponse>;
   async sendEmail(emailData: EmailData): Promise<boolean>;
   async sendEmail(data: ContactFormData | EmailData): Promise<EmailResponse | boolean> {
@@ -68,62 +37,34 @@ class EmailService {
         // Handle ContactFormData
         const contactData = data as ContactFormData;
 
-        // Try Vercel serverless function or local server
+        // Use Web3Forms - works perfectly on Vercel without any backend
         try {
-          const apiUrl = import.meta.env.VITE_API_URL || (window.location.origin.includes('localhost') ? 'http://localhost:3001' : window.location.origin);
-          const response = await fetch(`${apiUrl}/api/send-email`, {
+          const formData = new FormData();
+          formData.append('access_key', this.web3formsAccessKey);
+          formData.append('name', contactData.name);
+          formData.append('email', contactData.email);
+          formData.append('subject', contactData.subject);
+          formData.append('message', contactData.message);
+          formData.append('from_name', 'Portfolio Contact Form');
+          formData.append('to_email', 'udayhese0101@gmail.com');
+
+          const response = await fetch('https://api.web3forms.com/submit', {
             method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              name: contactData.name,
-              email: contactData.email,
-              subject: contactData.subject,
-              message: contactData.message,
-            }),
+            body: formData
           });
 
           const result = await response.json();
 
-          if (response.ok && result.success) {
+          if (result.success) {
             return {
               success: true,
               message: 'Message sent successfully!'
             };
           } else {
-            throw new Error(result.message || 'Failed to send email via server');
+            throw new Error(result.message || 'Failed to send email');
           }
-        } catch (serverError) {
-          console.warn('Server failed, trying fallback methods:', serverError);
-
-          // Fallback to EmailJS if available
-          if (window.emailjs && this.emailjsPublicKey !== 'user_xxxxxxxxxxxxxxxx') {
-            try {
-              const result = await window.emailjs.send(
-                this.serviceId,
-                this.templateId,
-                {
-                  from_name: contactData.name,
-                  from_email: contactData.email,
-                  subject: contactData.subject,
-                  message: contactData.message,
-                  to_email: 'udayhese0101@gmail.com',
-                }
-              );
-
-              if (result.status === 200) {
-                return {
-                  success: true,
-                  message: 'Message sent successfully via EmailJS!'
-                };
-              }
-            } catch (emailjsError) {
-              console.warn('EmailJS also failed:', emailjsError);
-            }
-          }
-
-          // Return error instead of opening mailto
+        } catch (error) {
+          console.error('Web3Forms error:', error);
           return {
             success: false,
             message: 'Email service unavailable. Please contact directly at udayhese0101@gmail.com or call +91-8624012250.'

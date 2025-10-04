@@ -118,13 +118,6 @@ const Hero = () => {
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-16 lg:gap-24">
           {/* Left Content */}
           <div className="lg:w-1/2 space-y-10 lg:order-1 order-2">
-            {/* Status Badge */}
-            <div className="hero-badge badge magnify-on-hover">
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-              <span className="text-cyan-300 text-sm font-medium tracking-wide" style={{fontFamily: 'Space Mono, monospace'}}>
-                AVAILABLE FOR HIRE
-              </span>
-            </div>
 
             {/* Main Heading - Split first and last name with letter collision */}
             <div className="space-y-2">
