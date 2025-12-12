@@ -1,7 +1,8 @@
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
 import { ContactShadows, Float, Environment } from "@react-three/drei";
-import { Suspense, useEffect, useRef, useState } from "react";
+// Add useMemo to imports
+import { Suspense, useEffect, useRef, useState, useMemo } from "react";
 import { gsap } from "gsap";
 
 export default function Shapes() {
@@ -14,6 +15,11 @@ export default function Shapes() {
                 dpr={[1, 1.5]}
                 camera={{ position: [0, 0, 25], fov: 25, near: 1, far: 40 }}
             >
+                {/* Fallback lights in case Environment fails */}
+                <ambientLight intensity={0.4} />
+                <directionalLight position={[10, 10, 5]} intensity={1} />
+
+                {/* Main Geometries in their own Suspense */}
                 <Suspense fallback={null}>
                     <Geometries />
                     <ContactShadows
@@ -23,6 +29,10 @@ export default function Shapes() {
                         blur={1}
                         far={9}
                     />
+                </Suspense>
+
+                {/* Environment in separate Suspense so it doesn't block Geometries */}
+                <Suspense fallback={null}>
                     <Environment preset="studio" />
                 </Suspense>
             </Canvas>
@@ -59,11 +69,11 @@ function Geometries() {
         },
     ];
 
-    const soundEffects = [
+    const soundEffects = useMemo(() => [
         new Audio("/sounds/hit2.ogg"),
         new Audio("/sounds/hit3.ogg"),
         new Audio("/sounds/hit4.ogg"),
-    ];
+    ], []);
 
     const materials = [
         new THREE.MeshNormalMaterial(),
