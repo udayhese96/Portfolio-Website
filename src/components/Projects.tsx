@@ -138,7 +138,7 @@ const ProjectCard = ({ project }: { project: typeof projectsData[0] }) => {
         </div>
 
         <div className="p-6">
-          <h3 className="text-xl font-bold neon-blue-text mb-2" style={{fontFamily: 'Orbitron, monospace'}}>
+          <h3 className="text-xl font-bold neon-blue-text mb-2" style={{ fontFamily: 'Orbitron, monospace' }}>
             {project.title}
           </h3>
 
@@ -214,7 +214,7 @@ const ProjectCard = ({ project }: { project: typeof projectsData[0] }) => {
           <div className="cyber-card max-w-6xl max-h-[90vh] overflow-auto">
             <div className="p-6">
               <div className="flex justify-between items-center mb-4">
-                <h3 className="text-2xl font-bold neon-text" style={{fontFamily: 'Orbitron, monospace'}}>{project.title}</h3>
+                <h3 className="text-2xl font-bold neon-text" style={{ fontFamily: 'Orbitron, monospace' }}>{project.title}</h3>
                 <button
                   onClick={() => setShowKnowMore(false)}
                   className="text-cyan-400 hover:text-cyan-300 text-3xl font-bold border border-cyan-400/30 rounded-lg w-10 h-10 flex items-center justify-center hover:bg-cyan-400/10"
@@ -227,7 +227,7 @@ const ProjectCard = ({ project }: { project: typeof projectsData[0] }) => {
                 {project.fullDescription.split('\n\n').map((paragraph, index) => {
                   if (paragraph.startsWith('**') && paragraph.endsWith('**')) {
                     return (
-                      <h4 key={index} className="text-lg font-bold neon-blue-text mt-4 mb-2" style={{fontFamily: 'Orbitron, monospace'}}>
+                      <h4 key={index} className="text-lg font-bold neon-blue-text mt-4 mb-2" style={{ fontFamily: 'Orbitron, monospace' }}>
                         {paragraph.replace(/\*\*/g, '')}
                       </h4>
                     );
@@ -260,13 +260,13 @@ const ProjectCard = ({ project }: { project: typeof projectsData[0] }) => {
                   }
                 })}
               </div>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                 {project.screenshots.map((screenshot, index) => (
                   <div key={index} className="rounded-lg overflow-hidden shadow-md">
-                    <img 
-                      src={screenshot} 
-                      alt={`${project.title} screenshot ${index + 1}`} 
+                    <img
+                      src={screenshot}
+                      alt={`${project.title} screenshot ${index + 1}`}
                       className="w-full h-64 object-cover"
                     />
                   </div>
@@ -296,7 +296,7 @@ const ProjectCard = ({ project }: { project: typeof projectsData[0] }) => {
 
 const Projects = () => {
   return (
-    <section id="projects" className="relative py-20 lg:py-32 bg-black">
+    <section id="projects" className="relative py-20 lg:py-32 bg-transparent">
       {/* Section transition gradient */}
       <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-black via-black/80 to-transparent z-5"></div>
       <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-black via-black/80 to-transparent z-5"></div>
@@ -304,58 +304,58 @@ const Projects = () => {
       {/* Enhanced 3D Geometric Shapes */}
       <div className="absolute inset-0 overflow-hidden">
         {/* DNA Helix */}
-        <div className="absolute top-1/6 left-1/4" style={{animation: 'floatRandomZoom1 16.2s ease-in-out infinite'}}>
+        <div className="absolute top-1/6 left-1/4" style={{ animation: 'floatRandomZoom1 16.2s ease-in-out infinite' }}>
           <svg width="45" height="45" viewBox="0 0 100 100" className="text-cyan-400/30">
-            <path d="M30,20 Q50,40 70,20 M30,40 Q50,60 70,40 M30,60 Q50,80 70,60" fill="none" stroke="currentColor" strokeWidth="2"/>
-            <circle cx="30" cy="20" r="3" fill="currentColor"/>
-            <circle cx="70" cy="40" r="3" fill="currentColor"/>
-            <circle cx="30" cy="60" r="3" fill="currentColor"/>
+            <path d="M30,20 Q50,40 70,20 M30,40 Q50,60 70,40 M30,60 Q50,80 70,60" fill="none" stroke="currentColor" strokeWidth="2" />
+            <circle cx="30" cy="20" r="3" fill="currentColor" />
+            <circle cx="70" cy="40" r="3" fill="currentColor" />
+            <circle cx="30" cy="60" r="3" fill="currentColor" />
           </svg>
         </div>
 
         {/* Gear */}
-        <div className="absolute top-2/3 right-1/5" style={{animation: 'floatRandomZoom2 19.7s ease-in-out infinite'}}>
+        <div className="absolute top-2/3 right-1/5" style={{ animation: 'floatRandomZoom2 19.7s ease-in-out infinite' }}>
           <svg width="38" height="38" viewBox="0 0 100 100" className="text-blue-400/25">
-            <circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" strokeWidth="2"/>
-            <rect x="47" y="10" width="6" height="15" fill="currentColor"/>
-            <rect x="47" y="75" width="6" height="15" fill="currentColor"/>
-            <rect x="10" y="47" width="15" height="6" fill="currentColor"/>
-            <rect x="75" y="47" width="15" height="6" fill="currentColor"/>
+            <circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" strokeWidth="2" />
+            <rect x="47" y="10" width="6" height="15" fill="currentColor" />
+            <rect x="47" y="75" width="6" height="15" fill="currentColor" />
+            <rect x="10" y="47" width="15" height="6" fill="currentColor" />
+            <rect x="75" y="47" width="15" height="6" fill="currentColor" />
           </svg>
         </div>
 
         {/* Lightning bolt */}
-        <div className="absolute bottom-1/4 left-1/5" style={{animation: 'floatRandomZoom3 14.5s ease-in-out infinite'}}>
+        <div className="absolute bottom-1/4 left-1/5" style={{ animation: 'floatRandomZoom3 14.5s ease-in-out infinite' }}>
           <svg width="30" height="30" viewBox="0 0 100 100" className="text-yellow-400/30">
-            <path d="M55,10 L25,45 L40,45 L35,90 L65,55 L50,55 Z" fill="currentColor"/>
+            <path d="M55,10 L25,45 L40,45 L35,90 L65,55 L50,55 Z" fill="currentColor" />
           </svg>
         </div>
 
         {/* Infinity symbol */}
-        <div className="absolute top-1/3 right-1/3" style={{animation: 'floatRandomZoom1 18.3s ease-in-out infinite reverse'}}>
+        <div className="absolute top-1/3 right-1/3" style={{ animation: 'floatRandomZoom1 18.3s ease-in-out infinite reverse' }}>
           <svg width="40" height="40" viewBox="0 0 100 100" className="text-purple-400/25">
             <path d="M25,50 C15,30 35,30 50,50 C65,70 85,70 75,50 C85,30 65,30 50,50 C35,70 15,70 25,50"
-                  fill="none" stroke="currentColor" strokeWidth="3"/>
+              fill="none" stroke="currentColor" strokeWidth="3" />
           </svg>
         </div>
 
         {/* Circuit board pattern */}
-        <div className="absolute top-1/2 left-1/6" style={{animation: 'floatRandomZoom2 15.8s ease-in-out infinite'}}>
+        <div className="absolute top-1/2 left-1/6" style={{ animation: 'floatRandomZoom2 15.8s ease-in-out infinite' }}>
           <svg width="35" height="35" viewBox="0 0 100 100" className="text-cyan-300/20">
             <path d="M20,20 L80,20 L80,40 L60,40 L60,60 L80,60 L80,80 L20,80 L20,60 L40,60 L40,40 L20,40 Z"
-                  fill="none" stroke="currentColor" strokeWidth="2"/>
-            <circle cx="20" cy="20" r="3" fill="currentColor"/>
-            <circle cx="80" cy="80" r="3" fill="currentColor"/>
+              fill="none" stroke="currentColor" strokeWidth="2" />
+            <circle cx="20" cy="20" r="3" fill="currentColor" />
+            <circle cx="80" cy="80" r="3" fill="currentColor" />
           </svg>
         </div>
 
         {/* Atom symbol */}
-        <div className="absolute bottom-1/5 right-1/4" style={{animation: 'floatRandomZoom3 17.1s ease-in-out infinite'}}>
+        <div className="absolute bottom-1/5 right-1/4" style={{ animation: 'floatRandomZoom3 17.1s ease-in-out infinite' }}>
           <svg width="32" height="32" viewBox="0 0 100 100" className="text-green-400/25">
-            <circle cx="50" cy="50" r="4" fill="currentColor"/>
-            <ellipse cx="50" cy="50" rx="25" ry="10" fill="none" stroke="currentColor" strokeWidth="2" transform="rotate(0 50 50)"/>
-            <ellipse cx="50" cy="50" rx="25" ry="10" fill="none" stroke="currentColor" strokeWidth="2" transform="rotate(60 50 50)"/>
-            <ellipse cx="50" cy="50" rx="25" ry="10" fill="none" stroke="currentColor" strokeWidth="2" transform="rotate(120 50 50)"/>
+            <circle cx="50" cy="50" r="4" fill="currentColor" />
+            <ellipse cx="50" cy="50" rx="25" ry="10" fill="none" stroke="currentColor" strokeWidth="2" transform="rotate(0 50 50)" />
+            <ellipse cx="50" cy="50" rx="25" ry="10" fill="none" stroke="currentColor" strokeWidth="2" transform="rotate(60 50 50)" />
+            <ellipse cx="50" cy="50" rx="25" ry="10" fill="none" stroke="currentColor" strokeWidth="2" transform="rotate(120 50 50)" />
           </svg>
         </div>
       </div>
@@ -378,7 +378,7 @@ const Projects = () => {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-sm bg-cyan-400/10 border border-cyan-400/30 mb-6">
             <span className="text-cyan-300 text-sm font-medium tracking-wide mono">PROJECTS.EXE</span>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold neon-text mb-6" style={{fontFamily: 'Orbitron, monospace'}}>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold neon-text mb-6" style={{ fontFamily: 'Orbitron, monospace' }}>
             DIGITAL ARSENAL
           </h2>
           <p className="text-xl text-cyan-200/80 max-w-2xl mx-auto">

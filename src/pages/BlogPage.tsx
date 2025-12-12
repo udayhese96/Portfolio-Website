@@ -26,7 +26,7 @@ const BlogPage = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-black">
+    <div className="relative min-h-screen bg-transparent">
       {/* Central top light effect */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-cyan-400/15 rounded-full blur-[120px] animate-pulse-slow"></div>
@@ -42,7 +42,7 @@ const BlogPage = () => {
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-sm bg-cyan-400/10 border border-cyan-400/30 mb-6">
                 <span className="text-cyan-300 text-sm font-medium tracking-wide mono">BLOG.EXE</span>
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold neon-text mb-6" style={{fontFamily: 'Orbitron, monospace'}}>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold neon-text mb-6" style={{ fontFamily: 'Orbitron, monospace' }}>
                 DIGITAL CHRONICLES
               </h1>
               <p className="text-xl text-cyan-200/80 max-w-2xl mx-auto">
@@ -83,7 +83,7 @@ const BlogPage = () => {
                       />
                     </div>
                     <div className="p-6">
-                      <h3 className="text-xl font-bold neon-blue-text mb-2" style={{fontFamily: 'Orbitron, monospace'}}>
+                      <h3 className="text-xl font-bold neon-blue-text mb-2" style={{ fontFamily: 'Orbitron, monospace' }}>
                         {post.title}
                       </h3>
                       <time dateTime={post.publishedAt} className="text-cyan-400/60 text-sm mb-4 mono block">

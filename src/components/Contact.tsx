@@ -59,9 +59,9 @@ const Contact = () => {
       setIsSubmitting(false);
     }
   };
-  
+
   return (
-    <section id="contact" className="relative py-20 lg:py-32 bg-black">
+    <section id="contact" className="relative py-20 lg:py-32 bg-transparent">
       {/* Section transition gradient */}
       <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-black via-black/80 to-transparent z-5"></div>
       <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-black via-black/80 to-transparent z-5"></div>
@@ -69,42 +69,42 @@ const Contact = () => {
       {/* Enhanced 3D Geometric Shapes */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Envelope shape */}
-        <div className="absolute top-1/4 right-1/5" style={{animation: 'floatRandomZoom1 20.3s ease-in-out infinite'}}>
+        <div className="absolute top-1/4 right-1/5" style={{ animation: 'floatRandomZoom1 20.3s ease-in-out infinite' }}>
           <svg width="32" height="24" viewBox="0 0 100 75" className="text-cyan-400/20">
-            <path d="M10,20 L50,50 L90,20 L90,65 L10,65 Z" fill="none" stroke="currentColor" strokeWidth="2"/>
+            <path d="M10,20 L50,50 L90,20 L90,65 L10,65 Z" fill="none" stroke="currentColor" strokeWidth="2" />
           </svg>
         </div>
 
         {/* Message bubble */}
-        <div className="absolute bottom-1/4 left-1/6" style={{animation: 'floatRandomZoom2 17.6s ease-in-out infinite'}}>
+        <div className="absolute bottom-1/4 left-1/6" style={{ animation: 'floatRandomZoom2 17.6s ease-in-out infinite' }}>
           <svg width="30" height="26" viewBox="0 0 100 85" className="text-blue-400/25">
-            <path d="M15,15 L85,15 A10,10 0 0,1 85,45 L25,45 L15,55 L15,25 A10,10 0 0,1 25,15" fill="none" stroke="currentColor" strokeWidth="2"/>
+            <path d="M15,15 L85,15 A10,10 0 0,1 85,45 L25,45 L15,55 L15,25 A10,10 0 0,1 25,15" fill="none" stroke="currentColor" strokeWidth="2" />
           </svg>
         </div>
 
         {/* Phone icon shape */}
-        <div className="absolute top-2/3 right-1/3" style={{animation: 'floatRandomZoom3 19.8s ease-in-out infinite'}}>
+        <div className="absolute top-2/3 right-1/3" style={{ animation: 'floatRandomZoom3 19.8s ease-in-out infinite' }}>
           <svg width="20" height="34" viewBox="0 0 60 100" className="text-purple-400/20">
-            <rect x="15" y="10" width="30" height="80" rx="8" fill="none" stroke="currentColor" strokeWidth="2"/>
-            <circle cx="30" cy="80" r="3" fill="currentColor"/>
+            <rect x="15" y="10" width="30" height="80" rx="8" fill="none" stroke="currentColor" strokeWidth="2" />
+            <circle cx="30" cy="80" r="3" fill="currentColor" />
           </svg>
         </div>
 
         {/* @ symbol */}
         <div className="absolute top-1/3 left-1/4 text-xl text-cyan-300/25 font-bold"
-             style={{animation: 'floatRandomZoom1 14.7s ease-in-out infinite reverse', filter: 'drop-shadow(0 0 6px rgba(0, 255, 255, 0.4))'}}>@</div>
+          style={{ animation: 'floatRandomZoom1 14.7s ease-in-out infinite reverse', filter: 'drop-shadow(0 0 6px rgba(0, 255, 255, 0.4))' }}>@</div>
 
         {/* Send arrow */}
-        <div className="absolute bottom-1/3 right-1/6" style={{animation: 'floatRandomZoom2 16.2s ease-in-out infinite'}}>
+        <div className="absolute bottom-1/3 right-1/6" style={{ animation: 'floatRandomZoom2 16.2s ease-in-out infinite' }}>
           <svg width="28" height="28" viewBox="0 0 100 100" className="text-blue-300/30">
-            <path d="M10,50 L80,20 L80,35 L90,35 L90,65 L80,65 L80,80 Z" fill="none" stroke="currentColor" strokeWidth="2"/>
+            <path d="M10,50 L80,20 L80,35 L90,35 L90,65 L80,65 L80,80 Z" fill="none" stroke="currentColor" strokeWidth="2" />
           </svg>
         </div>
 
         {/* Connection lines */}
-        <div className="absolute top-1/6 left-1/3" style={{animation: 'floatRandomZoom3 18.9s ease-in-out infinite'}}>
+        <div className="absolute top-1/6 left-1/3" style={{ animation: 'floatRandomZoom3 18.9s ease-in-out infinite' }}>
           <svg width="35" height="20" viewBox="0 0 100 60" className="text-cyan-400/15">
-            <path d="M10,30 L40,30 M40,15 L60,30 L40,45 M60,30 L90,30" fill="none" stroke="currentColor" strokeWidth="2"/>
+            <path d="M10,30 L40,30 M40,15 L60,30 L40,45 M60,30 L90,30" fill="none" stroke="currentColor" strokeWidth="2" />
           </svg>
         </div>
       </div>
@@ -128,19 +128,19 @@ const Contact = () => {
             <Mail className="w-4 h-4 text-cyan-400" />
             <span className="text-cyan-300 text-sm font-medium tracking-wide mono">CONTACT.SYS</span>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold neon-text mb-6" style={{fontFamily: 'Orbitron, monospace'}}>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold neon-text mb-6" style={{ fontFamily: 'Orbitron, monospace' }}>
             INITIALIZE CONNECTION
           </h2>
           <p className="text-xl text-cyan-200/80 max-w-2xl mx-auto">
             Ready to collaborate on the next digital revolution
           </p>
         </div>
-        
+
         <div className="grid lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
           {/* Contact Information */}
           <div className="space-y-8">
             <div className="cyber-card p-6">
-              <h3 className="text-2xl font-bold neon-blue-text mb-6" style={{fontFamily: 'Orbitron, monospace'}}>
+              <h3 className="text-2xl font-bold neon-blue-text mb-6" style={{ fontFamily: 'Orbitron, monospace' }}>
                 DIRECT CHANNELS
               </h3>
               <p className="text-cyan-200/80 leading-relaxed mb-8">
@@ -197,7 +197,7 @@ const Contact = () => {
           <div className="cyber-card p-6">
             <div className="flex items-center gap-3 mb-6">
               <MessageSquare className="w-6 h-6 text-cyan-400" />
-              <h3 className="text-2xl font-bold neon-text" style={{fontFamily: 'Orbitron, monospace'}}>
+              <h3 className="text-2xl font-bold neon-text" style={{ fontFamily: 'Orbitron, monospace' }}>
                 SEND MESSAGE
               </h3>
             </div>

@@ -50,10 +50,10 @@ const Navbar = () => {
       <div className="nav-pill pointer-events-auto">
         {/* Logo with pill styling */}
         <Link to="/" className="logo-pill flex items-center magnify-on-hover">
-          <div className="h-8 w-8 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center text-black font-bold" style={{fontFamily: 'Orbitron, monospace'}}>
+          <div className="h-8 w-8 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center text-black font-bold" style={{ fontFamily: 'Orbitron, monospace' }}>
             UH
           </div>
-          <span className="ml-3 text-cyan-300 font-semibold tracking-wider" style={{fontFamily: 'Orbitron, monospace'}}>
+          <span className="ml-3 text-cyan-300 font-semibold tracking-wider" style={{ fontFamily: 'Orbitron, monospace' }}>
             UDAY HESE
           </span>
         </Link>
@@ -65,7 +65,7 @@ const Navbar = () => {
               key={link.to}
               to={link.to}
               className="magnify-on-hover text-sm text-cyan-300/90 hover:text-cyan-300 transition-all duration-300 tracking-wider uppercase font-medium"
-              style={{fontFamily: 'Orbitron, monospace'}}
+              style={{ fontFamily: 'Orbitron, monospace' }}
             >
               {link.label}
             </Link>
@@ -75,7 +75,7 @@ const Navbar = () => {
             target="_blank"
             rel="noopener noreferrer"
             className="magnify-on-hover text-sm text-cyan-300/90 hover:text-cyan-300 transition-all duration-300 tracking-wider uppercase font-medium"
-            style={{fontFamily: 'Orbitron, monospace'}}
+            style={{ fontFamily: 'Orbitron, monospace' }}
           >
             RESUME
           </a>
@@ -83,7 +83,7 @@ const Navbar = () => {
             <Link
               to="/contact"
               className={`contact-pill text-sm tracking-wider uppercase ${activeRoute === '/contact' ? 'is-active' : ''}`}
-              style={{fontFamily: 'Orbitron, monospace'}}
+              style={{ fontFamily: 'Orbitron, monospace' }}
               tabIndex={0}
               role="button"
               aria-label="Contact"
@@ -100,8 +100,8 @@ const Navbar = () => {
               <span className="fill-band band-3" aria-hidden="true"></span>
 
               {/* Button content */}
-              <span style={{position: 'relative', zIndex: 2}}>CONTACT</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{position: 'relative', zIndex: 2}}>
+              <span style={{ position: 'relative', zIndex: 2 }}>CONTACT</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ position: 'relative', zIndex: 2 }}>
                 <path d="M7 17L17 7M17 7H7M17 7V17" />
               </svg>
             </Link>
@@ -133,7 +133,7 @@ const Navbar = () => {
                 key={link.to}
                 to={link.to}
                 className="text-cyan-300 hover:text-cyan-400 transition-all duration-300 tracking-wider uppercase text-sm font-medium py-3 px-4 rounded-md hover:bg-cyan-400/10 text-center"
-                style={{fontFamily: 'Orbitron, monospace'}}
+                style={{ fontFamily: 'Orbitron, monospace' }}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.label}
@@ -144,7 +144,7 @@ const Navbar = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="text-cyan-300 hover:text-cyan-400 transition-all duration-300 tracking-wider uppercase text-sm font-medium py-3 px-4 rounded-md hover:bg-cyan-400/10 text-center"
-              style={{fontFamily: 'Orbitron, monospace'}}
+              style={{ fontFamily: 'Orbitron, monospace' }}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               RESUME
@@ -153,7 +153,7 @@ const Navbar = () => {
               <Link
                 to="/contact"
                 className={`contact-pill text-sm tracking-wider uppercase justify-center mt-2 ${activeRoute === '/contact' ? 'is-active' : ''}`}
-                style={{fontFamily: 'Orbitron, monospace'}}
+                style={{ fontFamily: 'Orbitron, monospace' }}
                 onClick={() => setIsMobileMenuOpen(false)}
                 tabIndex={0}
                 role="button"
@@ -171,8 +171,8 @@ const Navbar = () => {
                 <span className="fill-band band-3" aria-hidden="true"></span>
 
                 {/* Button content */}
-                <span style={{position: 'relative', zIndex: 2}}>CONTACT</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{position: 'relative', zIndex: 2}}>
+                <span style={{ position: 'relative', zIndex: 2 }}>CONTACT</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ position: 'relative', zIndex: 2 }}>
                   <path d="M7 17L17 7M17 7H7M17 7V17" />
                 </svg>
               </Link>
