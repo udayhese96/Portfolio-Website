@@ -1,107 +1,102 @@
+import { useState, useEffect } from 'react';
+import BottomNav from '../components/BottomNav';
+import TerminalWindow from '../components/TerminalWindow';
+import TypingAnimation from '../components/TypingAnimation';
+import { Link } from 'react-router-dom';
 
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+// Sample blog data - replace with your actual blog data
+const articlesData = [
+  {
+    slug: 'getting-started-with-react',
+    title: 'Getting Started with React',
+    excerpt: 'Learn the fundamentals of React including components, state, and props to build modern web applications.',
+    date: '2024-12-15',
+    readTime: '5 min read',
+  },
+  {
+    slug: 'machine-learning-basics',
+    title: 'Machine Learning Basics',
+    excerpt: 'An introduction to machine learning concepts, algorithms, and practical applications in everyday technology.',
+    date: '2024-11-28',
+    readTime: '8 min read',
+  },
+  {
+    slug: 'building-rest-apis',
+    title: 'Building REST APIs with Node.js',
+    excerpt: 'Step-by-step guide to creating robust REST APIs using Node.js, Express, and best practices for scalability.',
+    date: '2024-11-10',
+    readTime: '6 min read',
+  },
+  {
+    slug: 'computer-vision-opencv',
+    title: 'Computer Vision with OpenCV',
+    excerpt: 'Explore image processing and computer vision techniques using OpenCV and Python for real-world applications.',
+    date: '2024-10-22',
+    readTime: '7 min read',
+  },
+];
 
 const BlogPage = () => {
-  const [posts, setPosts] = useState<Array<any>>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [visibleArticles, setVisibleArticles] = useState(0);
+  const [typingComplete, setTypingComplete] = useState<boolean[]>(new Array(articlesData.length).fill(false));
 
   useEffect(() => {
-    const load = async () => {
-      try {
-        const res = await fetch('/data/posts.json');
-        if (!res.ok) throw new Error('Failed to load posts');
-        const data = await res.json();
-        setPosts(data);
-      } catch (e: any) {
-        setError(e?.message || 'Failed to load posts');
-      } finally {
-        setLoading(false);
-      }
-    };
-    load();
-  }, []);
+    // Stagger article appearances
+    if (visibleArticles < articlesData.length) {
+      const timer = setTimeout(() => {
+        setVisibleArticles(prev => prev + 1);
+      }, visibleArticles === 0 ? 0 : 400); // First article appears immediately, others with 400ms delay
+
+      return () => clearTimeout(timer);
+    }
+  }, [visibleArticles]);
+
+  const handleTypingComplete = (index: number) => {
+    setTypingComplete(prev => {
+      const newState = [...prev];
+      newState[index] = true;
+      return newState;
+    });
+  };
 
   return (
-    <div className="relative min-h-screen bg-transparent">
-      {/* Central top light effect */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-cyan-400/15 rounded-full blur-[120px] animate-pulse-slow"></div>
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-blue-400/10 rounded-full blur-[100px]"></div>
-      </div>
-
-      <div className="relative z-10 min-h-screen">
-        <Navbar />
-        <section className="pt-32 pb-20 min-h-screen">
-          <div className="container mx-auto px-8 lg:px-12">
-            {/* Section Header */}
-            <div className="text-center mb-16">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-sm bg-cyan-400/10 border border-cyan-400/30 mb-6">
-                <span className="text-cyan-300 text-sm font-medium tracking-wide mono">BLOG.EXE</span>
-              </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold neon-text mb-6" style={{ fontFamily: 'Orbitron, monospace' }}>
-                DIGITAL CHRONICLES
-              </h1>
-              <p className="text-xl text-cyan-200/80 max-w-2xl mx-auto">
-                A collection of my achievements, learnings, and experiences in AI, machine learning, and software development.
+    <div className="page-container">
+      <TerminalWindow title="Articles">
+        <div className="grid-2">
+          {articlesData.slice(0, visibleArticles).map((article, index) => (
+            <Link
+              key={article.slug}
+              to={`/blog/${article.slug}`}
+              className="article-card"
+            >
+              <h3 className="article-card-title">
+                {index === visibleArticles - 1 && !typingComplete[index] ? (
+                  <TypingAnimation
+                    text={article.title}
+                    speed={20}
+                    onComplete={() => handleTypingComplete(index)}
+                  />
+                ) : (
+                  article.title
+                )}
+              </h3>
+              <p className="article-card-excerpt">
+                {typingComplete[index] || index < visibleArticles - 1 ? (
+                  article.excerpt
+                ) : (
+                  <span style={{ opacity: 0 }}>{article.excerpt}</span>
+                )}
               </p>
-            </div>
-
-            {loading && (
-              <div className="text-center py-20 text-cyan-300/70">Loading posts…</div>
-            )}
-
-            {error && (
-              <div className="text-center py-20">
-                <div className="cyber-card p-8 max-w-md mx-auto text-red-300">
-                  <p className="text-lg">{error}</p>
-                </div>
+              <div className="flex justify-between items-center">
+                <span className="article-card-meta">{article.date}</span>
+                <span className="article-card-link">Read more &gt;&gt;</span>
               </div>
-            )}
+            </Link>
+          ))}
+        </div>
+      </TerminalWindow>
 
-            {!loading && !error && posts.length === 0 && (
-              <div className="text-center py-20">
-                <div className="cyber-card p-8 max-w-md mx-auto">
-                  <p className="text-lg text-cyan-200/60 mb-4">No blog posts available yet.</p>
-                  <p className="text-sm text-cyan-300/40">Stay tuned for upcoming content!</p>
-                </div>
-              </div>
-            )}
-
-            {!loading && !error && posts.length > 0 && (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {posts.map((post) => (
-                  <div key={post.id} className="cyber-card overflow-hidden hover:scale-105 transition-all duration-300">
-                    <div className="h-48 overflow-hidden">
-                      <img
-                        src={post.heroImage}
-                        alt={post.imageAlt || post.title}
-                        className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
-                      />
-                    </div>
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold neon-blue-text mb-2" style={{ fontFamily: 'Orbitron, monospace' }}>
-                        {post.title}
-                      </h3>
-                      <time dateTime={post.publishedAt} className="text-cyan-400/60 text-sm mb-4 mono block">
-                        {new Date(post.publishedAt).toLocaleDateString()}
-                      </time>
-                      <p className="text-cyan-200/80 line-clamp-3 mb-6">{(post.excerpt || '').slice(0, 150)}</p>
-                      <Link to={`/blog/${post.slug}`} className="cyber-button w-full inline-block text-center">
-                        READ MORE
-                      </Link>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        </section>
-        <Footer />
-      </div>
+      <BottomNav />
     </div>
   );
 };

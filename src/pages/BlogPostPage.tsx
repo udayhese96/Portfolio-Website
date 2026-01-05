@@ -1,87 +1,232 @@
+import { useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import BottomNav from '../components/BottomNav';
+import TerminalWindow from '../components/TerminalWindow';
+import TypingAnimation from '../components/TypingAnimation';
 
-import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import NotFound from "./NotFound";
+// Sample blog posts - in a real app, this would come from an API or CMS
+const blogPosts: Record<string, { title: string; content: string; date: string; }> = {
+  'getting-started-with-react': {
+    title: 'Getting Started with React',
+    date: '2024-12-15',
+    content: `
+React is a JavaScript library for building user interfaces. It was developed by Facebook and is now maintained by Meta and a community of individual developers and companies.
+
+## Why React?
+
+React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes.
+
+## Key Concepts
+
+- **Components**: Build encapsulated components that manage their own state
+- **Declarative**: Design simple views for each state in your application
+- **Learn Once, Write Anywhere**: Develop new features without rewriting existing code
+
+## Getting Started
+
+To create a new React app, you can use Create React App or Vite:
+
+\`\`\`bash
+npm create vite@latest my-app -- --template react
+cd my-app
+npm install
+npm run dev
+\`\`\`
+    `,
+  },
+  'machine-learning-basics': {
+    title: 'Machine Learning Basics',
+    date: '2024-11-28',
+    content: `
+Machine Learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed.
+
+## Types of Machine Learning
+
+1. **Supervised Learning**: The algorithm learns from labeled training data
+2. **Unsupervised Learning**: The algorithm finds patterns in unlabeled data
+3. **Reinforcement Learning**: The algorithm learns through trial and error
+
+## Popular Libraries
+
+- TensorFlow
+- PyTorch
+- Scikit-learn
+- Keras
+    `,
+  },
+  'building-rest-apis': {
+    title: 'Building REST APIs with Node.js',
+    date: '2024-11-10',
+    content: `
+REST (Representational State Transfer) is an architectural style for designing networked applications. Building RESTful APIs with Node.js and Express is straightforward and powerful.
+
+## What is a REST API?
+
+A REST API is an application programming interface that conforms to the constraints of REST architectural style. It allows for interaction with RESTful web services using standard HTTP methods.
+
+## Core Principles
+
+- **Stateless**: Each request contains all information needed
+- **Client-Server**: Separation of concerns
+- **Cacheable**: Responses must define themselves as cacheable or not
+- **Uniform Interface**: Consistent way to interact with resources
+
+## Building with Express
+
+\`\`\`javascript
+const express = require('express');
+const app = express();
+
+app.get('/api/users', (req, res) => {
+  res.json({ users: [] });
+});
+
+app.listen(3000, () => {
+  console.log('Server running on port 3000');
+});
+\`\`\`
+    `,
+  },
+  'computer-vision-opencv': {
+    title: 'Computer Vision with OpenCV',
+    date: '2024-10-22',
+    content: `
+Computer Vision is a field of artificial intelligence that trains computers to interpret and understand the visual world. OpenCV (Open Source Computer Vision Library) is one of the most popular libraries for computer vision tasks.
+
+## What is OpenCV?
+
+OpenCV is an open-source computer vision and machine learning software library. It contains over 2500 optimized algorithms for various computer vision tasks.
+
+## Common Applications
+
+- **Face Detection**: Identify and locate human faces
+- **Object Tracking**: Follow objects across video frames
+- **Image Processing**: Enhance and manipulate images
+- **Feature Detection**: Identify key points in images
+
+## Getting Started with Python
+
+\`\`\`python
+import cv2
+
+# Load an image
+image = cv2.imread('image.jpg')
+
+# Convert to grayscale
+gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+# Display the image
+cv2.imshow('Image', gray)
+cv2.waitKey(0)
+\`\`\`
+    `,
+  },
+};
 
 const BlogPostPage = () => {
   const { slug } = useParams<{ slug: string }>();
-  const [post, setPost] = useState<any | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const post = slug ? blogPosts[slug] : null;
+  const [titleTypingComplete, setTitleTypingComplete] = useState(false);
+  const [contentVisible, setContentVisible] = useState(false);
 
-  useEffect(() => {
-    const load = async () => {
-      try {
-        const res = await fetch('/data/posts.json');
-        if (!res.ok) throw new Error('Failed to load posts');
-        const posts = await res.json();
-        const found = posts.find((p: any) => p.slug === slug);
-        setPost(found || null);
-        if (!found) setError('Post not found');
-      } catch (e: any) {
-        setError(e?.message || 'Failed to load post');
-      } finally {
-        setLoading(false);
-      }
-    };
-    load();
-  }, [slug]);
-  
-  if (loading) {
+  if (!post) {
     return (
-      <div className="min-h-screen bg-black text-center pt-32 text-cyan-300/70">Loading…</div>
+      <div className="page-container">
+        <TerminalWindow title="Article Not Found">
+          <div className="text-center py-12">
+            <h1 className="text-xl mb-4 text-[var(--terminal-highlight)]">404 - Article Not Found</h1>
+            <p className="text-[var(--terminal-text-muted)] mb-6">
+              The article you're looking for doesn't exist.
+            </p>
+            <Link to="/blog" className="text-[var(--terminal-text)] hover:text-[var(--terminal-highlight)]">
+              &lt;&lt; Back to Articles
+            </Link>
+          </div>
+        </TerminalWindow>
+        <BottomNav />
+      </div>
     );
   }
 
-  if (error || !post) {
-    return <NotFound />;
-  }
+  const handleTitleComplete = () => {
+    setTitleTypingComplete(true);
+    setTimeout(() => setContentVisible(true), 200);
+  };
 
   return (
-    <div className="min-h-screen bg-black">
-      <Navbar />
-      <section className="pt-32 pb-20 min-h-screen">
-        <div className="container mx-auto px-6 max-w-4xl">
-          <Link to="/blog" className="inline-flex items-center text-portfolio-blue hover:text-portfolio-dark mb-6">
-            <ArrowLeft size={16} className="mr-2" /> Back to Blog
+    <div className="page-container">
+      <TerminalWindow title={`${slug}.md`}>
+        <article className="max-w-2xl">
+          <Link to="/blog" className="text-sm text-[var(--terminal-text-muted)] hover:text-[var(--terminal-text)] mb-4 inline-block">
+            &lt;&lt; Back to Articles
           </Link>
 
-          <header className="mb-8">
-            <h1 className="text-4xl font-bold neon-text mb-3" style={{fontFamily: 'Orbitron, monospace'}}>{post.title}</h1>
-            <p className="text-cyan-300/70 mono">
-              <time dateTime={post.publishedAt}>{new Date(post.publishedAt).toLocaleDateString()}</time>
-              <span className="mx-2">•</span>
-              <span>By {post.author}</span>
+          <h1 className="text-2xl font-medium text-[var(--terminal-highlight)] mb-2">
+            {!titleTypingComplete ? (
+              <TypingAnimation
+                text={post.title}
+                speed={25}
+                onComplete={handleTitleComplete}
+              />
+            ) : (
+              post.title
+            )}
+          </h1>
+
+          {titleTypingComplete && (
+            <p className="text-sm text-[var(--terminal-text-muted)] mb-8">
+              {post.date}
             </p>
-          </header>
-
-          <figure className="mb-10 rounded-xl overflow-hidden">
-            <img src={post.heroImage} alt={post.imageAlt || post.title} className="w-full h-auto max-h-[500px] object-cover" />
-          </figure>
-
-          <article className="prose prose-invert max-w-none">
-            <div dangerouslySetInnerHTML={{ __html: post.content }} />
-          </article>
-
-          {Array.isArray(post.tags) && post.tags.length > 0 && (
-            <ul className="flex flex-wrap gap-2 mt-8">
-              {post.tags.map((tag: string) => (
-                <li key={tag} className="text-xs bg-portfolio-light text-portfolio-dark px-3 py-1 rounded-full">{tag}</li>
-              ))}
-            </ul>
           )}
 
-          <div className="mt-10 pt-8 border-t border-cyan-400/20">
-            <Link to="/blog" className="cyber-button inline-flex items-center">
-              <ArrowLeft size={16} className="mr-2" /> Back to Blog
-            </Link>
-          </div>
-        </div>
-      </section>
-      <Footer />
+          {contentVisible && (
+            <div className="prose prose-invert prose-sm max-w-none text-[var(--terminal-text)]">
+              {post.content.split('\n\n').map((paragraph, idx) => {
+                if (paragraph.startsWith('## ')) {
+                  return (
+                    <h2 key={idx} className="text-lg font-medium text-[var(--terminal-highlight)] mt-6 mb-3">
+                      {paragraph.replace('## ', '')}
+                    </h2>
+                  );
+                }
+                if (paragraph.startsWith('```')) {
+                  const code = paragraph.replace(/```\w*\n?/g, '');
+                  return (
+                    <pre key={idx} className="code-block my-4 text-sm overflow-x-auto">
+                      <code>{code}</code>
+                    </pre>
+                  );
+                }
+                if (paragraph.startsWith('- ')) {
+                  return (
+                    <ul key={idx} className="list-disc list-inside my-3 space-y-1 text-[var(--terminal-text-muted)]">
+                      {paragraph.split('\n').map((item, i) => (
+                        <li key={i}>{item.replace('- ', '')}</li>
+                      ))}
+                    </ul>
+                  );
+                }
+                if (paragraph.startsWith('1. ')) {
+                  return (
+                    <ol key={idx} className="list-decimal list-inside my-3 space-y-1 text-[var(--terminal-text-muted)]">
+                      {paragraph.split('\n').map((item, i) => (
+                        <li key={i}>{item.replace(/^\d+\.\s/, '')}</li>
+                      ))}
+                    </ol>
+                  );
+                }
+                return (
+                  <p key={idx} className="my-3 text-[var(--terminal-text-muted)] leading-relaxed">
+                    {paragraph}
+                  </p>
+                );
+              })}
+            </div>
+          )}
+        </article>
+      </TerminalWindow>
+
+      <BottomNav />
     </div>
   );
 };
