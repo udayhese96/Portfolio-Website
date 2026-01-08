@@ -68,8 +68,8 @@ const ContactPage = () => {
           <div className="mb-8 space-y-2 text-sm">
             <p>
               <span className="text-[var(--terminal-text-muted)]">email:</span>{' '}
-              <a href="mailto:udayhese96@gmail.com" className="text-[var(--terminal-text)] hover:text-[var(--terminal-highlight)]">
-                udayhese96@gmail.com
+              <a href="mailto:udayhese0101@gmail.com" className="text-[var(--terminal-text)] hover:text-[var(--terminal-highlight)]">
+                udayhese0101@gmail.com
               </a>
             </p>
             <p>

@@ -1,19 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <!-- Terminal window background -->
-  <rect x="2" y="2" width="28" height="28" rx="4" fill="#1a1a1a" stroke="#333" stroke-width="1"/>
-  
-  <!-- Terminal window title bar -->
-  <rect x="2" y="2" width="28" height="7" rx="4" fill="#2a2a2a"/>
-  <rect x="2" y="6" width="28" height="3" fill="#2a2a2a"/>
-  
-  <!-- Window dots -->
-  <circle cx="7" cy="5.5" r="1.5" fill="#ff5f56"/>
-  <circle cx="11" cy="5.5" r="1.5" fill="#ffbd2e"/>
-  <circle cx="15" cy="5.5" r="1.5" fill="#27ca40"/>
-  
-  <!-- Terminal prompt -->
-  <text x="6" y="18" font-family="monospace" font-size="8" fill="#d1d5db">&gt;_</text>
-  
-  <!-- Cursor blink -->
-  <rect x="18" y="12" width="5" height="8" fill="#d1d5db" opacity="0.8"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1f1f1f"/>
+      <stop offset="100%" stop-color="#0a0a0a"/>
+    </linearGradient>
+  </defs>
+  <!-- Dark rounded background -->
+  <rect width="32" height="32" rx="8" fill="url(#bg)"/>
+  <!-- Accent border glow -->
+  <rect x="1" y="1" width="30" height="30" rx="7" fill="none" stroke="#3a3a3a" stroke-width="0.5"/>
+  <!-- U letter -->
+  <path d="M7 8 L7 18 Q7 22 11 22 Q15 22 15 18 L15 8" fill="none" stroke="#e5e5e5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- H letter -->
+  <path d="M18 8 L18 22 M18 15 L25 15 M25 8 L25 22" fill="none" stroke="#e5e5e5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Cyan accent dot -->
+  <circle cx="27" cy="5" r="2" fill="#22d3ee"/>
 </svg>
