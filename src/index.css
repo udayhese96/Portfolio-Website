@@ -225,10 +225,10 @@
 }
 
 .terminal-tab {
-  padding: 24px 60px;
-  /* Significantly increased for visibility */
-  font-size: 16px;
-  /* Increased font size */
+  padding: 10px 24px;
+  /* Compact Chrome-style tabs */
+  font-size: 13px;
+  /* Smaller font size */
   color: var(--terminal-text-muted);
   background: transparent;
   border: none;
@@ -408,20 +408,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: 24px;
 }
 
 .home-social-link {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
   color: var(--terminal-text);
-  font-size: 13px;
-  transition: color 0.2s ease;
+  transition: all 0.2s ease;
+  opacity: 0.8;
 }
 
 .home-social-link:hover {
   color: var(--terminal-highlight);
+  opacity: 1;
+  transform: translateY(-2px);
 }
 
 /* ===== Typing Animation Styles ===== */

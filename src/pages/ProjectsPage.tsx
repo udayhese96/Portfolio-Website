@@ -8,6 +8,63 @@ import TypingAnimation from '../components/TypingAnimation';
 export const projectsData = [
     {
         id: 1,
+        slug: "dance-movement-analyzer",
+        title: "DANCE MOVEMENT ANALYZER",
+        description: "Cloud-deployed FastAPI backend for MediaPipe-based dance pose analysis with Dockerized video-processing APIs.",
+        fullDescription: "A cloud-deployed dance analysis system built with FastAPI and MediaPipe, running on AWS EC2 Linux. The application provides real-time pose detection and analysis for dance movements, generating annotated videos through RESTful APIs.",
+        image: "https://images.unsplash.com/photo-1508700929628-666bc8bd84ea?w=800&auto=format&fit=crop",
+        screenshots: [
+            "https://images.unsplash.com/photo-1508700929628-666bc8bd84ea?w=800&auto=format&fit=crop"
+        ],
+        githubLink: "https://github.com/udayhese96/callus-dance-analyzer",
+        category: "Python",
+        features: [
+            "AWS EC2 Deployment: Hosted on Linux server for scalability",
+            "MediaPipe Integration: Real-time pose detection and analysis",
+            "Dockerized APIs: Containerized video-processing endpoints",
+            "Annotated Output: Generates pose-annotated dance videos"
+        ]
+    },
+    {
+        id: 2,
+        slug: "weather-chatbot",
+        title: "WEATHER CHATBOT",
+        description: "LangChain ReAct–powered chatbot for real-time weather data with intelligent tool selection and natural language responses.",
+        fullDescription: "An intelligent weather chatbot built with LangChain ReAct agent architecture, capable of retrieving real-time weather data from OpenWeather API. Features robust error handling, retry logic, and natural language response generation.",
+        image: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=800&auto=format&fit=crop",
+        screenshots: [
+            "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=800&auto=format&fit=crop"
+        ],
+        githubLink: "https://github.com/udayhese96/Weather-Chat-Bot",
+        category: "Python",
+        features: [
+            "LangChain ReAct: Intelligent tool selection and reasoning",
+            "OpenWeather API: Real-time weather data retrieval",
+            "FastAPI Backend: Robust API with retry logic",
+            "Natural Language: Human-friendly response generation"
+        ]
+    },
+    {
+        id: 3,
+        slug: "ai-creative-generator",
+        title: "AI CREATIVE GENERATOR",
+        description: "RAG-based creative generation pipeline using Google Gemini with vector similarity search and Supabase storage.",
+        fullDescription: "A comprehensive AI creative generation system leveraging Google Gemini for text and image generation, combined with RAG (Retrieval Augmented Generation) using pgvector for semantic search. Built with TypeScript and integrated with Supabase for asset storage.",
+        image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&auto=format&fit=crop",
+        screenshots: [
+            "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&auto=format&fit=crop"
+        ],
+        githubLink: "https://github.com/udayhese96/CREATIVES-GENERATOR",
+        category: "React",
+        features: [
+            "Google Gemini: Text and image generation capabilities",
+            "RAG Pipeline: Vector similarity search with pgvector",
+            "Supabase Integration: Asset storage and management",
+            "TypeScript: Type-safe implementation"
+        ]
+    },
+    {
+        id: 4,
         slug: "fairshare",
         title: "FAIRSHARE",
         description: "Built a fully client-side app for group expense tracking, settlements, and balances using...",
@@ -27,7 +84,7 @@ export const projectsData = [
         ]
     },
     {
-        id: 2,
+        id: 5,
         slug: "mental-health-chatbot",
         title: "MENTAL HEALTH CHATBOT",
         description: "Created a mental health chatbot using Groq API for empathetic AI support with offline knowledge...",
@@ -47,7 +104,7 @@ export const projectsData = [
         ]
     },
     {
-        id: 3,
+        id: 6,
         slug: "virtual-traffic-police",
         title: "VIRTUAL TRAFFIC POLICE",
         description: "Developed a real-time traffic system using YOLOv10 and OpenCV for vehicle detection...",
@@ -66,7 +123,7 @@ export const projectsData = [
         ]
     },
     {
-        id: 4,
+        id: 7,
         slug: "heart-disease-prediction",
         title: "HEART DISEASE PREDICTION",
         description: "ML-based heart disease prediction system using KNN, SVM, Neural Networks...",
@@ -85,7 +142,7 @@ export const projectsData = [
         ]
     },
     {
-        id: 5,
+        id: 8,
         slug: "laptop-borrowal",
         title: "LAPTOP BORROWAL",
         description: "Dynamic web application for managing laptop borrowals in a lab setting with secure login.",
@@ -104,7 +161,7 @@ export const projectsData = [
         ]
     },
     {
-        id: 6,
+        id: 9,
         slug: "rto-dashboard",
         title: "RTO DASHBOARD",
         description: "Power BI dashboard analyzing vehicle registration data for dealership strategy planning.",
