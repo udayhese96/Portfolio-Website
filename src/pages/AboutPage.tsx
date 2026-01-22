@@ -10,7 +10,7 @@ const AboutPage = () => {
   const [typingKey, setTypingKey] = useState(0);
   const [showTyping, setShowTyping] = useState(true);
 
-  const resumePdfUrl = "https://drive.google.com/file/d/1Dzn83qEjRSv5GzzFR4T4knImeMazBS7X/preview";
+  const resumePdfUrl = "https://drive.google.com/file/d/18P9h69SG3D2jFtd9UwivEvHWklspFWoi/preview";
 
   const tabs = [
     { id: 'personal' as TabId, label: 'personal.ts' },
@@ -171,21 +171,33 @@ const AboutPage = () => {
           <div className="resume-embed-container" style={{
             width: '100%',
             height: '100%',
-            minHeight: '500px',
+            display: 'flex',
+            flexDirection: 'column',
+            flex: 1,
           }}>
-            <iframe
-              src={resumePdfUrl}
+            <object
+              data="/Uday_Hese_Resume.pdf"
+              type="application/pdf"
               style={{
                 width: '100%',
                 height: '100%',
                 minHeight: '500px',
-                border: '1px solid var(--terminal-border)',
-                borderRadius: '8px',
-                backgroundColor: '#fff',
+                flex: 1,
+                border: 'none',
+                borderRadius: '4px',
               }}
-              allow="autoplay"
-              title="Resume PDF"
-            />
+            >
+              <iframe
+                src="/Uday_Hese_Resume.pdf"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  minHeight: '500px',
+                  border: 'none',
+                }}
+                title="Resume PDF"
+              />
+            </object>
           </div>
         ) : showTyping ? (
           <CodeTypingAnimation

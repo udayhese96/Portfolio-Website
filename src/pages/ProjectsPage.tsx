@@ -7,6 +7,25 @@ import TypingAnimation from '../components/TypingAnimation';
 // Extended project data with full details
 export const projectsData = [
     {
+        id: 10,
+        slug: "ai-embedded-mailer",
+        title: "AI-EMBEDDED EMAIL MAILER",
+        description: "AI-powered email studio with real-time HTML generation using OpenRouter LLM and secure Gmail OAuth 2.0 integration.",
+        fullDescription: "A modern Email Studio that allows you to create, edit, and send HTML emails using your own Gmail account via secure OAuth 2.0 integration. Features AI-powered real-time HTML email generation using OpenRouter LLM with a chat-based conversational interface, encrypted session management, and Supabase image hosting.",
+        image: "https://images.unsplash.com/photo-1596526131083-e8c633c948d2?w=800&auto=format&fit=crop",
+        screenshots: [
+            "https://images.unsplash.com/photo-1596526131083-e8c633c948d2?w=800&auto=format&fit=crop"
+        ],
+        githubLink: "https://github.com/udayhese96/AI-Embedded-Mailer",
+        category: "React",
+        features: [
+            "AI Email Generation: Real-time HTML generation using OpenRouter LLM",
+            "Gmail OAuth 2.0: Secure authentication with encrypted session management",
+            "Chat Interface: Conversational UI for composing emails",
+            "Supabase Storage: Image hosting and asset management"
+        ]
+    },
+    {
         id: 1,
         slug: "dance-movement-analyzer",
         title: "DANCE MOVEMENT ANALYZER",
