@@ -7,6 +7,7 @@ interface TerminalWindowProps {
     children: React.ReactNode;
     className?: string;
     statusBar?: React.ReactNode;
+    headerAction?: React.ReactNode;
 }
 
 const TerminalWindow: React.FC<TerminalWindowProps> = ({
@@ -15,18 +16,22 @@ const TerminalWindow: React.FC<TerminalWindowProps> = ({
     children,
     className = '',
     statusBar,
+    headerAction,
 }) => {
     return (
         <div className={`terminal-window ${className}`}>
             {/* Title Bar */}
-            <div className="terminal-title-bar">
+            <div className="terminal-title-bar relative">
                 <div className="terminal-controls">
                     <span className="terminal-dot terminal-dot-red"></span>
                     <span className="terminal-dot terminal-dot-yellow"></span>
                     <span className="terminal-dot terminal-dot-green"></span>
                 </div>
                 <span className="terminal-title">{title}</span>
-                <AnimatedFace size={21} />
+                <div className="flex items-center gap-2 absolute right-4">
+                    {headerAction}
+                    <AnimatedFace size={21} />
+                </div>
             </div>
 
             {/* Tabs (optional) */}

@@ -12,7 +12,7 @@ const navItems: NavItem[] = [
     { to: '/', label: 'home', shortcut: 'h' },
     { to: '/about', label: 'abouts', shortcut: 'a' },
     { to: '/projects', label: 'projects', shortcut: 'p' },
-    { to: '/blog', label: 'articles', shortcut: 'r' },
+    { to: '/blog', label: 'blogs', shortcut: 'b' },
     { to: '/contact', label: 'contact', shortcut: 'c' },
 ];
 

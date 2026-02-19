@@ -7,24 +7,24 @@ import { Button } from "@/components/ui/button";
 const Blog = () => {
   const { portfolioData } = usePortfolio();
   const blogPosts = portfolioData?.blogPosts || [];
-  
+
   // Display only the 3 most recent blog posts on the homepage
   const recentPosts = blogPosts.slice(0, 3);
-  
+
   return (
     <section id="blog" className="py-20 bg-portfolio-light">
       <div className="container mx-auto px-6">
         <h2 className="section-title">My Blog</h2>
         <p className="section-subtitle">Recent Achievements</p>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
           {recentPosts.length > 0 ? (
             recentPosts.map((post) => (
               <Card key={post.id} className="overflow-hidden hover:shadow-lg transition-shadow">
                 <div className="h-48 overflow-hidden">
-                  <img 
-                    src={post.image} 
-                    alt={post.title} 
+                  <img
+                    src={post.image}
+                    alt={post.title}
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                   />
                 </div>
@@ -36,7 +36,7 @@ const Blog = () => {
                   <p className="text-portfolio-gray line-clamp-3">{post.content}</p>
                 </CardContent>
                 <CardFooter>
-                  <Link to={`/blog/${post.id}`} className="w-full">
+                  <Link to={`/blog/${post.slug}`} className="w-full">
                     <Button variant="outline" className="w-full">Read More</Button>
                   </Link>
                 </CardFooter>
@@ -48,7 +48,7 @@ const Blog = () => {
             </div>
           )}
         </div>
-        
+
         <div className="text-center mt-12">
           <Link to="/blog">
             <Button className="btn-primary">View All Posts</Button>

@@ -49,10 +49,19 @@ export interface Message {
 
 export interface BlogPost {
   id: number;
+  slug: string;
   title: string;
+  excerpt: string;
   content: string;
   date: string;
   image: string;
+  readTime: string;
+  headerLink?: string;
+  headerLinkLabel?: string;
+  headerLinkIcon?: "award" | "link" | "github";
+  secondaryLink?: string;
+  secondaryLinkLabel?: string;
+  secondaryLinkIcon?: "award" | "link" | "github";
 }
 
 export interface PortfolioData {
@@ -145,24 +154,180 @@ const defaultData: PortfolioData = {
   blogPosts: [
     {
       id: 1,
-      title: "Implemented Machine Learning Model for Image Classification",
-      content: "Recently, I completed a project implementing a CNN-based image classification model that achieved 95% accuracy on the test dataset. The model was built using TensorFlow and deployed as a web service.",
-      date: "2023-11-25",
-      image: "https://images.unsplash.com/photo-1555421689-d68471e189f2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+      slug: "building-ai-cloud-skills-google-cloud-2026",
+      title: "Building AI & Cloud Skills with Google Cloud Technical Series (OnBoard Edition 2026)",
+      excerpt: "I recently completed the Google Cloud Asia Pacific – Cloud Technical Series (OnBoard Edition 2026). This program helped me strengthen my understanding of AI, cloud computing, and modern development practices.",
+      date: "2026-02-14",
+      readTime: "5 min read",
+      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80",
+      headerLink: "https://googlecloudapac.accredible.com/77dcae2d-86f0-4c48-b769-e9f2edec0327#acc.AqH0mzk2",
+      headerLinkLabel: "Certificate Link",
+      headerLinkIcon: "award",
+      content: `I recently completed the Google Cloud Asia Pacific – Cloud Technical Series (OnBoard Edition 2026). This program helped me strengthen my understanding of AI, cloud computing, and modern development practices through technical sessions and hands-on labs.
+
+Below are the key things I learned:
+
+## 1. Generative AI and AI Agents
+
+- Gained understanding of how Generative AI models are used in real-world applications.
+- Learned how AI agents can automate workflows and assist in building intelligent systems.
+- Understood how AI is transforming application development and problem-solving approaches.
+- Realized the importance of learning how to use AI effectively rather than just depending on it.
+
+## 2. Google AI Studio
+
+- Explored Google AI Studio for experimenting with foundation models.
+- Learned how to prototype AI-based applications quickly.
+- Understood how AI tools simplify testing and deployment processes.
+
+## 3. Google Workspace & Workflow Tools
+
+- Learned about workflow automation tools within the Google ecosystem.
+- Understood how low-code tools improve productivity.
+- Explored how collaboration and cloud-based tools enhance team efficiency.
+
+## 4. Cloud Computing & App Development
+
+- Strengthened knowledge of cloud-native application development.
+- Learned infrastructure and DevOps fundamentals.
+- Gained insights into scalable system design.
+- Improved understanding of data engineering basics.
+
+## 5. Hands-On Labs Experience
+
+- Practiced deploying cloud services.
+- Applied concepts learned in technical sessions.
+- Improved practical implementation skills.
+
+My Key Takeaway
+
+This program helped me understand how rapidly the technology landscape is changing due to AI and cloud computing. It reinforced the importance of continuous learning and regularly upgrading skills to stay relevant in the industry.
+
+Going forward, I will continue learning and building projects in:
+
+- AI-powered applications
+- Cloud-native architectures
+- Agent-based systems
+- Data-driven development`
     },
     {
       id: 2,
-      title: "Completed AWS Machine Learning Certification",
-      content: "I'm excited to share that I've earned the AWS Certified Machine Learning Specialty certification. This intensive program covered data engineering, exploratory data analysis, modeling, and ML implementation on AWS.",
-      date: "2023-10-10",
-      image: "https://images.unsplash.com/photo-1568952433726-3896e3881c65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-    },
-    {
-      id: 3,
-      title: "Contributed to Open Source NLP Project",
-      content: "Proud to have contributed to a major open-source NLP library by implementing a new feature for sentiment analysis. My pull request was reviewed and merged, and the feature is now available in the latest release.",
-      date: "2023-09-15",
-      image: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+      slug: "embedmail-ai-modern-email-studio",
+      title: "EmbedMail AI – A Modern AI-Powered Email Studio with Gmail Integration",
+      excerpt: "EmbedMail AI is a modern Email Studio application that allows users to create, edit, and send HTML emails using their own Gmail account through secure OAuth 2.0 authentication.",
+      date: "2026-01-15",
+      readTime: "6 min read",
+      image: "https://images.unsplash.com/photo-1596526131083-e8c633c948d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+      headerLink: "https://embedmail-ai.vercel.app/",
+      headerLinkLabel: "Live Application",
+      headerLinkIcon: "link",
+      secondaryLink: "https://github.com/udayhese96/AI-Embedded-Mailer",
+      secondaryLinkLabel: "GitHub Repository",
+      secondaryLinkIcon: "github",
+      content: `I developed **EmbedMail AI**, a modern Email Studio application that allows users to create, edit, and send HTML emails using their own Gmail account through secure OAuth 2.0 authentication.
+
+This project was built to simplify email composition while maintaining strong security practices and intelligent content handling. Along with secure Gmail integration, I implemented a Hybrid RAG (Retrieval-Augmented Generation) pipeline to enhance email content suggestions and template retrieval.
+
+## Core Features
+
+### 1. Secure Gmail OAuth 2.0 Integration
+
+- Users can connect their Gmail account securely.
+- Authentication is handled using Google OAuth 2.0.
+- Access tokens are securely managed in the backend.
+- Redirect URI configuration ensures safe authentication flow.
+
+### 2. HTML Email Composer
+
+- Create fully customizable HTML emails.
+- Edit and format email content.
+- Enter recipient, subject, and body in a structured interface.
+- Send emails directly using Gmail API.
+
+### 3. AI-Powered RAG Pipeline (Hybrid Search)
+
+- Implemented Retrieval-Augmented Generation system.
+- Hybrid Search combining:
+  - Dense vector search (semantic similarity)
+  - Keyword-based search (exact match relevance)
+- Improved template and context retrieval.
+- More accurate and context-aware email suggestions.
+
+### 4. Full-Stack Architecture
+
+**Frontend:**
+
+- React + TypeScript
+- Component-based UI structure
+- Authentication state management
+- API integration
+
+**Backend:**
+
+- FastAPI (Python)
+- Gmail API integration
+- OAuth handling
+- Environment-based configuration
+- Secure encryption using Fernet
+
+## Technologies Used
+
+- React
+- TypeScript
+- FastAPI
+- Python
+- Gmail API
+- OAuth 2.0
+- Vector embeddings
+- Hybrid Search (Semantic + Keyword Retrieval)
+- Environment variable configuration
+- Vercel (Deployment)
+
+## What It Took to Build This
+
+Building this application required:
+
+- Understanding OAuth 2.0 authorization flow
+- Configuring Google Cloud Console credentials
+- Managing secure environment variables
+- Designing REST APIs with FastAPI
+- Implementing frontend-backend communication
+- Handling authentication sessions
+- Integrating AI-based retrieval systems
+- Designing hybrid ranking strategies
+- Testing Gmail API email sending flow
+
+## Deployment
+
+The frontend is deployed on Vercel and the application is publicly accessible at:
+[https://embedmail-ai.vercel.app/](https://embedmail-ai.vercel.app/)
+
+The source code is available here:
+[https://github.com/udayhese96/AI-Embedded-Mailer](https://github.com/udayhese96/AI-Embedded-Mailer)
+
+## Current Status
+
+The project is actively being improved.
+
+I am continuously working on:
+
+- Enhancing AI content generation
+- Improving hybrid retrieval ranking
+- Adding better UI components
+- Optimizing performance
+- Adding more intelligent automation features
+- Exploring multi-provider email support
+
+## Conclusion
+
+EmbedMail AI represents a combination of:
+
+- Secure authentication systems
+- Full-stack development
+- Cloud-based APIs
+- AI-powered retrieval systems
+
+This project helped me strengthen my skills in building secure, scalable, and AI-integrated applications. I will continue updating and improving this system with new features and optimizations.`
     }
   ]
 };
@@ -216,6 +381,7 @@ export const PortfolioProvider = ({ children }: { children: ReactNode }) => {
             setPortfolioData({
               ...parsedData,
               contact: contact, // Always use contact.json
+              blogPosts: posts, // Always use latest blog posts
             });
           } catch (error) {
             console.error("Error parsing portfolio data from localStorage:", error);
@@ -269,7 +435,7 @@ export const PortfolioProvider = ({ children }: { children: ReactNode }) => {
   const updateProject = (data: ProjectData) => {
     setPortfolioData(prev => ({
       ...prev,
-      projects: prev.projects.map(project => 
+      projects: prev.projects.map(project =>
         project.id === data.id ? data : project
       )
     }));
@@ -280,7 +446,7 @@ export const PortfolioProvider = ({ children }: { children: ReactNode }) => {
       ...data,
       id: Date.now()
     };
-    
+
     setPortfolioData(prev => ({
       ...prev,
       projects: [...prev.projects, newProject]
@@ -308,7 +474,7 @@ export const PortfolioProvider = ({ children }: { children: ReactNode }) => {
       date: new Date().toISOString().split('T')[0],
       isRead: false
     };
-    
+
     setPortfolioData(prev => ({
       ...prev,
       messages: [newMessage, ...prev.messages]
@@ -318,7 +484,7 @@ export const PortfolioProvider = ({ children }: { children: ReactNode }) => {
   const markMessageAsRead = (id: number) => {
     setPortfolioData(prev => ({
       ...prev,
-      messages: prev.messages.map(message => 
+      messages: prev.messages.map(message =>
         message.id === id ? { ...message, isRead: true } : message
       )
     }));
@@ -337,7 +503,7 @@ export const PortfolioProvider = ({ children }: { children: ReactNode }) => {
       id: Date.now(),
       date: new Date().toISOString().split('T')[0]
     };
-    
+
     setPortfolioData(prev => ({
       ...prev,
       blogPosts: [newBlogPost, ...prev.blogPosts]
@@ -354,7 +520,7 @@ export const PortfolioProvider = ({ children }: { children: ReactNode }) => {
   const updateBlogPost = (post: BlogPost) => {
     setPortfolioData(prev => ({
       ...prev,
-      blogPosts: prev.blogPosts.map(blogPost => 
+      blogPosts: prev.blogPosts.map(blogPost =>
         blogPost.id === post.id ? post : blogPost
       )
     }));
