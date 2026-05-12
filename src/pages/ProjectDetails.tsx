@@ -136,6 +136,40 @@ const ProjectDetails = () => {
               </ul>
             </div>
           )}
+
+          {featuresVisible && (project as any).workflowImage && (
+            <div className="project-detail-section mt-10">
+              <h2 className="project-detail-features-title mb-6">
+                <TypingAnimation text="Workflow Architecture" speed={30} />
+              </h2>
+              <div className="rounded-lg overflow-hidden border border-cyan-400/30 p-2 bg-black/40">
+                <img 
+                  src={(project as any).workflowImage} 
+                  alt="Workflow Architecture" 
+                  className="w-full h-auto rounded"
+                />
+              </div>
+            </div>
+          )}
+
+          {featuresVisible && (project as any).resultsImages && (project as any).resultsImages.length > 0 && (
+            <div className="project-detail-section mt-10">
+              <h2 className="project-detail-features-title mb-6">
+                <TypingAnimation text="Results" speed={30} />
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {(project as any).resultsImages.map((img: string, idx: number) => (
+                  <div key={idx} className="rounded-lg overflow-hidden border border-cyan-400/30 p-2 bg-black/40">
+                    <img 
+                      src={img} 
+                      alt={`Result ${idx + 1}`} 
+                      className="w-full h-auto rounded"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </TerminalWindow>
 

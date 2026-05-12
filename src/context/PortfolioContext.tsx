@@ -118,6 +118,38 @@ const defaultData: PortfolioData = {
       technologies: ["React", "RESTful API", "CSS"],
       liveLink: "https://example.com",
       githubLink: "https://github.com/udayhese96"
+    },
+    {
+      id: 4,
+      title: "AlgoVault",
+      description: "AlgoVault is a modern, premium web platform designed to be your personal Data Structures and Algorithms (DSA) workspace.",
+      image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+      technologies: ["Next.js", "Tailwind CSS", "Supabase", "Monaco Editor", "Judge0"],
+      liveLink: "https://algo-vault-seven.vercel.app",
+      githubLink: "https://github.com/udayhese96/AlgoVault",
+      fullDescription: `AlgoVault is a modern, premium web platform designed to be your personal Data Structures and Algorithms (DSA) workspace. It provides a distraction-free, LeetCode-inspired environment to organize your coding problems, write algorithmic strategies, and execute code directly in your browser.
+
+## Features ✨
+
+* **Analytics Dashboard:** Premium LeetCode-inspired dashboard with SVG donut charts for problem-solving stats, an activity heatmap, and global streak tracking to gamify your learning experience.
+* **Smart Organization:** Group your questions into custom folders and tag them by difficulty (Easy, Medium, Hard). Includes a VS Code-inspired sidebar explorer for quick folder/question management.
+* **Workspace Control Bar:** Real-time text-based search, difficulty level filtering, and chronological sorting to maintain a distraction-free coding workspace.
+* **Full-Featured Code Workspace:** Professional IDE layout powered by Monaco Editor with syntax highlighting and auto-completion.
+* **Live Code Execution:** Securely run **Python**, **Java** (with auto 'Main' class conversion), and **C++** code directly in the browser via the Judge0 execution engine.
+* **Dual Output Terminal:** View live compiler results (memory, execution time, and errors) and optionally copy/save manual outputs to your database.
+* **Rich Note-taking:** Document problem statements and write down your personal solving approaches/time complexities.
+* **Secure Authentication:** Robust passwordless login and account recovery via a custom OTP (One-Time Password) system integrated with Supabase.
+* **Modern UI:** Built with a stunning dark/light theme toggle, glassmorphic effects, and highly responsive design across mobile and desktop.
+
+## Tech Stack 🛠
+
+* **Framework:** Next.js 16 (App Router)
+* **Styling:** Tailwind CSS + Custom CSS (Glassmorphism & Gradients)
+* **Database & Auth:** Supabase (PostgreSQL & OTP Authentication)
+* **Code Editor:** Monaco Editor (\`@monaco-editor/react\`)
+* **Code Execution API:** Judge0 Community Edition
+
+*Built as a high-performance workspace to master Data Structures and Algorithms. Completed in May 2026.*`
     }
   ],
   contact: {

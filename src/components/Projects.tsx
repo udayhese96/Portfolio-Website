@@ -13,6 +13,16 @@ const projectsData = [
     fullDescription: "FairShare is a comprehensive expense-sharing application designed to simplify financial management among friends, roommates, and groups. Built with React and utilizing React Query for state management, the app offers a seamless way to track shared expenses, calculate settlements, and maintain transparent financial records within groups. Users can create multiple groups, add expenses with detailed categorization, and see real-time updates of who owes what to whom. The application features an intuitive dashboard displaying balances, recent activities, and settlement suggestions. All data is stored locally using the browser's localStorage API, ensuring privacy while eliminating the need for server dependencies. The responsive design adapts seamlessly to both desktop and mobile devices, making it accessible anytime, anywhere."
   },
   {
+    id: 7,
+    title: "AI Meeting Scheduler Agent",
+    description: "An Agentic AI-powered meeting scheduler built using LangFlow + LLM Agents + Google Calendar API. Automates end-to-end meeting scheduling with intelligent validation and slot detection.",
+    image: "https://images.unsplash.com/photo-1506784365847-bbad939e9335?w=800&auto=format&fit=crop",
+    technologies: ["LangFlow", "LLM Agents", "Google Calendar API", "OAuth 2.0", "RAG"],
+    liveLink: "",
+    githubLink: "https://github.com/udayhese96/AI-Meeting-Scheduler-Agent",
+    fullDescription: "An Agentic AI-powered meeting scheduler built using LangFlow + LLM Agents + Google Calendar API. It automates end-to-end meeting scheduling with intelligent validation, slot detection, and conversational interaction. Features include smart slot detection via Google Calendar integration, time and email validation, and support for both online and offline meeting scheduling."
+  },
+  {
     id: 2,
     title: "Mental Health Chatbot",
     description: "Created a mental health chatbot using Groq API for empathetic AI support. Processed PDFs using PyMuPDF + HuggingFace for offline knowledge. Used Langchain for memory, prompts, and flow control.",

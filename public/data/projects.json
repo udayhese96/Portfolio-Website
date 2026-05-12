@@ -114,5 +114,52 @@
       "challenges": "Handling API rate limits and caching strategies",
       "learnings": "API integration and data visualization techniques"
     }
+  },
+  {
+    "id": 6,
+    "slug": "ai-meeting-scheduler",
+    "title": "AI Meeting Scheduler Agent",
+    "description": "An Agentic AI-powered meeting scheduler built using LangFlow + LLM Agents + Google Calendar API.",
+    "image": "https://images.unsplash.com/photo-1506784365847-bbad939e9335?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+    "technologies": ["LangFlow", "LLM Agents", "Google Calendar API", "OAuth 2.0", "RAG"],
+    "liveLink": "",
+    "githubLink": "https://github.com/udayhese96/AI-Meeting-Scheduler-Agent",
+    "category": "Agentic AI",
+    "featured": true,
+    "details": {
+      "overview": "Automates end-to-end meeting scheduling with intelligent validation, slot detection, and conversational interaction.",
+      "features": [
+        "Smart Slot Detection",
+        "Agentic Workflow",
+        "Intelligent Validation",
+        "Automatic Event Creation"
+      ],
+      "challenges": "Integrating Google Calendar API with LangFlow and ensuring robust time conflict validation",
+      "learnings": "Building agentic AI workflows and integrating external APIs for real-world automation"
+    }
+  },
+  {
+    "id": 7,
+    "slug": "algovault",
+    "title": "AlgoVault",
+    "description": "AlgoVault is a modern, premium web platform designed to be your personal Data Structures and Algorithms (DSA) workspace.",
+    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+    "technologies": ["Next.js 16", "Tailwind CSS", "Supabase", "Monaco Editor", "Judge0"],
+    "liveLink": "https://algo-vault-seven.vercel.app",
+    "githubLink": "https://github.com/udayhese96/AlgoVault",
+    "category": "Full Stack",
+    "featured": true,
+    "details": {
+      "overview": "AlgoVault is a modern, premium web platform designed to be your personal Data Structures and Algorithms (DSA) workspace. It provides a distraction-free, LeetCode-inspired environment to organize your coding problems, write algorithmic strategies, and execute code directly in your browser.",
+      "features": [
+        "Analytics Dashboard with SVG donut charts",
+        "Smart Organization with custom folders",
+        "Workspace Control Bar with real-time search",
+        "Full-Featured Code Workspace with Monaco Editor",
+        "Live Code Execution via Judge0"
+      ],
+      "challenges": "Integrating live code execution securely and managing complex workspace state",
+      "learnings": "Building robust web platforms with Next.js 16 and Supabase OTP Authentication"
+    }
   }
 ]

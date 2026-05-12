@@ -7,6 +7,25 @@ import TypingAnimation from '../components/TypingAnimation';
 // Extended project data with full details
 export const projectsData = [
     {
+        id: 12,
+        slug: "algovault",
+        title: "ALGOVAULT",
+        description: "A modern, premium web platform designed to be your personal Data Structures and Algorithms (DSA) workspace with live code execution.",
+        fullDescription: "AlgoVault is a modern, premium web platform designed to be your personal Data Structures and Algorithms (DSA) workspace. It provides a distraction-free, LeetCode-inspired environment to organize your coding problems, write algorithmic strategies, and execute code directly in your browser. Built with Next.js 16, Supabase, and Monaco Editor.",
+        image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1470&q=80",
+        screenshots: [
+            "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1470&q=80"
+        ],
+        githubLink: "https://github.com/udayhese96/AlgoVault",
+        category: "React",
+        features: [
+            "Analytics Dashboard: Premium dashboard with SVG donut charts",
+            "Live Code Execution: Run Python, Java, and C++ code in browser",
+            "Smart Organization: Group questions into custom folders",
+            "Secure Authentication: Passwordless OTP login with Supabase"
+        ]
+    },
+    {
         id: 10,
         slug: "ai-embedded-mailer",
         title: "AI-EMBEDDED EMAIL MAILER",
@@ -23,6 +42,31 @@ export const projectsData = [
             "Gmail OAuth 2.0: Secure authentication with encrypted session management",
             "Chat Interface: Conversational UI for composing emails",
             "Supabase Storage: Image hosting and asset management"
+        ]
+    },
+    {
+        id: 11,
+        slug: "ai-meeting-scheduler",
+        title: "AI MEETING SCHEDULER AGENT",
+        description: "Agentic AI-powered meeting scheduler built using LangFlow + LLM Agents + Google Calendar API.",
+        fullDescription: "Automates end-to-end meeting scheduling with intelligent validation, slot detection, and conversational interaction. It features user info collection, smart slot detection via Google Calendar integration, time and email validation, and supports both online and offline meeting scheduling.",
+        image: "https://images.unsplash.com/photo-1506784365847-bbad939e9335?w=800&auto=format&fit=crop",
+        screenshots: [
+            "https://images.unsplash.com/photo-1506784365847-bbad939e9335?w=800&auto=format&fit=crop"
+        ],
+        githubLink: "https://github.com/udayhese96/AI-Meeting-Scheduler-Agent",
+        category: "Agentic AI",
+        features: [
+            "Smart Slot Detection: Fetch + filter free slots with Google Calendar",
+            "Agentic Workflow: Conversational AI with LangFlow + LLM Agents",
+            "Intelligent Validation: Date, time, conflict, and email validation",
+            "Automatic Event Creation: Creates Google Calendar event with invites"
+        ],
+        workflowImage: "https://raw.githubusercontent.com/udayhese96/AI-Meeting-Scheduler-Agent/main/Images/FlowDiagram.png",
+        resultsImages: [
+            "https://raw.githubusercontent.com/udayhese96/AI-Meeting-Scheduler-Agent/main/Images/Chat.png",
+            "https://raw.githubusercontent.com/udayhese96/AI-Meeting-Scheduler-Agent/main/Images/Chat2.png",
+            "https://raw.githubusercontent.com/udayhese96/AI-Meeting-Scheduler-Agent/main/Images/Chat3.png"
         ]
     },
     {
@@ -197,10 +241,10 @@ export const projectsData = [
             "Competitor Tracking: Monitor market share changes",
             "Strategic Planning: Data-driven decision support"
         ]
-    },
+    }
 ];
 
-const categories = ['All Projects', 'React', 'Python', 'Web', 'Analytics'];
+const categories = ['All Projects', 'Agentic AI', 'React', 'Python', 'Web', 'Analytics'];
 
 // GitHub Icon
 const GitHubIcon = () => (
@@ -311,7 +355,17 @@ const ProjectsPage = () => {
                                             project.title
                                         )}
                                     </h3>
-                                    <span className="project-item-icon">
+                                    <span 
+                                        className="project-item-icon"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            e.stopPropagation();
+                                            const link = project.githubLink || project.driveLink;
+                                            if (link) window.open(link, '_blank');
+                                        }}
+                                        title={project.githubLink ? "View on GitHub" : "View on Drive"}
+                                        style={{ cursor: 'pointer' }}
+                                    >
                                         {project.githubLink ? <GitHubIcon /> : <DriveIcon />}
                                     </span>
                                 </div>
